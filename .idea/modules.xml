@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/packages\\eventy_consumer/melos_eventy_consumer.iml" filepath="$PROJECT_DIR$/packages\\eventy_consumer/melos_eventy_consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages\\eventy_db/melos_eventy_db.iml" filepath="$PROJECT_DIR$/packages\\eventy_db/melos_eventy_db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages\\eventy_organizer/melos_eventy_organizer.iml" filepath="$PROJECT_DIR$/packages\\eventy_organizer/melos_eventy_organizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_eventy.iml" filepath="$PROJECT_DIR$/melos_eventy.iml" />
+    </modules>
+  </component>
+</project>

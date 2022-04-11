@@ -1,0 +1,8 @@
+name: Eventy
+
+packages:
+  - packages/**
+
+scripts:
+  analyze: melos exec -- "dart analyze ."
+  fix: melos exec -- "dart fix ."
