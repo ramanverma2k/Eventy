@@ -1,7 +1,17 @@
 library eventy_db;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
+class DatabaseConfig {
+  static final HttpLink httpLink = HttpLink("http://localhost:8080/v1/graphql");
+
+  static final ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: httpLink,
+      cache: GraphQLCache(
+        store: InMemoryStore(),
+      ),
+    ),
+  );
 }
