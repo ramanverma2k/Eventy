@@ -9,6 +9,6 @@ class SignupInProgress extends SignupState {}
 
 class SignupSuccess extends SignupState {}
 
-class SignupRetry extends SignupState {}
+class SignupComplete extends SignupState {}
 
 class SignupFailed extends SignupState {}

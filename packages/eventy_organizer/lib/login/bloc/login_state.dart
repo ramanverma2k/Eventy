@@ -9,6 +9,4 @@ class LoginInProgress extends LoginState {}
 
 class LoginSuccess extends LoginState {}
 
-class LoginRetry extends LoginState {}
-
 class LoginFailed extends LoginState {}

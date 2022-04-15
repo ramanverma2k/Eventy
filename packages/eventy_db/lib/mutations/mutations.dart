@@ -1,7 +1,7 @@
 class Mutations {
   static const String registerAdminUser = """
     mutation registerUser(\$id: uuid!, \$username: name!, \$password: String!, \$first_name: name!
-    \$last_name: name!, \$email: String!, \$contact_no: numeric!,\$description: String!, \$is_admin: boolean
+    \$last_name: name!, \$email: String!, \$contact_no: numeric!,\$description: String!, \$is_admin: Boolean
     ) {
     action: insert_users_one(object: {id: \$id, username: \$username, password: \$password,
     first_name: \$first_name, last_name: \$last_name, email: \$email, contact_no: \$contact_no,

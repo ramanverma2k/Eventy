@@ -22,10 +22,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         final result = await client.query(options);
 
-        if (result.data!["users"].isNotEmpty) {
+        if (result.data!["exception"] == null &&
+            result.data!["users"].isNotEmpty) {
           emit(LoginSuccess());
         } else {
-          emit(LoginRetry());
+          emit(LoginInitial());
         }
       } catch (e) {
         emit(LoginFailed());

@@ -1,5 +1,5 @@
 import 'package:eventy_db/eventy_db.dart';
-import 'package:eventy_organizer/widgets/widgets.dart';
+import 'package:eventy_organizer/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GraphQLProvider(
       client: DatabaseConfig.client,
       child: const MaterialApp(
-        home: LandingPage(),
+        home: LoginPage(),
       ),
     );
   }
