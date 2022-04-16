@@ -34,6 +34,8 @@ dependencies:
   uuid: ^3.0.6
   flutter_bloc: ^8.0.1
   get_it: ^7.2.0
+  modal_bottom_sheet: ^2.0.1
+  gap: ^2.0.0
   eventy_db:
     path: ../eventy_db/
 
