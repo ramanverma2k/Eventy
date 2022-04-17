@@ -107,7 +107,7 @@ class LoginView extends StatelessWidget {
                   }
 
                   if (state is LoginComplete) {
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) => const HomePage(),
                       ),
