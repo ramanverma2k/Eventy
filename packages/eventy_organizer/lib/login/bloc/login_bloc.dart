@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
+import 'package:uuid/uuid.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -29,14 +30,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               result.data!["users"].isNotEmpty) {
             GetIt.I.registerSingleton(User.fromJson(result.data!["users"][0]),
                 instanceName: "user");
-            emit(LoginSuccess());
-          } else {
-            emit(LoginInitial());
+            await Future.delayed(const Duration(seconds: 2), () {
+              if (result.data!["users"][0]["email"] == event.username &&
+                  Uuid.isValidUUID(
+                      fromString: result.data!["users"][0]["id"])) {
+                emit(LoginSuccess());
+              } else {
+                emit(LoginInitial());
+              }
+            });
           }
         } catch (e) {
-          emit(LoginFailed());
+          emit(LoginFailed(message: e.toString()));
         }
       },
     );
+
+    on<LoginEventFinished>((event, emit) async {
+      emit(LoginComplete());
+    });
   }
 }

@@ -9,4 +9,10 @@ class LoginInProgress extends LoginState {}
 
 class LoginSuccess extends LoginState {}
 
-class LoginFailed extends LoginState {}
+class LoginComplete extends LoginState {}
+
+class LoginFailed extends LoginState {
+  final String message;
+
+  LoginFailed({required this.message});
+}

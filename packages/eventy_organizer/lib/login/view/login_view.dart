@@ -9,78 +9,123 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     final _usernameController = TextEditingController();
     final _passwordController = TextEditingController();
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            DecoratedBox(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/signup.png"),
-                  fit: BoxFit.cover,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              DecoratedBox(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/signup.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width,
                 ),
               ),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "Welcome",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5
-                    ?.apply(fontWeightDelta: 3),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextFormField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(10),
-                  border: OutlineInputBorder(),
-                  labelText: "Username",
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  "Welcome",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      ?.apply(fontWeightDelta: 3),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(10),
-                  border: OutlineInputBorder(),
-                  labelText: "Password",
-                ),
-              ),
-            ),
-            const Spacer(),
-            BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
-                if (state is LoginInProgress) {
-                  return const CircularProgressIndicator();
-                }
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  controller: _usernameController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Username cannot be empty";
+                    }
 
-                if (state is LoginSuccess) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
-                }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    border: OutlineInputBorder(),
+                    labelText: "Username",
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  controller: _passwordController,
+                  validator: (value) {
+                    final expression =
+                        RegExp(r'''^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$''');
 
-                return SizedBox(
+                    if (value == null || value.isEmpty) {
+                      return "Password cannot be empty";
+                    }
+
+                    if (value.isNotEmpty && !expression.hasMatch(value)) {
+                      return "Password must be of 6 characters with at least 1 number";
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    border: OutlineInputBorder(),
+                    labelText: "Password",
+                  ),
+                ),
+              ),
+              const Spacer(),
+              BlocListener<LoginBloc, LoginState>(
+                listener: (context, state) {
+                  if (state is LoginInProgress) {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Logging you in...")),
+                    );
+                  }
+
+                  if (state is LoginSuccess) {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Login Successful")),
+                    );
+
+                    context.read<LoginBloc>().add(LoginEventFinished());
+                  }
+
+                  if (state is LoginComplete) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  }
+
+                  if (state is LoginFailed) {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                            "Login Failed, Make sure your username and password are correct or try again later"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                },
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: ElevatedButton(
@@ -89,43 +134,47 @@ class LoginView extends StatelessWidget {
                             MaterialStateProperty.all(Colors.black),
                       ),
                       onPressed: () {
-                        context.read<LoginBloc>().add(
-                              LoginEventStarted(
-                                username:
-                                    _usernameController.text.trim().toString(),
-                                password:
-                                    _passwordController.text.trim().toString(),
-                              ),
-                            );
+                        if (_formKey.currentState!.validate()) {
+                          context.read<LoginBloc>().add(
+                                LoginEventStarted(
+                                  username: _usernameController.text
+                                      .trim()
+                                      .toString(),
+                                  password: _passwordController.text
+                                      .trim()
+                                      .toString(),
+                                ),
+                              );
+                        }
                       },
                       child: const Text('Login')),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have an account?  "),
-                GestureDetector(
-                  onTap: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignupPage(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account?  "),
+                  GestureDetector(
+                    onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignupPage(),
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    "Sign up",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        ?.apply(fontWeightDelta: 3),
-                  ),
-                )
-              ],
-            ),
-            const Spacer(flex: 2),
-          ],
+                    child: Text(
+                      "Sign up",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          ?.apply(fontWeightDelta: 3),
+                    ),
+                  )
+                ],
+              ),
+              const Spacer(flex: 2),
+            ],
+          ),
         ),
       ),
     );
