@@ -41,6 +41,13 @@ class SignupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
                   controller: _usernameController,
+                  validator: (value) {
+                    if (value == null && value!.length < 5) {
+                      return "Username cannot be less than 5 letters";
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     border: OutlineInputBorder(),
@@ -53,6 +60,19 @@ class SignupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
                   controller: _passwordController,
+                  validator: (value) {
+                    final expression =
+                        RegExp(r'''^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$''');
+
+                    if (value == null || value.isEmpty) {
+                      return "Password cannot be empty";
+                    }
+
+                    if (value.isNotEmpty && !expression.hasMatch(value)) {
+                      return "Password must be a combination of 6 characters with at least 1 number";
+                    }
+                    return null;
+                  },
                   obscureText: true,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
@@ -66,6 +86,19 @@ class SignupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
                   controller: _firstNameController,
+                  validator: (value) {
+                    final expression = RegExp(r'''^[a-zA-Z]{3,}$''');
+
+                    if (value == null || value.isEmpty) {
+                      return "First name cannot be empty and must be greater than 2 letters";
+                    } else if (value.length < 3) {
+                      return "First name must be greater than 2 letters";
+                    } else if (!expression.hasMatch(value)) {
+                      return "Make sure your name doesn't contain any numbers";
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     border: OutlineInputBorder(),
@@ -90,6 +123,19 @@ class SignupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
                   controller: _emailController,
+                  validator: (value) {
+                    final expression = RegExp(
+                        r'''^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$''');
+
+                    if (value == null || value.isEmpty) {
+                      return "Email cannot be empty";
+                    } else if (value.isNotEmpty &&
+                        !expression.hasMatch(value)) {
+                      return "Please enter a valid email.";
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     border: OutlineInputBorder(),
@@ -102,6 +148,17 @@ class SignupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
                   controller: _contactNoController,
+                  validator: (value) {
+                    final expression = RegExp(r'''^[0-9]{10,}$''');
+                    if (value == null || value.isEmpty) {
+                      return "Contact number cannot be empty";
+                    } else if (value.isNotEmpty &&
+                        !expression.hasMatch(value)) {
+                      return "Please enter a valid 10 digit contact number";
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     border: OutlineInputBorder(),
