@@ -48,8 +48,17 @@ class LoginView extends StatelessWidget {
                 child: TextFormField(
                   controller: _usernameController,
                   validator: (value) {
+                    final expression = RegExp(
+                        r'''^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$''');
+
                     if (value == null || value.isEmpty) {
                       return "Username cannot be empty";
+                    } else if (value.isNotEmpty &&
+                        value.contains('@') &&
+                        !expression.hasMatch(value)) {
+                      return "Please enter a valid email";
+                    } else if (value.length < 5) {
+                      return "Please enter a valid username";
                     }
 
                     return null;
