@@ -39,15 +39,13 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
             GetIt.I.registerSingleton(User.fromJson(result.data!["action"]),
                 instanceName: "user");
 
-            await Future.delayed(const Duration(seconds: 2), () {
-              if (Uuid.isValidUUID(fromString: result.data!["action"]["id"]) &&
-                  result.data!["action"]["username"] == event.username &&
-                  result.data!["action"]["email"] == event.email) {
-                emit(SignupSuccess());
-              } else {
-                emit(SignupInitial());
-              }
-            });
+            if (Uuid.isValidUUID(fromString: result.data!["action"]["id"]) &&
+                result.data!["action"]["username"] == event.username &&
+                result.data!["action"]["email"] == event.email) {
+              emit(SignupSuccess());
+            } else {
+              emit(SignupInitial());
+            }
           }
         } catch (e) {
           emit(SignupFailed(message: e.toString()));
