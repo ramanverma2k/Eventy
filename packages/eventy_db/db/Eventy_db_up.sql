@@ -32,7 +32,7 @@ CREATE TABLE event (
 
 CREATE INDEX event_organizer on event (organizer ASC);
 
-CREATE INDEX event_type on event (type_id ASC);
+CREATE INDEX event_type_idx on event (type_id ASC);
 
 -- Table: event_manager
 CREATE TABLE event_manager (
