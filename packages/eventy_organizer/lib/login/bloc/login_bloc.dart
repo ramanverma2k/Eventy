@@ -16,17 +16,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.client}) : super(LoginInitial()) {
     on<LoginEventStarted>(
       (event, emit) async {
-        final QueryOptions options = event.username.contains('@')
-            ? QueryOptions(document: gql(Queries.getUserByEmail), variables: {
-                "email": event.username,
-                "password": event.password,
-              })
-            : QueryOptions(
-                document: gql(Queries.getUserByUsername),
-                variables: {
-                    "username": event.username,
-                    "password": event.password,
-                  });
+        final QueryOptions options =
+            QueryOptions(document: gql(Queries.getUser), variables: {
+          "email": event.username,
+          "username": event.username,
+          "password": event.password,
+        });
 
         emit(LoginInProgress());
         try {
