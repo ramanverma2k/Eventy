@@ -17,7 +17,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -31,15 +31,24 @@ class _HomeViewState extends State<HomeView> {
                         .titleLarge
                         ?.apply(color: Colors.grey.shade600),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const CircleAvatar(
-                      child: Text('R'),
-                    ),
+                  PopupMenuButton<String>(
+                    icon: const Icon(Icons.more_vert),
+                    onSelected: (String result) {},
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
+                      const PopupMenuItem<String>(
+                        value: 'settings',
+                        child: Text('Settings'),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: 'logout',
+                        child: Text('Logout'),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const Gap(20),
+              const Gap(10),
               Text(
                 "Find amazing events near you",
                 style: Theme.of(context)
@@ -55,45 +64,33 @@ class _HomeViewState extends State<HomeView> {
                   labelText: "Search events",
                 ),
               ),
-              const Gap(30),
-              Text(
-                "My events",
-                style: Theme.of(context).textTheme.headline6?.apply(
-                      fontWeightDelta: 3,
-                      fontSizeFactor: 0.9,
-                    ),
-              ),
               const Gap(20),
+              const ViewAllWidget(
+                  key: Key("viewAll_myEvent"),
+                  title: "My events",
+                  page: "My Events"),
+              const Gap(10),
               const HomepageEventList(key: Key('My_events_list')),
-              const Gap(30),
-              Text(
-                "Popular events",
-                style: Theme.of(context).textTheme.headline6?.apply(
-                      fontWeightDelta: 3,
-                      fontSizeFactor: 0.9,
-                    ),
-              ),
               const Gap(20),
+              const ViewAllWidget(
+                  key: Key("viewAll_popularEvent"),
+                  title: "Popular events",
+                  page: "Popular Events"),
+              const Gap(10),
               const HomepageEventList(key: Key('popular_events_list')),
-              const Gap(30),
-              Text(
-                "Upcoming events",
-                style: Theme.of(context).textTheme.headline6?.apply(
-                      fontWeightDelta: 3,
-                      fontSizeFactor: 0.9,
-                    ),
-              ),
               const Gap(20),
+              const ViewAllWidget(
+                  key: Key("viewAll_upcomingEvent"),
+                  title: "Upcoming events",
+                  page: "Upcoming Events"),
+              const Gap(10),
               const HomepageEventList(key: Key('upcoming_events_list')),
-              const Gap(30),
-              Text(
-                "Ongoing events",
-                style: Theme.of(context).textTheme.headline6?.apply(
-                      fontWeightDelta: 3,
-                      fontSizeFactor: 0.9,
-                    ),
-              ),
               const Gap(20),
+              const ViewAllWidget(
+                  key: Key("viewAll_ongoingEvent"),
+                  title: "Ongoing events",
+                  page: "Ongoing Events"),
+              const Gap(10),
               const HomepageEventList(key: Key('ongoing_events_list')),
             ],
           ),
