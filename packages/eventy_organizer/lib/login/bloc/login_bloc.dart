@@ -16,11 +16,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.client}) : super(LoginInitial()) {
     on<LoginEventStarted>(
       (event, emit) async {
-        final QueryOptions options =
-            QueryOptions(document: gql(Queries.getUser), variables: {
-          "email": event.username,
-          "password": event.password,
-        });
+        final QueryOptions options = event.username.contains('@')
+            ? QueryOptions(document: gql(Queries.getUserByEmail), variables: {
+                "email": event.username,
+                "password": event.password,
+              })
+            : QueryOptions(
+                document: gql(Queries.getUserByUsername),
+                variables: {
+                    "username": event.username,
+                    "password": event.password,
+                  });
 
         emit(LoginInProgress());
         try {
@@ -31,9 +37,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             GetIt.I.registerSingleton(User.fromJson(result.data!["users"][0]),
                 instanceName: "user");
             await Future.delayed(const Duration(seconds: 2), () {
-              if (result.data!["users"][0]["email"] == event.username &&
-                  Uuid.isValidUUID(
-                      fromString: result.data!["users"][0]["id"])) {
+              if (result.data!["users"][0]["email"] == event.username ||
+                  result.data!["users"][0]["username"] == event.username &&
+                      Uuid.isValidUUID(
+                          fromString: result.data!["users"][0]["id"])) {
                 emit(LoginSuccess());
               } else {
                 emit(LoginInitial());
