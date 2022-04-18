@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/event/event.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -18,70 +19,74 @@ class _HomeViewState extends State<HomeView> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
-          child: _selectedIndex == 2
-              ? const ProfilePage(key: Key('profilePage'))
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: _selectedIndex == 1
+              ? const EventPage()
+              : _selectedIndex == 2
+                  ? const ProfilePage(key: Key('profilePage'))
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Hey! Lorem",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.apply(color: Colors.grey.shade600),
+                            ),
+                            const PopupMenuWidget(),
+                          ],
+                        ),
+                        const Gap(10),
                         Text(
-                          "Hey! Lorem",
+                          "Find amazing events near you",
                           style: Theme.of(context)
                               .textTheme
-                              .titleLarge
-                              ?.apply(color: Colors.grey.shade600),
+                              .headline5
+                              ?.apply(fontWeightDelta: 3, fontSizeFactor: 1.2),
                         ),
-                        const PopupMenuWidget(),
+                        const Gap(20),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.all(10),
+                            border: OutlineInputBorder(),
+                            labelText: "Search events",
+                          ),
+                        ),
+                        const Gap(20),
+                        const ViewAllWidget(
+                            key: Key("viewAll_myEvent"),
+                            title: "My events",
+                            page: "My Events"),
+                        const Gap(10),
+                        const HomepageEventList(key: Key('My_events_list')),
+                        const Gap(20),
+                        const ViewAllWidget(
+                            key: Key("viewAll_popularEvent"),
+                            title: "Popular events",
+                            page: "Popular Events"),
+                        const Gap(10),
+                        const HomepageEventList(
+                            key: Key('popular_events_list')),
+                        const Gap(20),
+                        const ViewAllWidget(
+                            key: Key("viewAll_upcomingEvent"),
+                            title: "Upcoming events",
+                            page: "Upcoming Events"),
+                        const Gap(10),
+                        const HomepageEventList(
+                            key: Key('upcoming_events_list')),
+                        const Gap(20),
+                        const ViewAllWidget(
+                            key: Key("viewAll_ongoingEvent"),
+                            title: "Ongoing events",
+                            page: "Ongoing Events"),
+                        const Gap(10),
+                        const HomepageEventList(key: Key('ongoing_events_list'))
                       ],
                     ),
-                    const Gap(10),
-                    Text(
-                      "Find amazing events near you",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          ?.apply(fontWeightDelta: 3, fontSizeFactor: 1.2),
-                    ),
-                    const Gap(20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
-                        border: OutlineInputBorder(),
-                        labelText: "Search events",
-                      ),
-                    ),
-                    const Gap(20),
-                    const ViewAllWidget(
-                        key: Key("viewAll_myEvent"),
-                        title: "My events",
-                        page: "My Events"),
-                    const Gap(10),
-                    const HomepageEventList(key: Key('My_events_list')),
-                    const Gap(20),
-                    const ViewAllWidget(
-                        key: Key("viewAll_popularEvent"),
-                        title: "Popular events",
-                        page: "Popular Events"),
-                    const Gap(10),
-                    const HomepageEventList(key: Key('popular_events_list')),
-                    const Gap(20),
-                    const ViewAllWidget(
-                        key: Key("viewAll_upcomingEvent"),
-                        title: "Upcoming events",
-                        page: "Upcoming Events"),
-                    const Gap(10),
-                    const HomepageEventList(key: Key('upcoming_events_list')),
-                    const Gap(20),
-                    const ViewAllWidget(
-                        key: Key("viewAll_ongoingEvent"),
-                        title: "Ongoing events",
-                        page: "Ongoing Events"),
-                    const Gap(10),
-                    const HomepageEventList(key: Key('ongoing_events_list')),
-                  ],
-                ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
