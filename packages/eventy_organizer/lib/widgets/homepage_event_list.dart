@@ -1,10 +1,14 @@
+import 'package:eventy_organizer/models/event_model.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomepageEventList extends StatelessWidget {
-  const HomepageEventList({required Key key}) : super(key: key);
+  const HomepageEventList({required Key key, required this.eventData})
+      : super(key: key);
+
+  final List<EventElement> eventData;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +17,16 @@ class HomepageEventList extends StatelessWidget {
       child: ListView.custom(
         childrenDelegate: SliverChildListDelegate(
           List.generate(
-            5,
+            eventData.length > 5 ? 5 : eventData.length,
             (index) => Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const EventDetailsPage(
-                      key: Key('event_details_page'),
+                    builder: (context) => EventDetailsPage(
+                      key: const Key('event_details_page'),
+                      details: eventData[index],
                     ),
                   ),
                 ),
@@ -46,7 +51,7 @@ class HomepageEventList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "Christmas Party",
+                          eventData[index].name,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         const Gap(5),
@@ -59,7 +64,7 @@ class HomepageEventList extends StatelessWidget {
                             ),
                             const Gap(5),
                             Text(
-                              "Devil St. London",
+                              eventData[index].address,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
@@ -76,7 +81,7 @@ class HomepageEventList extends StatelessWidget {
                             ),
                             const Gap(5),
                             Text(
-                              "27 Dec, 4pm",
+                              eventData[index].startDate.toLocal().toString(),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
@@ -114,6 +119,7 @@ class HomepageEventList extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const Gap(20),
                             const Text("+46 going")
                           ],
                         ),

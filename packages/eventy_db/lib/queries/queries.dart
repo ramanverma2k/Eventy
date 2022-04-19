@@ -30,4 +30,55 @@ class Queries {
     }
   }
   ''';
+
+  static const String getPopularEvents = '''
+  query GetPopularEvents {
+    event {
+      address
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      organizer
+      start_date
+    }
+  } 
+  ''';
+
+  static const String getOngoingEvents = '''
+  query GetOngoingEvents(\$curr_date: timestamp!) {
+    event(where: {start_date: {_lte: \$curr_date}, _and: {end_date: {_gte: \$curr_date}}}) {
+      address
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      organizer
+      start_date
+    }
+  }
+''';
+
+  static const String getUpcomingEvents = '''
+  query GetOngoingEvents(\$curr_date: timestamp!) {
+    event(where: {start_date: {_gt: \$curr_date}}) {
+      address
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      organizer
+      start_date
+    }
+  }
+  ''';
 }

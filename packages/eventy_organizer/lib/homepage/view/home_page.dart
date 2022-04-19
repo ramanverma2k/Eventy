@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     return GraphQLConsumer(
       builder: (GraphQLClient client) {
         return BlocProvider<HomepageBloc>(
-          create: (context) => HomepageBloc(client: client),
+          create: (context) => HomepageBloc(client: client)..add(HomepageDataFetchEvent()),
           child: const HomeView(),
         );
       },

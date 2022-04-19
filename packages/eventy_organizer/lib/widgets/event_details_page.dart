@@ -1,8 +1,13 @@
+import 'package:eventy_organizer/models/event_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class EventDetailsPage extends StatelessWidget {
-  const EventDetailsPage({required Key key}) : super(key: key);
+  const EventDetailsPage({required Key key, required this.details})
+      : super(key: key);
+
+  final EventElement details;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +19,12 @@ class EventDetailsPage extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  ColoredBox(
-                    color: Colors.red,
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(details.bannerImage),
+                          fit: BoxFit.cover),
+                    ),
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.4,
                       width: double.maxFinite,
@@ -39,14 +48,35 @@ class EventDetailsPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Birthday Party",
-                      style: Theme.of(context).textTheme.headlineMedium?.apply(
-                            fontWeightDelta: 2,
-                            color: Colors.black,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          details.name,
+                          style:
+                              Theme.of(context).textTheme.headlineMedium?.apply(
+                                    fontWeightDelta: 2,
+                                    fontSizeFactor: 0.9,
+                                    color: Colors.black,
+                                  ),
+                        ),
+                        FittedBox(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(details.image),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: const SizedBox(
+                              height: 80,
+                              width: 80,
+                            ),
                           ),
+                        ),
+                      ],
                     ),
-                    const Gap(25),
                     Row(
                       children: [
                         Icon(
@@ -56,7 +86,7 @@ class EventDetailsPage extends StatelessWidget {
                         ),
                         const Gap(10),
                         Text(
-                          "Sunday, 27 December 2022",
+                          details.startDate.toString(),
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -74,7 +104,7 @@ class EventDetailsPage extends StatelessWidget {
                         ),
                         const Gap(10),
                         Text(
-                          "9:00 pm - 12:00 am",
+                          details.startDate.hour.toString(),
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -92,7 +122,7 @@ class EventDetailsPage extends StatelessWidget {
                         ),
                         const Gap(10),
                         Text(
-                          "Devil St. London",
+                          details.address,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -102,6 +132,7 @@ class EventDetailsPage extends StatelessWidget {
                     ),
                     const Gap(30),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Stack(
                           children: const [
@@ -122,6 +153,14 @@ class EventDetailsPage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 120.0),
                               child: CircleAvatar(),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 150.0),
+                              child: CircleAvatar(),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 180.0),
+                              child: CircleAvatar(),
+                            ),
                           ],
                         ),
                         const Gap(20),
@@ -137,10 +176,7 @@ class EventDetailsPage extends StatelessWidget {
                           ),
                     ),
                     const Gap(10),
-                    const Text(
-                      "The Jazz Cafe are delighted to bring your Maiden Voyage retiring"
-                      " for the seconds year, intimate Jazz & Hip Hop Music Festival.",
-                    ),
+                    Text(details.description),
                     const Gap(30),
                     Text(
                       "Organized By",
@@ -150,7 +186,7 @@ class EventDetailsPage extends StatelessWidget {
                           ?.apply(fontWeightDelta: 2, color: Colors.black),
                     ),
                     const Gap(10),
-                    const Text("Kashmiri Pandits Cultural"),
+                    Text(details.organizer),
                     const Gap(30),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,

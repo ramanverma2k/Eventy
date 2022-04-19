@@ -27,8 +27,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         try {
           final result = await client.query(options);
 
-          print(result);
-
           if (result.data!["exception"] == null &&
               result.data!["user"].isNotEmpty) {
             GetIt.I.registerSingleton(User.fromJson(result.data!["user"][0]),

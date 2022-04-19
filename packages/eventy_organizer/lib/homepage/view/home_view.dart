@@ -1,6 +1,8 @@
 import 'package:eventy_organizer/event/event.dart';
+import 'package:eventy_organizer/homepage/homepage.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class HomeView extends StatefulWidget {
@@ -56,35 +58,77 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ),
                         const Gap(20),
-                        const ViewAllWidget(
-                            key: Key("viewAll_myEvent"),
-                            title: "My events",
-                            page: "My Events"),
-                        const Gap(10),
-                        const HomepageEventList(key: Key('My_events_list')),
-                        const Gap(20),
-                        const ViewAllWidget(
-                            key: Key("viewAll_popularEvent"),
-                            title: "Popular events",
-                            page: "Popular Events"),
-                        const Gap(10),
-                        const HomepageEventList(
-                            key: Key('popular_events_list')),
-                        const Gap(20),
-                        const ViewAllWidget(
-                            key: Key("viewAll_upcomingEvent"),
-                            title: "Upcoming events",
-                            page: "Upcoming Events"),
-                        const Gap(10),
-                        const HomepageEventList(
-                            key: Key('upcoming_events_list')),
-                        const Gap(20),
-                        const ViewAllWidget(
-                            key: Key("viewAll_ongoingEvent"),
-                            title: "Ongoing events",
-                            page: "Ongoing Events"),
-                        const Gap(10),
-                        const HomepageEventList(key: Key('ongoing_events_list'))
+                        BlocBuilder<HomepageBloc, HomepageState>(
+                          builder: (context, state) {
+                            if (state is HomepageDataFetched) {
+                              return Column(
+                                children: [
+                                  const ViewAllWidget(
+                                      key: Key("viewAll_myEvent"),
+                                      title: "My events",
+                                      page: "My Events"),
+                                  const Gap(10),
+                                  HomepageEventList(
+                                    key: const Key('myEvents_list'),
+                                    eventData: state.myEvents,
+                                  ),
+                                  const Gap(20),
+                                  const ViewAllWidget(
+                                      key: Key("viewAll_popularEvent"),
+                                      title: "Popular events",
+                                      page: "Popular Events"),
+                                  const Gap(10),
+                                  HomepageEventList(
+                                    key: const Key('popular_events_list'),
+                                    eventData: state.popularEvents,
+                                  ),
+                                  const Gap(20),
+                                  const ViewAllWidget(
+                                      key: Key("viewAll_ongoingEvent"),
+                                      title: "Ongoing events",
+                                      page: "Ongoing Events"),
+                                  const Gap(10),
+                                  HomepageEventList(
+                                    key: const Key('ongoing_events_list'),
+                                    eventData: state.ongoingEvents,
+                                  ),
+                                  const Gap(20),
+                                  const ViewAllWidget(
+                                      key: Key("viewAll_upcomingEvent"),
+                                      title: "Upcoming events",
+                                      page: "Upcoming Events"),
+                                  const Gap(10),
+                                  HomepageEventList(
+                                    key: const Key('upcoming_events_list'),
+                                    eventData: state.upcomingEvents,
+                                  ),
+                                ],
+                              );
+                            }
+
+                            if (state is HomepageDataFailed) {
+                              print("error: ${state.message}");
+
+                              return const Center(
+                                child: Text(
+                                    "Error fetching data, Please try again later."),
+                              );
+                            }
+
+                            return Column(
+                              children: [
+                                Gap(MediaQuery.of(context).size.height * 0.2),
+                                ElevatedButton(
+                                    onPressed: () => context
+                                        .read<HomepageBloc>()
+                                        .add(HomepageDataFetchEvent()),
+                                    child: const Text('Refresh')),
+                                const Gap(20),
+                                const Center(child: CircularProgressIndicator())
+                              ],
+                            );
+                          },
+                        )
                       ],
                     ),
         ),

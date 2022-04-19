@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/models/event_model.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -37,8 +38,9 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                   onTap: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const EventDetailsPage(
-                        key: Key('event_details_page'),
+                      builder: (context) => EventDetailsPage(
+                        key: const Key('event_details_page'),
+                        details: Event(events: []).events[0],
                       ),
                     ),
                   ),
