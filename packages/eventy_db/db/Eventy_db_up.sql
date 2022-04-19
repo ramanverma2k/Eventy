@@ -1,10 +1,10 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-04-16 13:44:03.555
+-- Last modification date: 2022-04-19 04:40:14.542
 
 -- tables
 -- Table: attending
 CREATE TABLE attending (
-    id int  NOT NULL,
+    id serial  NOT NULL,
     user_id uuid  NOT NULL,
     event_id uuid  NOT NULL,
     CONSTRAINT attending_pk PRIMARY KEY (id)
@@ -36,7 +36,7 @@ CREATE INDEX event_type_idx on event (type_id ASC);
 
 -- Table: event_manager
 CREATE TABLE event_manager (
-    id int  NOT NULL,
+    id serial  NOT NULL,
     user_id uuid  NOT NULL,
     event_id uuid  NOT NULL,
     CONSTRAINT event_manager_pk PRIMARY KEY (id)
@@ -48,14 +48,14 @@ CREATE INDEX event_manager_event on event_manager (event_id ASC);
 
 -- Table: event_type
 CREATE TABLE event_type (
-    id int  NOT NULL,
+    id serial  NOT NULL,
     type_name varchar(255)  NOT NULL,
     CONSTRAINT event_type_pk PRIMARY KEY (id)
 );
 
 -- Table: participating
 CREATE TABLE participating (
-    id int  NOT NULL,
+    id serial  NOT NULL,
     user_id uuid  NOT NULL,
     event_id uuid  NOT NULL,
     approved boolean  NULL,
