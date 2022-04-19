@@ -17,19 +17,18 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       (event, emit) async {
         final _id = const Uuid().v4();
 
-        final MutationOptions options = MutationOptions(
-            document: gql(Mutations.registerAdminUser),
-            variables: {
-              "id": _id,
-              "username": event.username,
-              "password": event.password,
-              "first_name": event.first_name,
-              "last_name": event.last_name,
-              "email": event.email,
-              "contact_no": event.contact_no,
-              "description": event.description,
-              "is_admin": true,
-            });
+        final MutationOptions options =
+            MutationOptions(document: gql(Mutations.registerUser), variables: {
+          "id": _id,
+          "username": event.username,
+          "password": event.password,
+          "first_name": event.first_name,
+          "last_name": event.last_name,
+          "email": event.email,
+          "contact_no": event.contact_no,
+          "description": event.description,
+          "image": "",
+        });
 
         emit(SignupInProgress());
         try {

@@ -20,7 +20,7 @@ class User {
   final String firstName;
   final String lastName;
   final String email;
-  final int contactNo;
+  final String contactNo;
   final String description;
 
   factory User.fromRawJson(String str) => User.fromJson(json.decode(str));
