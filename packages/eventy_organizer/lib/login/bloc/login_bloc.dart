@@ -27,15 +27,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         try {
           final result = await client.query(options);
 
+          print(result);
+
           if (result.data!["exception"] == null &&
-              result.data!["users"].isNotEmpty) {
-            GetIt.I.registerSingleton(User.fromJson(result.data!["users"][0]),
+              result.data!["user"].isNotEmpty) {
+            GetIt.I.registerSingleton(User.fromJson(result.data!["user"][0]),
                 instanceName: "user");
 
-            if (result.data!["users"][0]["email"] == event.username ||
-                result.data!["users"][0]["username"] == event.username &&
+            if (result.data!["user"][0]["email"] == event.username ||
+                result.data!["user"][0]["username"] == event.username &&
                     Uuid.isValidUUID(
-                        fromString: result.data!["users"][0]["id"])) {
+                        fromString: result.data!["user"][0]["id"])) {
               emit(LoginSuccess());
             } else {
               emit(LoginInitial());
