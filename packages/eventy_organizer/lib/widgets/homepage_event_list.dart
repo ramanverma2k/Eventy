@@ -32,8 +32,9 @@ class HomepageEventList extends StatelessWidget {
                 ),
                 onLongPress: () => showBarModalBottomSheet(
                   context: context,
-                  builder: (context) => const ModalBottomSheetEventPage(
-                    key: Key('event_bottom_modal_sheet'),
+                  builder: (context) => ModalBottomSheetEventPage(
+                    key: const Key('event_bottom_modal_sheet'),
+                    data: eventData[index],
                   ),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
