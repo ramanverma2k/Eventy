@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ModalBottomSheetEventPage extends StatelessWidget {
-  const ModalBottomSheetEventPage({required Key key}) : super(key: key);
+  const ModalBottomSheetEventPage({required Key key, required this.data})
+      : super(key: key);
+
+  final EventElement data;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.8,
       width: double.maxFinite,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -18,7 +21,9 @@ class ModalBottomSheetEventPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(data.image),
+                ),
                 const Gap(20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +35,7 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                           .titleLarge
                           ?.apply(fontWeightDelta: 1),
                     ),
-                    const Text("Kashmiri Pandits Cultural"),
+                    Text("${data.user.firstName} ${data.user.lastName}"),
                   ],
                 ),
                 const Spacer(),
@@ -40,7 +45,7 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => EventDetailsPage(
                         key: const Key('event_details_page'),
-                        details: Event(events: []).events[0],
+                        details: data,
                       ),
                     ),
                   ),
@@ -51,17 +56,30 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                 )
               ],
             ),
-            const Expanded(
-              child: Divider(
-                color: Colors.grey,
-              ),
+            const Gap(20),
+            const Divider(
+              color: Colors.grey,
             ),
+            const Gap(20),
             Text(
-              "Maiden Voyager Festival 2020",
+              data.name,
               style: Theme.of(context)
                   .textTheme
-                  .titleLarge
-                  ?.apply(fontWeightDelta: 1),
+                  .headline4
+                  ?.apply(fontWeightDelta: 3, color: Colors.black),
+            ),
+            const Gap(20),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(data.bannerImage),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.17,
+                width: MediaQuery.of(context).size.width,
+              ),
             ),
             const Gap(20),
             IntrinsicHeight(
@@ -80,7 +98,7 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Sun, 20 August, 2020",
+                        data.startDate.toString(),
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge
@@ -117,7 +135,7 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                             ?.apply(fontWeightDelta: 1),
                       ),
                       const Gap(5),
-                      const Text("Three Mills Island, London, UK"),
+                      Text(data.address),
                     ],
                   )
                 ],
@@ -132,10 +150,7 @@ class ModalBottomSheetEventPage extends StatelessWidget {
                   ?.apply(fontWeightDelta: 1),
             ),
             const Gap(20),
-            const Text(
-              "The Jazz Cafe are delighted to bring your Maiden Voyage retiring"
-              " for the seconds year, intimate Jazz & Hip Hop Music Festival.",
-            ),
+            Text(data.description),
             const Gap(20),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.07,

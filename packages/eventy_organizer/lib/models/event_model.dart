@@ -1,8 +1,6 @@
-// To parse this JSON data, do
-//
-//     final event = eventFromJson(jsonString);
-
 import 'dart:convert';
+
+import 'package:eventy_organizer/models/user_model.dart';
 
 class Event {
   Event({
@@ -35,7 +33,7 @@ class EventElement {
     required this.image,
     required this.location,
     required this.name,
-    required this.organizer,
+    required this.user,
     required this.startDate,
   });
 
@@ -47,7 +45,7 @@ class EventElement {
   final String image;
   final Location location;
   final String name;
-  final String organizer;
+  final User user;
   final DateTime startDate;
 
   factory EventElement.fromRawJson(String str) =>
@@ -64,7 +62,7 @@ class EventElement {
         image: json["image"],
         location: Location.fromJson(json["location"]),
         name: json["name"],
-        organizer: json["organizer"],
+        user: User.fromJson(json["user"]),
         startDate: DateTime.parse(json["start_date"]),
       );
 
@@ -77,7 +75,7 @@ class EventElement {
         "image": image,
         "location": location.toJson(),
         "name": name,
-        "organizer": organizer,
+        "user": user,
         "start_date": startDate.toIso8601String(),
       };
 }

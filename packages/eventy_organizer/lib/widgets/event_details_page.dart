@@ -1,5 +1,4 @@
 import 'package:eventy_organizer/models/event_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -186,7 +185,7 @@ class EventDetailsPage extends StatelessWidget {
                           ?.apply(fontWeightDelta: 2, color: Colors.black),
                     ),
                     const Gap(10),
-                    Text(details.organizer),
+                    Text("${details.user.firstName} ${details.user.lastName}"),
                     const Gap(30),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,

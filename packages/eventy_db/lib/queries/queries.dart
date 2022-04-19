@@ -27,6 +27,12 @@ class Queries {
       name
       organizer
       start_date
+      
+      user {
+        id
+        first_name
+        last_name
+      }
     }
   }
   ''';
@@ -42,8 +48,12 @@ class Queries {
       image
       location
       name
-      organizer
       start_date
+      user {
+        id
+        first_name
+        last_name
+      }
     }
   } 
   ''';
@@ -59,8 +69,12 @@ class Queries {
       image
       location
       name
-      organizer
       start_date
+      user {
+        id
+        first_name
+        last_name
+      }
     }
   }
 ''';
@@ -76,8 +90,12 @@ class Queries {
       image
       location
       name
-      organizer
       start_date
+      user {
+        id
+        first_name
+        last_name
+      }
     }
   }
   ''';
