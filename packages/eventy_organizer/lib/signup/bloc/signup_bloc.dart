@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:eventy_db/mutations/mutations.dart';
 import 'package:eventy_organizer/models/user_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'signup_event.dart';
@@ -35,6 +38,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           final result = await client.mutate(options);
 
           if (result.data!["action"]["id"].isNotEmpty) {
+            final prefs = await SharedPreferences.getInstance();
+
+            await prefs.setString('user', jsonEncode(result.data!["user"][0]));
+
             GetIt.I.registerSingleton(User.fromJson(result.data!["action"]),
                 instanceName: "user");
 

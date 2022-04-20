@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:eventy_db/queries/queries.dart';
 import 'package:eventy_organizer/models/user_model.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'login_event.dart';
@@ -14,6 +17,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GraphQLClient client;
 
   LoginBloc({required this.client}) : super(LoginInitial()) {
+    on<LoginCheckEvent>((event, emit) async {
+      emit(LoginCheck());
+
+      await Future.delayed(const Duration(seconds: 1), () async {
+        final prefs = await SharedPreferences.getInstance();
+
+        if (prefs.containsKey('user')) {
+          final User user = User.fromJson(
+            jsonDecode(prefs.getString('user')!),
+          );
+
+          GetIt.I.registerSingleton(user, instanceName: "user");
+
+          if (Uuid.isValidUUID(fromString: user.id)) {
+            emit(LoginSuccess());
+          }
+        } else {
+          emit(LoginInitial());
+        }
+      });
+    });
+
     on<LoginEventStarted>(
       (event, emit) async {
         final QueryOptions options =
@@ -29,6 +54,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
           if (result.data!["exception"] == null &&
               result.data!["user"].isNotEmpty) {
+            final prefs = await SharedPreferences.getInstance();
+
+            await prefs.setString('user', jsonEncode(result.data!["user"][0]));
+
+            print('not logged in');
+
             GetIt.I.registerSingleton(User.fromJson(result.data!["user"][0]),
                 instanceName: "user");
 

@@ -2,6 +2,7 @@ import 'package:eventy_organizer/login/login.dart';
 import 'package:eventy_organizer/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PopupMenuWidget extends StatelessWidget {
   const PopupMenuWidget({
@@ -12,10 +13,13 @@ class PopupMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       icon: const Icon(Icons.more_vert),
-      onSelected: (String result) {
+      onSelected: (String result) async {
         switch (result) {
           case 'logout':
+            final prefs = await SharedPreferences.getInstance();
+
             GetIt.I.unregister<User>(instanceName: 'user');
+            await prefs.remove('user');
 
             Navigator.pushReplacement(
               context,
