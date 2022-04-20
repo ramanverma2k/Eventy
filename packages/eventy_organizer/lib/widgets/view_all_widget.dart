@@ -1,13 +1,18 @@
+import 'package:eventy_organizer/models/event_model.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class ViewAllWidget extends StatelessWidget {
   const ViewAllWidget(
-      {required Key key, required this.title, required this.page})
+      {required Key key,
+      required this.title,
+      required this.page,
+      required this.data})
       : super(key: key);
 
   final String title;
   final String page;
+  final List<EventElement> data;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,6 +32,7 @@ class ViewAllWidget extends StatelessWidget {
               builder: (context) => ViewAllPage(
                 key: Key("viewAll_$page"),
                 title: page,
+                data: data,
               ),
             ),
           ),

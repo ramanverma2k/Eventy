@@ -63,40 +63,48 @@ class _HomeViewState extends State<HomeView> {
                             if (state is HomepageDataFetched) {
                               return Column(
                                 children: [
-                                  const ViewAllWidget(
-                                      key: Key("viewAll_myEvent"),
-                                      title: "My events",
-                                      page: "My Events"),
+                                  ViewAllWidget(
+                                    key: const Key("viewAll_myEvent"),
+                                    title: "My events",
+                                    page: "My Events",
+                                    data: state.myEvents,
+                                  ),
                                   const Gap(10),
                                   HomepageEventList(
                                     key: const Key('myEvents_list'),
                                     eventData: state.myEvents,
                                   ),
                                   const Gap(20),
-                                  const ViewAllWidget(
-                                      key: Key("viewAll_popularEvent"),
-                                      title: "Popular events",
-                                      page: "Popular Events"),
+                                  ViewAllWidget(
+                                    key: const Key("viewAll_popularEvent"),
+                                    title: "Popular events",
+                                    page: "Popular Events",
+                                    data: state.popularEvents,
+                                  ),
                                   const Gap(10),
                                   HomepageEventList(
                                     key: const Key('popular_events_list'),
                                     eventData: state.popularEvents,
                                   ),
                                   const Gap(20),
-                                  const ViewAllWidget(
-                                      key: Key("viewAll_ongoingEvent"),
-                                      title: "Ongoing events",
-                                      page: "Ongoing Events"),
+                                  ViewAllWidget(
+                                    key: const Key("viewAll_ongoingEvent"),
+                                    title: "Ongoing events",
+                                    page: "Ongoing Events",
+                                    data: state.ongoingEvents,
+                                  ),
                                   const Gap(10),
                                   HomepageEventList(
                                     key: const Key('ongoing_events_list'),
                                     eventData: state.ongoingEvents,
                                   ),
                                   const Gap(20),
-                                  const ViewAllWidget(
-                                      key: Key("viewAll_upcomingEvent"),
-                                      title: "Upcoming events",
-                                      page: "Upcoming Events"),
+                                  ViewAllWidget(
+                                    key: const Key("viewAll_upcomingEvent"),
+                                    title: "Upcoming events",
+                                    page: "Upcoming Events",
+                                    data: state.upcomingEvents,
+                                  ),
                                   const Gap(10),
                                   HomepageEventList(
                                     key: const Key('upcoming_events_list'),
@@ -107,8 +115,6 @@ class _HomeViewState extends State<HomeView> {
                             }
 
                             if (state is HomepageDataFailed) {
-                              print("error: ${state.message}");
-
                               return const Center(
                                 child: Text(
                                     "Error fetching data, Please try again later."),
@@ -118,11 +124,6 @@ class _HomeViewState extends State<HomeView> {
                             return Column(
                               children: [
                                 Gap(MediaQuery.of(context).size.height * 0.2),
-                                ElevatedButton(
-                                    onPressed: () => context
-                                        .read<HomepageBloc>()
-                                        .add(HomepageDataFetchEvent()),
-                                    child: const Text('Refresh')),
                                 const Gap(20),
                                 const Center(child: CircularProgressIndicator())
                               ],
