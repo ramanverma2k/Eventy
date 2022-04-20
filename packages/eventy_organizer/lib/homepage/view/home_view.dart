@@ -1,5 +1,6 @@
 import 'package:eventy_organizer/event/event.dart';
 import 'package:eventy_organizer/homepage/homepage.dart';
+import 'package:eventy_organizer/search/search.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,18 +63,30 @@ class _HomeViewState extends State<HomeView> {
                                   labelText: "Search events",
                                   suffixIcon: GestureDetector(
                                     onTap: () {
-                                      context.read<HomepageBloc>().add(
-                                            HomepageSearchEvent(
-                                                query: _searchController.text
-                                                    .trim()),
-                                          );
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => SearchPage(
+                                            key: Key(
+                                                'search_${_searchController.text.trim()}'),
+                                            query:
+                                                _searchController.text.trim(),
+                                          ),
+                                        ),
+                                      );
                                     },
                                     child: const Icon(Icons.search),
                                   )),
                               onFieldSubmitted: (query) {
-                                context
-                                    .read<HomepageBloc>()
-                                    .add(HomepageSearchEvent(query: query));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SearchPage(
+                                      key: Key('search_$query'),
+                                      query: query,
+                                    ),
+                                  ),
+                                );
                               }),
                         ),
                         const Gap(20),
@@ -137,20 +150,6 @@ class _HomeViewState extends State<HomeView> {
                               return const Center(
                                 child: Text(
                                     "Error fetching data, Please try again later."),
-                              );
-                            }
-
-                            if (state is HomepageSearchCompleted) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ViewAllPage(
-                                    key: Key('search_${state.result.hashCode}'),
-                                    title: _searchController.text.trim(),
-                                    data: state.result,
-                                  ),
-                                ),
                               );
                             }
 

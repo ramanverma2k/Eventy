@@ -68,28 +68,5 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
         emit(HomepageDataFailed(message: e.toString()));
       }
     });
-
-    on<HomepageSearchEvent>((event, emit) async {
-      final QueryOptions _searchEventsOptions =
-          QueryOptions(document: gql(Queries.getEventsBySearch), variables: {
-        "query": event.query,
-      });
-
-      try {
-        final searchResult = await client.query(_searchEventsOptions);
-
-        if (!searchResult.hasException) {
-          final searchedEvents = Event.fromJson(searchResult.data!);
-          emit(HomepageSearchCompleted(result: searchedEvents.events));
-        } else {
-          print(searchResult.exception.toString());
-          emit(
-              HomepageDataFailed(message: searchResult.exception.toString()));
-        }
-      } catch (e) {
-        print(e.toString());
-        emit(HomepageDataFailed(message: e.toString()));
-      }
-    });
   }
 }
