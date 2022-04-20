@@ -99,4 +99,25 @@ class Queries {
     }
   }
   ''';
+
+  static const String getEventsBySearch = '''
+  query GetEventsBySearch(\$query: String!) {
+    event(where: {name: {_iregex: \$query}}) {
+      address
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      start_date
+      user {
+        id
+        first_name
+        last_name
+      }
+    }
+  }
+  ''';
 }

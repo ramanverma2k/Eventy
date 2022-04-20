@@ -15,6 +15,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
 
+  final _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +52,29 @@ class _HomeViewState extends State<HomeView> {
                               ?.apply(fontWeightDelta: 3, fontSizeFactor: 1.2),
                         ),
                         const Gap(20),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            border: OutlineInputBorder(),
-                            labelText: "Search events",
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: TextFormField(
+                              controller: _searchController,
+                              decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.all(10),
+                                  border: const OutlineInputBorder(),
+                                  labelText: "Search events",
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      context.read<HomepageBloc>().add(
+                                            HomepageSearchEvent(
+                                                query: _searchController.text
+                                                    .trim()),
+                                          );
+                                    },
+                                    child: const Icon(Icons.search),
+                                  )),
+                              onFieldSubmitted: (query) {
+                                context
+                                    .read<HomepageBloc>()
+                                    .add(HomepageSearchEvent(query: query));
+                              }),
                         ),
                         const Gap(20),
                         BlocBuilder<HomepageBloc, HomepageState>(
@@ -118,6 +137,20 @@ class _HomeViewState extends State<HomeView> {
                               return const Center(
                                 child: Text(
                                     "Error fetching data, Please try again later."),
+                              );
+                            }
+
+                            if (state is HomepageSearchCompleted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      ViewAllPage(
+                                    key: Key('search_${state.result.hashCode}'),
+                                    title: _searchController.text.trim(),
+                                    data: state.result,
+                                  ),
+                                ),
                               );
                             }
 

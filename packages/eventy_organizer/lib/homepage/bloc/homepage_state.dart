@@ -18,6 +18,14 @@ class HomepageDataFetched extends HomepageState {
       required this.upcomingEvents});
 }
 
+class HomepageSearch extends HomepageState {}
+
+class HomepageSearchCompleted extends HomepageState {
+  final List<EventElement> result;
+
+  HomepageSearchCompleted({required this.result});
+}
+
 class HomepageDataFailed extends HomepageState {
   final String message;
 

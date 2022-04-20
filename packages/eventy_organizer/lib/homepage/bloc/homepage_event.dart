@@ -5,4 +5,8 @@ abstract class HomepageEvent {}
 
 class HomepageDataFetchEvent extends HomepageEvent {}
 
-class HomepageRefreshEvent extends HomepageEvent {}
+class HomepageSearchEvent extends HomepageEvent {
+  final String query;
+
+  HomepageSearchEvent({required this.query});
+}
