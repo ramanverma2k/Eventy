@@ -52,6 +52,8 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
           final ongoingEvents = Event.fromJson(ongoingEventsResult.data!);
           final upcomingEvents = Event.fromJson(upcomingEventsResult.data!);
 
+          GetIt.I.registerSingleton(myEvents.events, instanceName: 'myEvents');
+
           emit(
             HomepageDataFetched(
               myEvents: myEvents.events,

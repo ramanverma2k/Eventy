@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Flutter Run -&gt; 'eventy_organizer'" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="filePath" value="$PROJECT_DIR$/packages\\eventy_organizer\lib\main.dart" />
+    <option name="filePath" value="$PROJECT_DIR$/packages//eventy_organizer/lib/main.dart" />
     <method v="2" />
   </configuration>
 </component>

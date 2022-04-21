@@ -16,19 +16,12 @@ class ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Text(
-                'My Profile',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .apply(fontWeightDelta: 3),
-              ),
-              const Spacer(),
-            ],
+          Text(
+            'My Profile',
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .apply(fontWeightDelta: 3),
           ),
           const SizedBox(
             height: 250,

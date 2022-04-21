@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:eventy_organizer/models/event_model.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
 
@@ -11,6 +12,10 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   EventBloc({required this.client}) : super(EventInitial()) {
     on<EventAdd>((event, emit) {
       emit(EventAdded());
+    });
+
+    on<EventDelete>((event, emit) {
+      emit(EventDeleted());
     });
   }
 }
