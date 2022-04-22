@@ -36,8 +36,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
             await prefs.setString('user', jsonEncode(result.data!["user"][0]));
 
-            print('not logged in');
-
             GetIt.I.registerSingleton(User.fromJson(result.data!["user"][0]),
                 instanceName: "user");
 

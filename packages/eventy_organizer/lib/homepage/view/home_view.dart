@@ -1,7 +1,6 @@
 import 'package:eventy_organizer/event/event.dart';
 import 'package:eventy_organizer/homepage/homepage.dart';
 import 'package:eventy_organizer/search/search.dart';
-import 'package:eventy_organizer/widgets/profile_page.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

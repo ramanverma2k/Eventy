@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:eventy_organizer/models/event_model.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
 
