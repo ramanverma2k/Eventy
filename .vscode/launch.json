@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "eventy_consumer",
+            "cwd": "packages\\eventy_consumer",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "eventy_consumer (profile mode)",
+            "cwd": "packages\\eventy_consumer",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "eventy_consumer (release mode)",
+            "cwd": "packages\\eventy_consumer",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "eventy_db",
+            "cwd": "packages\\eventy_db",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "eventy_db (profile mode)",
+            "cwd": "packages\\eventy_db",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "eventy_db (release mode)",
+            "cwd": "packages\\eventy_db",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "eventy_organizer",
+            "cwd": "packages\\eventy_organizer",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "eventy_organizer (profile mode)",
+            "cwd": "packages\\eventy_organizer",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "eventy_organizer (release mode)",
+            "cwd": "packages\\eventy_organizer",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
