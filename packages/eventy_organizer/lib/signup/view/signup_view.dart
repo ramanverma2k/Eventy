@@ -7,18 +7,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignupView extends StatelessWidget {
   const SignupView({Key? key}) : super(key: key);
 
+  static final _formKey = GlobalKey<FormState>();
+
+  static final _firstNameController = TextEditingController();
+  static final _lastNameController = TextEditingController();
+  static final _usernameController = TextEditingController();
+  static final _emailController = TextEditingController();
+  static final _passwordController = TextEditingController();
+  static final _contactNoController = TextEditingController();
+  static final _descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
-    final _firstNameController = TextEditingController();
-    final _lastNameController = TextEditingController();
-    final _usernameController = TextEditingController();
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final _contactNoController = TextEditingController();
-    final _descriptionController = TextEditingController();
-
     return Scaffold(
       body: SafeArea(
         child: Form(

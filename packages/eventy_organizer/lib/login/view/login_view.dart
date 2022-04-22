@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
+  static final _formKey = GlobalKey<FormState>();
+  static final _usernameController = TextEditingController();
+  static final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-    final _usernameController = TextEditingController();
-    final _passwordController = TextEditingController();
-
     return Scaffold(
       body: SafeArea(
         child: Form(

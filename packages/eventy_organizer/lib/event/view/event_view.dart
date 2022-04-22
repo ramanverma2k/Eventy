@@ -7,10 +7,10 @@ import 'package:gap/gap.dart';
 class EventView extends StatelessWidget {
   const EventView({Key? key}) : super(key: key);
 
+  static final _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final _searchController = TextEditingController();
-
     return BlocBuilder<EventBloc, EventState>(
       builder: (context, state) {
         return Padding(
