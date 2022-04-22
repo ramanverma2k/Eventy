@@ -17,23 +17,17 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     on<FetchMyEvents>((event, emit) async {
       final user = GetIt.I.get<User>(instanceName: "user");
 
-      final QueryOptions _myEventsOptions =
-          QueryOptions(document: gql(Queries.getMyEvents), variables: {
+      final SubscriptionOptions _myEventsOptions =
+          SubscriptionOptions(document: gql(Queries.getMyEvents), variables: {
         "organizer": user.id,
       });
 
       try {
-        final myEventsResult = await client.query(_myEventsOptions);
+        final myEventsResult = client.subscribe(_myEventsOptions);
 
-        if (!myEventsResult.hasException) {
-          emit(
-            EventFetched(
-              myEvents: Event.fromJson(myEventsResult.data!),
-            ),
-          );
-        } else {
-          emit(EventFailed(message: "Error fetching data"));
-        }
+        await emit.forEach(myEventsResult,
+            onData: (QueryResult<Object?> event) =>
+                EventFetched(myEvents: Event.fromJson(event.data!)));
       } catch (e) {
         emit(EventFailed(message: e.toString()));
       }
