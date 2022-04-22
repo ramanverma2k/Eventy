@@ -1,4 +1,3 @@
-import 'package:eventy_organizer/homepage/homepage.dart';
 import 'package:eventy_organizer/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,23 +11,8 @@ class LoginPage extends StatelessWidget {
     return GraphQLConsumer(
       builder: (GraphQLClient client) {
         return BlocProvider(
-          create: (context) =>
-              LoginBloc(client: client)..add(LoginCheckEvent()),
-          child: BlocBuilder<LoginBloc, LoginState>(
-            builder: (context, state) {
-              if (state is LoginSuccess) {
-                return const HomePage();
-              }
-
-              if (state is LoginCheck) {
-                return const Scaffold(
-                  body: Center(child: CircularProgressIndicator()),
-                );
-              }
-
-              return const LoginView();
-            },
-          ),
+          create: (context) => LoginBloc(client: client),
+          child: const LoginView(),
         );
       },
     );

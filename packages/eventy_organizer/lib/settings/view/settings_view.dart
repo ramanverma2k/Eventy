@@ -1,4 +1,4 @@
-import 'package:eventy_organizer/settings/settings.dart';
+import 'package:eventy_organizer/app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,34 +24,38 @@ class SettingsView extends StatelessWidget {
         ),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: BlocBuilder<SettingsBloc, SettingsState>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: ListTile(
-                          onTap: () {},
-                          title: const Text("Toggle Dark Mode"),
-                          subtitle:
-                              const Text("Enable and disable dark mode theme"),
-                          trailing: Switch(
-                            value: true,
-                            onChanged: (bool value) {
-                              value = !value;
-                            },
-                          ),
+        padding: const EdgeInsets.all(20.0),
+        child: BlocBuilder<AppBloc, AppState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        onTap: () {},
+                        title: const Text("Toggle Dark Mode"),
+                        subtitle:
+                            const Text("Enable and disable dark mode theme"),
+                        trailing: Switch(
+                          value: state.themeData.brightness == Brightness.dark
+                              ? true
+                              : false,
+                          onChanged: (bool value) {
+                            value = !value;
+                            context.read<AppBloc>().add(ToggleTheme());
+                          },
                         ),
-                      )
-                    ],
-                  )
-                ],
-              );
-            },
-          )),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }

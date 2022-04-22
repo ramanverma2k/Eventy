@@ -11,10 +11,8 @@ class ProfilePage extends StatelessWidget {
     final user = GetIt.I.get<User>(instanceName: 'user');
 
     return Padding(
-      padding: const EdgeInsets.only(right: 20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'My Profile',

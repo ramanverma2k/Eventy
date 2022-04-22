@@ -17,28 +17,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GraphQLClient client;
 
   LoginBloc({required this.client}) : super(LoginInitial()) {
-    on<LoginCheckEvent>((event, emit) async {
-      emit(LoginCheck());
-
-      await Future.delayed(const Duration(seconds: 1), () async {
-        final prefs = await SharedPreferences.getInstance();
-
-        if (prefs.containsKey('user')) {
-          final User user = User.fromJson(
-            jsonDecode(prefs.getString('user')!),
-          );
-
-          GetIt.I.registerSingleton(user, instanceName: "user");
-
-          if (Uuid.isValidUUID(fromString: user.id)) {
-            emit(LoginSuccess());
-          }
-        } else {
-          emit(LoginInitial());
-        }
-      });
-    });
-
     on<LoginEventStarted>(
       (event, emit) async {
         final QueryOptions options =
