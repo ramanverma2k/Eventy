@@ -3,6 +3,8 @@ part of 'event_bloc.dart';
 @immutable
 abstract class EventEvent {}
 
+class FetchMyEvents extends EventEvent {}
+
 class EventAdd extends EventEvent {}
 
 class EventDelete extends EventEvent {

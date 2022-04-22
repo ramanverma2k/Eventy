@@ -17,4 +17,12 @@ class Mutations {
     }
   }
   """;
+
+  static const String deleteEventById = '''
+    mutation MyMutation(\$id: uuid!) {
+    delete_event(where: {id: {_eq: \$id}}) {
+      affected_rows
+    }
+  }
+  ''';
 }

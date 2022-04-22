@@ -11,7 +11,7 @@ class EventPage extends StatelessWidget {
     return GraphQLConsumer(
       builder: (GraphQLClient client) {
         return BlocProvider<EventBloc>(
-          create: (context) => EventBloc(client: client),
+          create: (context) => EventBloc(client: client)..add(FetchMyEvents()),
           child: const EventView(),
         );
       },
