@@ -19,9 +19,10 @@ class SearchPage extends StatelessWidget {
           builder: (context, state) {
             if (state is SearchCompleted) {
               return ViewAllPage(
-                  key: Key("$key complete"),
-                  title: "Search Results for \"$query\"",
-                  data: state.result);
+                key: Key("$key complete"),
+                title: "Search Results for \"$query\"",
+                data: state.result.events,
+              );
             }
 
             return const Scaffold(

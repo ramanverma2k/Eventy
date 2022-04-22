@@ -23,8 +23,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           final searchResult = await client.query(_searchEventsOptions);
 
           if (!searchResult.hasException) {
-            final searchedEvents = Event.fromJson(searchResult.data!);
-            emit(SearchCompleted(result: searchedEvents.events));
+            emit(SearchCompleted(result: Event.fromJson(searchResult.data!)));
           } else {
             emit(SearchFailed(message: searchResult.exception.toString()));
           }

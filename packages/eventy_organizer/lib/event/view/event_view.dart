@@ -1,10 +1,8 @@
 import 'package:eventy_organizer/event/event.dart';
-import 'package:eventy_organizer/models/event_model.dart';
 import 'package:eventy_organizer/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:get_it/get_it.dart';
 
 class EventView extends StatelessWidget {
   const EventView({Key? key}) : super(key: key);
@@ -15,9 +13,6 @@ class EventView extends StatelessWidget {
 
     return BlocBuilder<EventBloc, EventState>(
       builder: (context, state) {
-        final myEvents =
-            GetIt.I.get<List<EventElement>>(instanceName: 'myEvents');
-
         return Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
           child: Column(
@@ -90,22 +85,22 @@ class EventView extends StatelessWidget {
               const Gap(20),
               Expanded(
                 child: ListView.separated(
-                  itemCount: myEvents.length,
+                  itemCount: 0,
                   itemBuilder: (context, index) => Stack(
-                    children: [
+                    children: const [
                       DecoratedBox(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(myEvents[index].image),
+                            image: NetworkImage(''),
                             fit: BoxFit.cover,
                           ),
                         ),
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 200,
                           width: double.maxFinite,
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         top: 10,
                         right: 60,
                         child: CircleAvatar(
@@ -116,7 +111,7 @@ class EventView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         top: 10,
                         right: 15,
                         child: CircleAvatar(

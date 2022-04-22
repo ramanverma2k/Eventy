@@ -6,7 +6,7 @@ abstract class SearchState {}
 class SearchInitial extends SearchState {}
 
 class SearchCompleted extends SearchState {
-  final List<EventElement> result;
+  final Event result;
 
   SearchCompleted({required this.result});
 }

@@ -6,16 +6,14 @@ abstract class HomepageState {}
 class HomepageInitial extends HomepageState {}
 
 class HomepageDataFetched extends HomepageState {
-  final List<EventElement> myEvents;
-  final List<EventElement> popularEvents;
-  final List<EventElement> ongoingEvents;
-  final List<EventElement> upcomingEvents;
+  final Event popularEvents;
+  final Event ongoingEvents;
+  final Event upcomingEvents;
 
   HomepageDataFetched(
-      {required this.myEvents,
-      required this.popularEvents,
-      required this.ongoingEvents,
-      required this.upcomingEvents});
+      {required this.ongoingEvents,
+      required this.upcomingEvents,
+      required this.popularEvents});
 }
 
 class HomepageDataFailed extends HomepageState {

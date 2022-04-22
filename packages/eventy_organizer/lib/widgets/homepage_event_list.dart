@@ -14,7 +14,7 @@ class HomepageEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     return eventData.isEmpty
         ? const Center(
-            child: Text("No events are happening currently."),
+            child: Text("There are no events to show :("),
           )
         : SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
