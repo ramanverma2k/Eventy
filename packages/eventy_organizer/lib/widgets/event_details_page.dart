@@ -130,42 +130,45 @@ class EventDetailsPage extends StatelessWidget {
                       ],
                     ),
                     const Gap(30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Stack(
-                          children: const [
-                            CircleAvatar(),
-                            Padding(
-                              padding: EdgeInsets.only(left: 30.0),
-                              child: CircleAvatar(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 60.0),
-                              child: CircleAvatar(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 90.0),
-                              child: CircleAvatar(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 120.0),
-                              child: CircleAvatar(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 150.0),
-                              child: CircleAvatar(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 180.0),
-                              child: CircleAvatar(),
-                            ),
-                          ],
-                        ),
-                        const Gap(20),
-                        const Text("+56 going")
-                      ],
-                    ),
+                    details.attendantsCount > 6
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Stack(
+                                children: const [
+                                  CircleAvatar(),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 30.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 60.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 90.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 120.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 150.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 180.0),
+                                    child: CircleAvatar(),
+                                  ),
+                                ],
+                              ),
+                              const Gap(20),
+                              Text("${details.attendantsCount} going")
+                            ],
+                          )
+                        : Text(
+                            "${details.attendantsCount} people are attending this event!"),
                     const Gap(30),
                     Text(
                       "About this event",

@@ -96,38 +96,41 @@ class ViewAllPage extends StatelessWidget {
                         ],
                       ),
                       const Gap(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Stack(
-                            children: const [
-                              CircleAvatar(
-                                maxRadius: 15,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 25.0),
-                                child: CircleAvatar(
-                                  maxRadius: 15,
+                      data[index].attendantsCount > 4
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Stack(
+                                  children: const [
+                                    CircleAvatar(
+                                      maxRadius: 15,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 25.0),
+                                      child: CircleAvatar(
+                                        maxRadius: 15,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 50.0),
+                                      child: CircleAvatar(
+                                        maxRadius: 15,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 75.0),
+                                      child: CircleAvatar(
+                                        maxRadius: 15,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 50.0),
-                                child: CircleAvatar(
-                                  maxRadius: 15,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 75.0),
-                                child: CircleAvatar(
-                                  maxRadius: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Text("+46 going")
-                        ],
-                      ),
+                                Text("${data[index].attendantsCount} going")
+                              ],
+                            )
+                          : Text(
+                              "${data[index].attendantsCount} people are attending this event!"),
                       const Gap(10),
                     ],
                   ),

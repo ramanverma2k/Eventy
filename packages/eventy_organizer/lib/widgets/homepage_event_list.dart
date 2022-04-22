@@ -103,40 +103,50 @@ class HomepageEventList extends StatelessWidget {
                                 ],
                               ),
                               const Gap(10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Stack(
-                                    children: const [
-                                      CircleAvatar(
-                                        maxRadius: 15,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 25.0),
-                                        child: CircleAvatar(
-                                          maxRadius: 15,
+                              eventData[index].attendantsCount > 4
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Stack(
+                                          children: const [
+                                            CircleAvatar(
+                                              maxRadius: 15,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 25.0),
+                                              child: CircleAvatar(
+                                                maxRadius: 15,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 50.0),
+                                              child: CircleAvatar(
+                                                maxRadius: 15,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 75.0),
+                                              child: CircleAvatar(
+                                                maxRadius: 15,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 50.0),
-                                        child: CircleAvatar(
-                                          maxRadius: 15,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 75.0),
-                                        child: CircleAvatar(
-                                          maxRadius: 15,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const Gap(20),
-                                  const Text("+46 going")
-                                ],
-                              ),
+                                        const Gap(20),
+                                        Text(
+                                            "+${eventData[index].attendantsCount} going")
+                                      ],
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {},
+                                      child: const Text("Attend"),
+                                    ),
                               const Gap(10),
                             ],
                           ),
