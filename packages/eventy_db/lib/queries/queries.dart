@@ -228,4 +228,12 @@ class Queries {
     }
   }
   ''';
+
+  static const String getEventTypeIdByName = '''
+  query getEventTypeIdByName(\$type_name: String!) {
+    event_type(where: {type_name: {_eq: \$type_name}}) {
+      id
+    }
+  }
+  ''';
 }

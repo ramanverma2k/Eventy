@@ -25,4 +25,16 @@ class Mutations {
     }
   }
   ''';
+
+  static const String createEvent = '''
+    mutation CreateEvent(\$id: uuid!, \$name: String!, \$start_date: timestamp!, \$end_date: timestamp!,
+                        \$address: String!, \$location: json!, \$description: String!, \$type_id: Int!,
+                        \$banner_image: String!, \$image: String!, \$organizer: uuid!) {
+    insert_event(objects: {id: \$id, name: \$name, start_date: \$start_date, end_date: \$end_date,
+                          address: \$address, location: \$location, description: \$description,
+                          type_id: \$type_id, banner_image: \$banner_image, image: \$image, organizer: \$organizer}) {
+      affected_rows
+    }
+  }
+  ''';
 }
