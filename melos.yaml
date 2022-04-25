@@ -1,0 +1,9 @@
+name: Eventy
+repository: https://github.com/Cloverspace/Eventy/
+
+packages:
+  - packages/**
+
+scripts: 
+  analyze: melos exec -- "dart analyze ."
+  postbootstrap: melos exec -- "flutter pub get"
