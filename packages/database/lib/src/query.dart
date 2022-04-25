@@ -1,14 +1,5 @@
-import 'package:database/database.dart';
-import 'package:database/src/graphql/all_count.graphql.dart';
+/// Base Query class containing methods for Querying data.
+abstract class QueryBase {}
 
-/// Query class.
-class Query {
-  /// Function.
-  static Future<QueryAllCount?> getAllCount() async {
-    final client = Database.client;
-
-    final results = await client.queryAllCount();
-
-    return results.parsedData;
-  }
-}
+/// Query class for implementing [QueryBase] methods.
+class Query extends QueryBase {}
