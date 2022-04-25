@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  database:
+    path: ../database/
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
