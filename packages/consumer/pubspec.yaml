@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  common:
+    path: ../common/
   database:
     path: ../database/
   flutter:
@@ -16,6 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   bloc_test: ^9.0.3

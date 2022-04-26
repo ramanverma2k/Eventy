@@ -7,7 +7,14 @@
 
 import 'package:organizer/app/app.dart';
 import 'package:organizer/bootstrap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+
+    return App(
+      sharedPreferences: _sharedPreferences,
+    );
+  });
 }

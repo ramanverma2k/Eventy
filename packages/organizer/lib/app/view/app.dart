@@ -5,13 +5,40 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:database/database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:organizer/counter/counter.dart';
+import 'package:organizer/authentication/authentication.dart';
+import 'package:organizer/home/home.dart';
 import 'package:organizer/l10n/l10n.dart';
+import 'package:organizer/repository/shared_preferences_store.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({Key? key, required this.sharedPreferences}) : super(key: key);
+
+  final SharedPreferences sharedPreferences;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: SharedPreferencesStore(instance: sharedPreferences),
+      child: BlocProvider(
+        create: (context) => AuthenticationBloc(
+          queryRepository: Query(),
+          mutatationRepository: Mutate(),
+          sharedPreferencesStore:
+              RepositoryProvider.of<SharedPreferencesStore>(context),
+        )..add(AuthenticationStatusValidate()),
+        child: const AppView(),
+      ),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +54,21 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state.status == AuthenticationStatus.authenticated) {
+            return const HomePage();
+          }
+
+          if (state.status == AuthenticationStatus.unauthenticated) {
+            return const LoginPage();
+          }
+
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()),
+          );
+        },
+      ),
     );
   }
 }
