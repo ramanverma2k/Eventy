@@ -1,6 +1,0 @@
-query AllCount {
-    test_counter {
-        id
-        count
-    }
-}
