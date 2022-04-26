@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="common is a shared package not an application.&#10;add authentication module in organizer and consumer application.">
+    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="move shared_preferences_store to common package">
+      <change afterPath="$PROJECT_DIR$/packages/common/lib/src/pages/pages.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/common/lib/src/widgets/widgets.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/common/lib/common.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/common.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/app/view/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/repository/shared_preferences_store.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/src/repository/shared_preferences_store.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/app/view/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/authentication/bloc/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/authentication/bloc/authentication_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/repository/shared_preferences_store.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common/lib/src/common.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common/test/src/common_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/test/src/common_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650992449762</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="move shared_preferences_store to common package">
+      <created>1650992932924</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650992932924</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="common is a shared package not an application.&#10;add authentication module in organizer and consumer application." />
-    <option name="LAST_COMMIT_MESSAGE" value="common is a shared package not an application.&#10;add authentication module in organizer and consumer application." />
+    <MESSAGE value="move shared_preferences_store to common package" />
+    <option name="LAST_COMMIT_MESSAGE" value="move shared_preferences_store to common package" />
   </component>
 </project>

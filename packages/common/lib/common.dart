@@ -1,4 +1,5 @@
 library common;
 
-export 'src/common.dart';
+export 'src/pages/pages.dart';
 export 'src/repository/shared_preferences_store.dart';
+export 'src/widgets/widgets.dart';
