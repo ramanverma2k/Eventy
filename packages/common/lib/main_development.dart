@@ -7,7 +7,15 @@
 
 import 'package:common/app/app.dart';
 import 'package:common/bootstrap.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+
+    WidgetsFlutterBinding.ensureInitialized();
+
+    return App(sharedPreferences: _sharedPreferences);
+  });
 }
