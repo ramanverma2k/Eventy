@@ -4,303 +4,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/authentication.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/view/login_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/view/signup_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/home/bloc/home_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/home/bloc/home_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/home/bloc/home_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/home/home.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/consumer/lib/home/view/home_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/organizer/lib/home/bloc/home_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/organizer/lib/home/bloc/home_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/organizer/lib/home/bloc/home_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/organizer/lib/home/home.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/organizer/lib/home/view/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="common is a shared package not an application.&#10;add authentication module in organizer and consumer application.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/melos_eventy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/melos_eventy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.github/workflows/main.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.idea/runConfigurations/development.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.idea/runConfigurations/production.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.idea/runConfigurations/staging.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.metadata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/ic_launcher-playstore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/development/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/ic_launcher-playstore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/kotlin/com/example/verygoodcore/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/drawable/ic_launch_image.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/ic_launcher-playstore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/app/src/staging/res/values/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/android/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/coverage_badge.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Flutter/Debug.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Flutter/Release.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/xcshareddata/xcschemes/development.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/xcshareddata/xcschemes/production.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcodeproj/xcshareddata/xcschemes/staging.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/AppDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/1024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/114.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/120.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/144.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/167.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/172.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/180.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/196.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/216.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/50.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/55.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/57.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/58.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/72.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/76.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/80.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/87.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-dev.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/1024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/114.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/120.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/144.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/167.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/172.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/180.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/196.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/216.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/50.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/55.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/57.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/58.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/72.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/76.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/80.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/87.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon-stg.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/172.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/196.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/216.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/55.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/l10n.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/app/app.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/app/view/app.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/authentication.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/bloc/authentication_bloc.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/bloc/authentication_event.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/bloc/authentication_state.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/view/login_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/authentication/view/signup_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/bootstrap.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/counter/counter.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/counter/cubit/counter_cubit.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/counter/view/counter_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/l10n/arb/app_en.arb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/l10n/arb/app_es.arb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/l10n/l10n.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/main_development.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/main_production.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/main_staging.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/repository/shared_preferences_store.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common/lib/common.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/common.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/common/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/common/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/test/app/view/app_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/test/counter/cubit/counter_cubit_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/test/counter/view/counter_page_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/test/helpers/helpers.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/test/helpers/pump_app.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/icons/Icon-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/icons/Icon-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/icons/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/web/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/flutter/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/flutter/generated_plugin_registrant.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/flutter/generated_plugins.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/Runner.rc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/flutter_window.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/flutter_window.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/resource.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/resources/app_icon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/runner.exe.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/utils.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/utils.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/win32_window.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/windows/runner/win32_window.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/app/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/app/app.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/consumer/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/app/view/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/counter/counter.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/counter/cubit/counter_cubit.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/counter/view/counter_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/main_development.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/main_development.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/main_production.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/main_production.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/main_staging.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/main_staging.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/lib/authentication/bloc/authentication_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/consumer/lib/repository/shared_preferences_store.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/src/repository/shared_preferences_store.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/consumer/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/test/app/view/app_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/test/counter/cubit/counter_cubit_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/test/counter/view/counter_page_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/consumer/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/packages/consumer/windows/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/app/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/app/app.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/organizer/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/app/view/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/counter/counter.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/counter/cubit/counter_cubit.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/counter/view/counter_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/main_development.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/main_development.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/main_production.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/main_production.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/main_staging.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/main_staging.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/authentication/bloc/authentication_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/authentication/bloc/authentication_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/repository/shared_preferences_store.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/organizer/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/test/app/view/app_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/test/counter/cubit/counter_cubit_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/test/counter/view/counter_page_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/organizer/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,6 +90,14 @@
       <option name="presentableId" value="Default" />
       <updated>1650896790791</updated>
     </task>
+    <task id="LOCAL-00001" summary="common is a shared package not an application.&#10;add authentication module in organizer and consumer application.">
+      <created>1650992449762</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650992449762</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,5 +110,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="common is a shared package not an application.&#10;add authentication module in organizer and consumer application." />
+    <option name="LAST_COMMIT_MESSAGE" value="common is a shared package not an application.&#10;add authentication module in organizer and consumer application." />
   </component>
 </project>

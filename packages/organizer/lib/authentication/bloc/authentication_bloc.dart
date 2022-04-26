@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:common/common.dart';
 import 'package:database/database.dart';
 import 'package:meta/meta.dart';
-import 'package:organizer/repository/shared_preferences_store.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

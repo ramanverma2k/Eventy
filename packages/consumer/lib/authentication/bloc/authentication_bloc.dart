@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:consumer/repository/shared_preferences_store.dart';
+import 'package:common/common.dart';
 import 'package:database/database.dart';
 import 'package:meta/meta.dart';
 

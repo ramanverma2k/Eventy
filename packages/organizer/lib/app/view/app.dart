@@ -5,6 +5,7 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:common/common.dart';
 import 'package:database/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:organizer/authentication/authentication.dart';
 import 'package:organizer/home/home.dart';
 import 'package:organizer/l10n/l10n.dart';
-import 'package:organizer/repository/shared_preferences_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class App extends StatelessWidget {

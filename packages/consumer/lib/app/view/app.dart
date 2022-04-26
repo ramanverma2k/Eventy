@@ -5,10 +5,10 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:common/common.dart';
 import 'package:consumer/authentication/authentication.dart';
 import 'package:consumer/home/home.dart';
 import 'package:consumer/l10n/l10n.dart';
-import 'package:consumer/repository/shared_preferences_store.dart';
 import 'package:database/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
