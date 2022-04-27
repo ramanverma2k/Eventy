@@ -10,7 +10,7 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
     required this.queryRepository,
-    required this.mutatationRepository,
+    required this.mutationRepository,
     required this.sharedPreferencesStore,
   }) : super(const AuthenticationInitial()) {
     on<AuthenticationStatusValidate>((event, emit) async {
@@ -24,7 +24,7 @@ class AuthenticationBloc
     });
   }
 
-  final Mutate mutatationRepository;
+  final Mutate mutationRepository;
   final Query queryRepository;
   final SharedPreferencesStore sharedPreferencesStore;
 }

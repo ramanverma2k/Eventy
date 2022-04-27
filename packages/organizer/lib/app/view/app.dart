@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       child: BlocProvider(
         create: (context) => AuthenticationBloc(
           queryRepository: Query(),
-          mutatationRepository: Mutate(),
+          mutationRepository: Mutate(),
           sharedPreferencesStore:
               RepositoryProvider.of<SharedPreferencesStore>(context),
         )..add(AuthenticationStatusValidate()),
