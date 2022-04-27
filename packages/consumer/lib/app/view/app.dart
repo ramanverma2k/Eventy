@@ -6,7 +6,6 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:common/common.dart';
-import 'package:consumer/authentication/authentication.dart';
 import 'package:consumer/home/home.dart';
 import 'package:consumer/l10n/l10n.dart';
 import 'package:database/database.dart';
@@ -27,7 +26,7 @@ class App extends StatelessWidget {
       child: BlocProvider(
         create: (context) => AuthenticationBloc(
           queryRepository: Query(),
-          mutatationRepository: Mutate(),
+          mutationRepository: Mutate(),
           sharedPreferencesStore:
               RepositoryProvider.of<SharedPreferencesStore>(context),
         )..add(AuthenticationStatusValidate()),
