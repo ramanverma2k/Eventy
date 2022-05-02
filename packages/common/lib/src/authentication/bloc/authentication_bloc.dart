@@ -18,6 +18,7 @@ class AuthenticationBloc
     on<AuthenticationStatusValidate>(_authenticationValidate);
     on<AuthenticationSignIn>(_authenticationSignIn);
     on<AuthenticationSignUp>(_authenticationSignUp);
+    on<AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
   }
 
   Future<void> _authenticationValidate(
@@ -40,6 +41,8 @@ class AuthenticationBloc
     final _user =
         await Query().getUserByEmailOrUsername(event.username, event.password);
     if (_user.username == event.username || _user.email == event.username) {
+      await sharedPreferencesStore.setValue('user', _user.toString());
+
       emit(const AuthenticationStateAuthenticated());
     } else {
       emit(const AuthenticationStateUnauthenticated());
@@ -60,10 +63,20 @@ class AuthenticationBloc
     if (_user.email == event.email &&
         _user.username == event.username &&
         _user.first_name == event.name) {
+      await sharedPreferencesStore.setValue('user', _user.toString());
+
       emit(const AuthenticationStateAuthenticated());
     } else {
       emit(const AuthenticationStateUnauthenticated());
     }
+  }
+
+  Future<void> _onAuthenticationLogoutRequested(
+      AuthenticationLogoutRequested event,
+      Emitter<AuthenticationState> emit) async {
+    await sharedPreferencesStore.removeValue('user');
+
+    emit(const AuthenticationStateUnauthenticated());
   }
 
   /// Mutation Repository to create and delete data in database.

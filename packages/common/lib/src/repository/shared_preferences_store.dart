@@ -7,6 +7,9 @@ class SharedPreferencesStore {
   final SharedPreferences _instance;
 
   String? getValue(String key) => _instance.getString(key);
+
   Future<void> setValue(String key, String value) =>
       _instance.setString(key, value);
+
+  Future<void> removeValue(String key) => _instance.remove(key);
 }
