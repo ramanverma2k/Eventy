@@ -7,7 +7,6 @@ import 'package:gap/gap.dart';
 /// and a button to bookmark the event.
 class VerticalCard extends StatelessWidget {
   /// Creates a vertical card widget.
-  ///
   const VerticalCard({Key? key}) : super(key: key);
 
   @override

@@ -2,9 +2,9 @@ import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-///
+/// Event page shows details of an event.
 class EventPage extends StatelessWidget {
-  ///
+  /// Create a new event page.
   const EventPage({Key? key}) : super(key: key);
 
   @override
@@ -241,9 +241,9 @@ class EventPage extends StatelessWidget {
   }
 }
 
-///
+/// Widget to display when the SliverAppBar is full expanded.
 class ExpandedSliverAppBar extends StatelessWidget {
-  ///
+  /// Returns a [FlexibleSpaceBar] widget.
   const ExpandedSliverAppBar({Key? key}) : super(key: key);
 
   @override
@@ -359,9 +359,9 @@ class ExpandedSliverAppBar extends StatelessWidget {
   }
 }
 
-///
+/// Widget to display when the SliverAppBar is collapsed.
 class CollapsedSliverAppBar extends StatelessWidget {
-  ///
+  /// Returns a [SizedBox.expand] widget with Decoration Image.
   const CollapsedSliverAppBar({Key? key}) : super(key: key);
 
   @override
