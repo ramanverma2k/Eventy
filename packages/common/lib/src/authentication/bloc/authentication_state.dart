@@ -1,28 +1,40 @@
 part of 'authentication_bloc.dart';
 
+/// Possible states of the [AuthenticationBloc].
 enum AuthenticationStatus {
+  /// Authentication state is unknown.
   unknown,
+
+  /// User is authenticated.
   authenticated,
+
+  /// User is not authenticated.
   unauthenticated,
 }
 
+/// The [AuthenticationState] state class.
+/// This class is used to represent the state of the [AuthenticationBloc].
 @immutable
-abstract class AuthenticationState {
+class AuthenticationState {
+  /// Creates a [AuthenticationState] instance with
+  /// [AuthenticationStatus.unknown] state.
   const AuthenticationState(this.status);
 
+  /// AuthenticationState status of the [AuthenticationBloc].
   final AuthenticationStatus status;
-}
 
-class AuthenticationInitial extends AuthenticationState {
-  const AuthenticationInitial() : super(AuthenticationStatus.unknown);
-}
+  /// Create copy with method
+  AuthenticationState copyWith({
+    required AuthenticationStatus status,
+  }) {
+    return AuthenticationState(
+      status,
+    );
+  }
 
-class AuthenticationStateAuthenticated extends AuthenticationState {
-  const AuthenticationStateAuthenticated()
-      : super(AuthenticationStatus.authenticated);
-}
+  /// Returns a string representation of the [AuthenticationState].
+  /// This method is used by [toString] method.
 
-class AuthenticationStateUnauthenticated extends AuthenticationState {
-  const AuthenticationStateUnauthenticated()
-      : super(AuthenticationStatus.unauthenticated);
+  @override
+  String toString() => 'AuthenticationState { status: $status }';
 }

@@ -56,9 +56,10 @@ class AuthenticationSignUp extends AuthenticationEvent {
   final String password;
 }
 
-/// AuthenticationSignUpWithGoogle is dispatched when the user tries to create an account
-/// using GoogleSignIn
+/// AuthenticationSignUpWithGoogle is dispatched when the user tries to
+/// create an account using GoogleSignIn
 class AuthenticationSignUpWithGoogle extends AuthenticationEvent {}
 
-/// AuthenticationLogoutRequested is dispatched when the user logs out of the application
+/// AuthenticationLogoutRequested is dispatched when the user logs out
+/// of the application
 class AuthenticationLogoutRequested extends AuthenticationEvent {}

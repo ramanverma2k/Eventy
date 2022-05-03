@@ -14,7 +14,7 @@ class AuthenticationBloc
     required this.queryRepository,
     required this.mutationRepository,
     required this.sharedPreferencesStore,
-  }) : super(const AuthenticationInitial()) {
+  }) : super(const AuthenticationState(AuthenticationStatus.unknown)) {
     on<AuthenticationStatusValidate>(_authenticationValidate);
     on<AuthenticationSignIn>(_authenticationSignIn);
     on<AuthenticationSignUp>(_authenticationSignUp);
@@ -28,9 +28,9 @@ class AuthenticationBloc
     final _user = sharedPreferencesStore.getValue('user');
 
     if (_user != null) {
-      emit(const AuthenticationStateAuthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
-      emit(const AuthenticationStateUnauthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
     }
   }
 
@@ -43,9 +43,9 @@ class AuthenticationBloc
     if (_user.username == event.username || _user.email == event.username) {
       await sharedPreferencesStore.setValue('user', _user.toString());
 
-      emit(const AuthenticationStateAuthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
-      emit(const AuthenticationStateUnauthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
     }
   }
 
@@ -65,18 +65,19 @@ class AuthenticationBloc
         _user.first_name == event.name) {
       await sharedPreferencesStore.setValue('user', _user.toString());
 
-      emit(const AuthenticationStateAuthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
-      emit(const AuthenticationStateUnauthenticated());
+      emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
     }
   }
 
   Future<void> _onAuthenticationLogoutRequested(
-      AuthenticationLogoutRequested event,
-      Emitter<AuthenticationState> emit) async {
+    AuthenticationLogoutRequested event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     await sharedPreferencesStore.removeValue('user');
 
-    emit(const AuthenticationStateUnauthenticated());
+    emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
   }
 
   /// Mutation Repository to create and delete data in database.
