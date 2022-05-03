@@ -118,14 +118,23 @@ class VerticalCard extends StatelessWidget {
                   ],
                 ),
                 const Gap(5),
-                Text(
-                  '+20 Going',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.blue.shade900,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '+20 Going',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue.shade900,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.bookmark,
+                      color: Colors.red,
+                    )
+                  ],
+                ),
               ],
             ),
             const Gap(10),
