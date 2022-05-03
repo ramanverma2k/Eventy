@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 /// Event page shows details of an event.
-class EventPage extends StatelessWidget {
+class EventDetailsPage extends StatelessWidget {
   /// Create a new event page.
-  const EventPage({Key? key}) : super(key: key);
+  const EventDetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
