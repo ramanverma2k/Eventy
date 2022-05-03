@@ -34,12 +34,21 @@ class HorizontalCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Wed, Apr 28 - 5:30 PM',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.w700,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Wed, Apr 28 - 5:30 PM',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Icon(
+                      Icons.bookmark,
+                      color: Colors.red,
+                    )
+                  ],
                 ),
                 const Gap(5),
                 const Text(
