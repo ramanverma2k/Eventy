@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well." />
+    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +43,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/consumer/lib" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
