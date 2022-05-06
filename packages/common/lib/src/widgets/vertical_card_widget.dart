@@ -39,31 +39,31 @@ class VerticalCard extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.all(5),
-                      height: kDeviceDimensions.height * 0.08,
+                      height: kDeviceDimensions.height * 0.07,
                       width: kDeviceDimensions.width * 0.1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white.withOpacity(0.75),
                       ),
-                      child: Center(
-                        child: Column(
-                          children: const [
-                            Text(
-                              '10',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      child: Column(
+                        children: const [
+                          Text(
+                            '10',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Text(
+                          ),
+                          FittedBox(
+                            child: Text(
                               'June',
                               style: TextStyle(
                                 color: Colors.red,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                     Container(

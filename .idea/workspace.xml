@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common/lib/src/widgets/vertical_card_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/src/widgets/vertical_card_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/organizer/lib/home/view/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/home/view/home_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

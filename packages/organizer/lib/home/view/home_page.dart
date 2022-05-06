@@ -35,7 +35,10 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Icon(Icons.menu),
-                          Text('New York, USA'),
+                          Text(
+                            'New York, USA',
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
                           Icon(Icons.notifications),
                         ],
                       ),
@@ -68,12 +71,12 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            _HomePageTimelineWidget(
+            _HomePageSuggestionWidget(
               title: 'Upcoming Events',
               callback: () {},
               data: '',
             ),
-            _HomePageTimelineWidget(
+            _HomePageSuggestionWidget(
               title: 'Nearby You',
               callback: () {},
               data: '',
@@ -85,10 +88,10 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomePageTimelineWidget extends StatelessWidget {
+class _HomePageSuggestionWidget extends StatelessWidget {
   /// Creates a widget that displays Title with TextButton for navigation and
   /// a VerticalCard inside a Column widget.
-  const _HomePageTimelineWidget({
+  const _HomePageSuggestionWidget({
     Key? key,
     required this.callback,
     required this.data,
