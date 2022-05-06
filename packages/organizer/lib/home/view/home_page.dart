@@ -1,7 +1,7 @@
 import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static Route route() {
@@ -11,66 +11,81 @@ class HomePage extends StatelessWidget {
   static final _searchController = TextEditingController();
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.blue,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
+        flexibleSpace: Padding(
+          padding: kDefaultPaddingAll.copyWith(top: 0, bottom: 0, left: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const PopupMenuWidget(),
+                  const Text(
+                    'New York, USA',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notifications),
+                  ),
+                ],
+              ),
+              IntrinsicHeight(
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.search),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                      child: VerticalDivider(
+                        color: Colors.black,
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: HomePage._searchController,
+                        cursorColor: Colors.black,
+                        decoration: const InputDecoration(
+                          hintText: 'Search...',
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.sort),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        toolbarHeight: kDeviceDimensions.height * 0.18,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: kDeviceDimensions.height * 0.18,
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Icon(Icons.menu),
-                          Text(
-                            'New York, USA',
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                          Icon(Icons.notifications),
-                        ],
-                      ),
-                      IntrinsicHeight(
-                        child: Row(
-                          children: [
-                            const Icon(Icons.search),
-                            const SizedBox(
-                              height: 25,
-                              child: VerticalDivider(
-                                color: Colors.black,
-                              ),
-                            ),
-                            Expanded(
-                              child: TextField(
-                                controller: _searchController,
-                                cursorColor: Colors.black,
-                                decoration: const InputDecoration(
-                                  hintText: 'Search...',
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            const Icon(Icons.sort),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
             _HomePageSuggestionWidget(
               title: 'Upcoming Events',
               callback: () {},
@@ -83,6 +98,33 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.shifting,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.blueGrey,
+        unselectedLabelStyle: const TextStyle(color: Colors.blueGrey),
+        showUnselectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: "Manage Events",
+            icon: Icon(Icons.event_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Profile",
+            icon: Icon(Icons.person),
+          ),
+        ],
       ),
     );
   }

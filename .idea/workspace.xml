@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well.">
+    <list default="true" id="594ce280-c695-412b-9b58-6071aea5a164" name="Default Changelist" comment="organizer: homepage: minor ui changes.">
+      <change afterPath="$PROJECT_DIR$/packages/common/lib/src/widgets/popup_menu_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/lib/src/widgets/vertical_card_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/src/widgets/vertical_card_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/common/lib/src/widgets/widgets.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/lib/src/widgets/widgets.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/organizer/lib/home/view/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/organizer/lib/home/view/home_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651066804703</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="organizer: homepage: minor ui changes.">
+      <created>1651821303911</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651821303911</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +156,7 @@
     <MESSAGE value="common: share login_page" />
     <MESSAGE value="organizer: fix a typo" />
     <MESSAGE value="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well." />
-    <option name="LAST_COMMIT_MESSAGE" value="Eventy: complete login and signup modules.&#10;&#10;* Needs some sort of toasts or visual indicators to notify the users about current state and in-case of errors as well." />
+    <MESSAGE value="organizer: homepage: minor ui changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="organizer: homepage: minor ui changes." />
   </component>
 </project>
