@@ -19,7 +19,7 @@ class HorizontalCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: kDeviceDimensions.height * 0.2,
+              height: kDeviceDimensions.height * 0.18,
               width: kDeviceDimensions.width * 0.25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -33,22 +33,14 @@ class HorizontalCard extends StatelessWidget {
             const Gap(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'Wed, Apr 28 - 5:30 PM',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Icon(
-                      Icons.bookmark,
-                      color: Colors.red,
-                    )
-                  ],
+                const Text(
+                  'Wed, Apr 28 - 5:30 PM',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const Gap(5),
                 const Text(

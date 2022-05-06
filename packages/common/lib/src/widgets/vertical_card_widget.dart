@@ -19,72 +19,72 @@ class VerticalCard extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: kDeviceDimensions.height * 0.2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                          'https://images.unsplash.com/photo-1650646269982-5bb3ac948d46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80'),
-                      fit: BoxFit.cover,
-                    ),
+            Expanded(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                padding: kDefaultPaddingAll.copyWith(top: 10, left: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                        'https://images.unsplash.com/photo-1650646269982-5bb3ac948d46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80'),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        width: kDeviceDimensions.width * 0.1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.75),
-                        ),
-                        child: Center(
-                          child: Column(
-                            children: const [
-                              Text(
-                                '10',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      height: kDeviceDimensions.height * 0.08,
+                      width: kDeviceDimensions.width * 0.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white.withOpacity(0.75),
+                      ),
+                      child: Center(
+                        child: Column(
+                          children: const [
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'June',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            ),
+                            Text(
+                              'June',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.75),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 20,
-                          ),
+                    ),
+                    Container(
+                      height: kDeviceDimensions.height * 0.055,
+                      width: kDeviceDimensions.width * 0.1,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white.withOpacity(0.75),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.bookmark,
+                          color: Colors.red,
+                          size: 20,
                         ),
                       ),
-                    ],
-                  ),
-                )
-              ],
+                    ),
+                  ],
+                ),
+              ),
             ),
             const Gap(10),
             const Text(
@@ -118,23 +118,14 @@ class VerticalCard extends StatelessWidget {
                   ],
                 ),
                 const Gap(5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '+20 Going',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue.shade900,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.bookmark,
-                      color: Colors.red,
-                    )
-                  ],
-                ),
+                Text(
+                  '+20 Going',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.blue.shade900,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
               ],
             ),
             const Gap(10),
