@@ -1,9 +1,0 @@
-# build.yaml
-
-targets:
-  $default:
-    builders:
-      graphql_codegen:
-        options:
-          clients:
-            - graphql
