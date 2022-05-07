@@ -8,3 +8,5 @@ scripts:
   # This will exclude running in database library since it is pure dart
   # and does not depend on Flutter SDK.
   postbootstrap: melos exec --flutter -- flutter pub get
+  codegen: melos exec --no-flutter -- dart pub run build_runner build --delete-conflicting-outputs
+  
