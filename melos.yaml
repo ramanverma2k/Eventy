@@ -9,4 +9,6 @@ scripts:
   # and does not depend on Flutter SDK.
   postbootstrap: melos exec --flutter -- flutter pub get
   codegen: melos exec --no-flutter -- dart pub run build_runner build --delete-conflicting-outputs
+  test_flutter: melos exec --flutter -- flutter test
+  test_dart: melos exec --no-flutter -- dart test
   
