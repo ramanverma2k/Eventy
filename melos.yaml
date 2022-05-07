@@ -2,3 +2,9 @@ name: Eventy
 
 packages:
   - packages/**
+
+scripts:
+  # Only run this command in packages and libraries that depends on Flutter SDK 
+  # This will exclude running in database library since it is pure dart
+  # and does not depend on Flutter SDK.
+  postbootstrap: melos exec --flutter -- flutter pub get
