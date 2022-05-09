@@ -6,8 +6,9 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:database/database.dart';
-import 'package:eventy_organizer/counter/counter.dart';
+import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/l10n/l10n.dart';
+import 'package:eventy_organizer/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,7 +35,10 @@ class App extends StatelessWidget {
           create: (context) => DatabaseRepository(client: graphqlClient),
         ),
       ],
-      child: const AppView(),
+      child: BlocProvider(
+        create: (context) => ThemeBloc(),
+        child: const AppView(),
+      ),
     );
   }
 }
@@ -44,13 +48,18 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: CounterPage(),
+    return BlocBuilder<ThemeBloc, ThemeData>(
+      builder: (context, themeData) {
+        return MaterialApp(
+          theme: themeData,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: const HomeView(),
+        );
+      },
     );
   }
 }

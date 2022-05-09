@@ -7,7 +7,7 @@
 
 import 'package:database/database.dart';
 import 'package:eventy_organizer/app/app.dart';
-import 'package:eventy_organizer/counter/counter.dart';
+import 'package:eventy_organizer/home/home.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:local_storage_api/local_storage_api.dart';
 import 'package:mocktail/mocktail.dart';
@@ -25,14 +25,14 @@ void main() {
     graphqlClient = MockGraphQLClient();
   });
   group('App', () {
-    testWidgets('renders CounterPage', (tester) async {
+    testWidgets('renders HomeView', (tester) async {
       await tester.pumpWidget(
         App(
           sharedPreferences: sharedPreferences,
           graphqlClient: graphqlClient,
         ),
       );
-      expect(find.byType(CounterPage), findsOneWidget);
+      expect(find.byType(HomeView), findsOneWidget);
     });
   });
 }
