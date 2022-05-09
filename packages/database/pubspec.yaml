@@ -1,5 +1,5 @@
 name: database
-description: Database package for communicating with backend
+description: Database repository for communicating with backend
 version: 1.0.0+1
 publish_to: none
 
