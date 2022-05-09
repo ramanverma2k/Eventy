@@ -8,12 +8,16 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  database:
+    path: ../database
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  local_storage_api:
+    path: ../local_storage_api
 
 dev_dependencies:
   bloc_test: ^9.0.3

@@ -5,29 +5,52 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:database/database.dart';
 import 'package:eventy_organizer/counter/counter.dart';
 import 'package:eventy_organizer/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:local_storage_api/local_storage_api.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({
+    Key? key,
+    required this.sharedPreferences,
+    required this.graphqlClient,
+  }) : super(key: key);
+
+  final SharedPreferences sharedPreferences;
+  final GraphQLClient graphqlClient;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => LocalStorageApi(plugin: sharedPreferences),
         ),
-      ),
-      localizationsDelegates: const [
+        RepositoryProvider(
+          create: (context) => DatabaseRepository(client: graphqlClient),
+        ),
+      ],
+      child: const AppView(),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: CounterPage(),
     );
   }
 }
