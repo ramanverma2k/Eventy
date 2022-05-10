@@ -47,7 +47,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
       ),
       titleSmall: TextStyle(
         fontSize: 15,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 13,
+        color: Colors.grey,
+        fontWeight: FontWeight.w600,
       ),
     ),
   );
