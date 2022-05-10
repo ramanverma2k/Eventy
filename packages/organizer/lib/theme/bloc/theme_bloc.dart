@@ -13,6 +13,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
 
   static final _lightTheme = ThemeData(
     brightness: Brightness.light,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ThemeData.light().scaffoldBackgroundColor,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.black),
+    ),
+    dividerColor: Colors.grey,
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 30,
@@ -36,6 +42,12 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
 
   static final _darkTheme = ThemeData(
     brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.white),
+    ),
+    dividerColor: Colors.blueGrey,
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 30,
