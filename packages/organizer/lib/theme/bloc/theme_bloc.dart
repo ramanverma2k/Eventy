@@ -12,16 +12,43 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
   }
 
   static final _lightTheme = ThemeData(
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.white,
-    ),
     brightness: Brightness.light,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 13,
+        color: Colors.grey,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
   );
 
   static final _darkTheme = ThemeData(
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.black,
-    ),
     brightness: Brightness.dark,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
   );
 }

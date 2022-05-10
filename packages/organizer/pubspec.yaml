@@ -15,9 +15,11 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  gap: ^2.0.0
   intl: ^0.17.0
   local_storage_api:
     path: ../local_storage_api
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   bloc_test: ^9.0.3
