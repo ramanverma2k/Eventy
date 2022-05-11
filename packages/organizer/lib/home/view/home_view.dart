@@ -1,4 +1,7 @@
+import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/profile/profile.dart';
+import 'package:eventy_organizer/widgets/horizontal_list.dart';
+import 'package:eventy_organizer/widgets/vertical_list.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -86,6 +89,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
 
+  final List<String> _filterList = [];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -121,22 +126,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const Gap(20),
-              TextFormField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  fillColor: Colors.grey,
-                  contentPadding: const EdgeInsets.all(10),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              Row(
+                children: [
+                  Flexible(
+                    child: TextFormField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        fillColor: Colors.grey,
+                        contentPadding: const EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Search for music, events, or venues',
+                        labelStyle: Theme.of(context).textTheme.bodyText2,
+                        prefixIcon: GestureDetector(
+                          onTap: () {},
+                          child: const Icon(Icons.search),
+                        ),
+                      ),
+                      onFieldSubmitted: (query) {},
+                    ),
                   ),
-                  labelText: 'Search for music, events, or venues',
-                  labelStyle: Theme.of(context).textTheme.bodyText2,
-                  prefixIcon: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.search),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.location_on_outlined),
                   ),
-                ),
-                onFieldSubmitted: (query) {},
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.sort_outlined),
+                  )
+                ],
               ),
               const Gap(10),
               Text(
@@ -146,30 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.3,
                 child: Column(
-                  children: [
+                  children: const [
                     Expanded(
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) => Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.23,
-                              width: MediaQuery.of(context).size.width * 0.35,
-                              decoration: BoxDecoration(
-                                color: Colors.greenAccent,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            Text(
-                              'Event name',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ],
-                        ),
-                        separatorBuilder: (_, index) => const Gap(20),
-                        itemCount: 5,
-                      ),
+                      child: DiscoverList(),
                     ),
                   ],
                 ),
@@ -182,30 +180,9 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Column(
-                  children: [
+                  children: const [
                     Expanded(
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) => Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              decoration: BoxDecoration(
-                                color: Colors.greenAccent,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            Text(
-                              'Category name',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ],
-                        ),
-                        separatorBuilder: (_, index) => const Gap(20),
-                        itemCount: 5,
-                      ),
+                      child: HorizontalList(),
                     ),
                   ],
                 ),
@@ -215,46 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const Gap(10),
-              ListView.separated(
-                itemBuilder: (_, index) => Row(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.12,
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Event name',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          const Gap(10),
-                          Text(
-                            'Event date',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                          const Gap(10),
-                          Text(
-                            'Event location',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                separatorBuilder: (_, index) => const Gap(20),
-                itemCount: 5,
-                shrinkWrap: true,
-              ),
-              const Gap(20),
+              const VerticalList(),
             ],
           ),
         ),
