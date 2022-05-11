@@ -1,3 +1,5 @@
+import 'package:eventy_organizer/profile/profile.dart';
+import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -21,26 +23,20 @@ class HomeView extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
-      const SizedBox.expand(
-        child: Center(
-          child: Text('Nearby Events Screen'),
-        ),
+      const ListEvents(
+        events: <dynamic>[],
+        title: 'Subscribed Events',
       ),
       const SizedBox.expand(
         child: Center(
-          child: Text('Create Event Screen'),
+          child: Text('Create Event'),
         ),
       ),
-      const SizedBox.expand(
-        child: Center(
-          child: Text('Saved Events Screen'),
-        ),
+      const ListEvents(
+        events: <dynamic>[],
+        title: 'Saved Events',
       ),
-      const SizedBox.expand(
-        child: Center(
-          child: Text('Profile Screen'),
-        ),
-      ),
+      const ProfileView(),
     ];
   }
 
@@ -53,8 +49,8 @@ class HomeView extends StatelessWidget {
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.location_on_outlined),
-        title: 'Nearby Events',
+        icon: const Icon(Icons.subscriptions_outlined),
+        title: 'Subscribed Events',
         activeColorPrimary: Colors.blue,
         inactiveColorPrimary: Colors.grey,
       ),
@@ -218,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Near You',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const Gap(5),
+              const Gap(10),
               ListView.separated(
                 itemBuilder: (_, index) => Row(
                   children: [

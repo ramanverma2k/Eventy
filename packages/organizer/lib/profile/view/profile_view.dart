@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -13,12 +14,7 @@ class ProfileView extends StatelessWidget {
           style:
               Theme.of(context).textTheme.titleLarge!.apply(fontSizeDelta: -8),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          splashRadius: 25,
-        ),
-        leadingWidth: 38,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
