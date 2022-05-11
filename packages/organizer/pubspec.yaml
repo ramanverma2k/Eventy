@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.17.0
   local_storage_api:
     path: ../local_storage_api
+  modal_bottom_sheet: ^2.0.1
   persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:

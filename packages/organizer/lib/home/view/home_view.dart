@@ -5,6 +5,7 @@ import 'package:eventy_organizer/widgets/vertical_list.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeView extends StatelessWidget {
@@ -89,7 +90,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
 
-  final List<String> _filterList = [];
+  final List<String> _filterList = [
+    'Food & Drinks',
+    'Free',
+    'Music',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -148,13 +153,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.location_on_outlined),
-                  ),
-                  IconButton(
-                    onPressed: () {},
+                    onPressed: () => showMaterialModalBottomSheet<Widget>(
+                      context: context,
+                      builder: (context) => SingleChildScrollView(
+                        controller: ModalScrollController.of(context),
+                        child: const BottomModalSheet(),
+                      ),
+                    ),
                     icon: const Icon(Icons.sort_outlined),
-                  )
+                  ),
                 ],
               ),
               const Gap(10),
