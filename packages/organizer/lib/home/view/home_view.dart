@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/create_event/create_event.dart';
 import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/profile/profile.dart';
 import 'package:eventy_organizer/widgets/horizontal_list.dart';
@@ -31,11 +32,7 @@ class HomeView extends StatelessWidget {
         events: <dynamic>[],
         title: 'Subscribed Events',
       ),
-      const SizedBox.expand(
-        child: Center(
-          child: Text('Create Event'),
-        ),
-      ),
+      const CreateEventView(),
       const ListEvents(
         events: <dynamic>[],
         title: 'Saved Events',
