@@ -9,6 +9,7 @@ class BottomModalSheet extends StatefulWidget {
 }
 
 class _BottomModalSheetState extends State<BottomModalSheet> {
+  final filterList = ['Food & Drinks', 'Free', 'Music'];
   final _isSelected = <String, bool>{};
 
   @override
@@ -35,45 +36,23 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         const Gap(10),
         Column(
           children: [
-            CheckboxListTile(
-              title: Text(
-                'Food & Drinks',
-                style: Theme.of(context).textTheme.bodyText2,
+            ListView.separated(
+              itemBuilder: (context, index) => CheckboxListTile(
+                title: Text(
+                  filterList[index],
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                value: _isSelected[filterList[index]] ?? false,
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _isSelected[filterList[index]] = newValue!;
+                  });
+                },
               ),
-              value: _isSelected['Food & Drinks'] ?? false,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isSelected['Food & Drinks'] = newValue!;
-                });
-              },
-            ),
-            const Divider(),
-            CheckboxListTile(
-              title: Text(
-                'Free',
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              value: _isSelected['Free'] ?? false,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isSelected['Free'] = newValue!;
-                });
-              },
-            ),
-            const Divider(),
-            CheckboxListTile(
-              title: Text(
-                'Music',
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              value: _isSelected['Music'] ?? false,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isSelected['Music'] = newValue!;
-                });
-              },
-            ),
-            const Divider(),
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: 3,
+              shrinkWrap: true,
+            )
           ],
         ),
         Padding(
