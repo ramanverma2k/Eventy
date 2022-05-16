@@ -87,12 +87,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
 
-  final List<String> _filterList = [
-    'Food & Drinks',
-    'Free',
-    'Music',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

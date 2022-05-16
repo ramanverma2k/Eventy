@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/events/events.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -46,39 +47,47 @@ class ListEvents extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.separated(
-                itemBuilder: (_, index) => Row(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.12,
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                itemBuilder: (_, index) => GestureDetector(
+                  onTap: () => Navigator.push<void>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EventsView(),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Event name',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          const Gap(10),
-                          Text(
-                            'Event date',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                          const Gap(10),
-                          Text(
-                            'Event location',
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.12,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          color: Colors.greenAccent,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Event name',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            const Gap(10),
+                            Text(
+                              'Event date',
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                            const Gap(10),
+                            Text(
+                              'Event location',
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 separatorBuilder: (_, index) => const Gap(20),
                 itemCount: 20,
