@@ -20,7 +20,7 @@ dependencies:
   local_storage_api:
     path: ../local_storage_api
   modal_bottom_sheet: ^2.0.1
-  persistent_bottom_nav_bar: ^4.0.2
+  persistent_bottom_nav_bar_v2: ^4.1.11
 
 dev_dependencies:
   bloc_test: ^9.0.3
