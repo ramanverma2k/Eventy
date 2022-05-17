@@ -1,3 +1,4 @@
+import 'package:eventy_organizer/authentication/authentication.dart';
 import 'package:eventy_organizer/create_event/create_event.dart';
 import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/profile/profile.dart';
@@ -5,6 +6,7 @@ import 'package:eventy_organizer/widgets/horizontal_list.dart';
 import 'package:eventy_organizer/widgets/vertical_list.dart';
 import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -113,10 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Row(
                     key: const Key('topbar-other-row'),
-                    children: const [
-                      Icon(Icons.notifications_outlined),
-                      Gap(10),
-                      Icon(Icons.settings)
+                    children: [
+                      const Icon(Icons.notifications_outlined),
+                      const Gap(10),
+                      GestureDetector(
+                        onTap: () => context
+                            .read<AuthenticationBloc>()
+                            .add(AuthenticationLogoutRequested()),
+                        child: const Icon(Icons.settings),
+                      )
                     ],
                   )
                 ],

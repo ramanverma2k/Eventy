@@ -10,6 +10,7 @@ dependencies:
   bloc: ^8.0.3
   database:
     path: ../database
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1

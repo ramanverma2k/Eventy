@@ -6,6 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:database/database.dart';
+import 'package:eventy_organizer/authentication/authentication.dart';
 import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/l10n/l10n.dart';
 import 'package:eventy_organizer/theme/theme.dart';
@@ -35,8 +36,17 @@ class App extends StatelessWidget {
           create: (context) => DatabaseRepository(client: graphqlClient),
         ),
       ],
-      child: BlocProvider(
-        create: (context) => ThemeBloc(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ThemeBloc(),
+          ),
+          BlocProvider(
+            create: (context) => AuthenticationBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+            ),
+          ),
+        ],
         child: const AppView(),
       ),
     );
@@ -57,7 +67,44 @@ class AppView extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const HomeView(),
+          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+              switch (state.state) {
+                case AuthenticationStatus.unknown:
+                  context
+                      .read<AuthenticationBloc>()
+                      .add(AuthenticationStatusValidate());
+                  break;
+                case AuthenticationStatus.authenticated:
+                  return const HomeView();
+                case AuthenticationStatus.unauthenticated:
+                  return Scaffold(
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'You are not logged in',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                          ElevatedButton(
+                            child: const Text('Login'),
+                            onPressed: () =>
+                                context.read<AuthenticationBloc>().add(
+                                      const AuthenticationSignIn(
+                                        username: 'admin',
+                                        password: 'admin',
+                                      ),
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
         );
       },
     );
