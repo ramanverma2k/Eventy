@@ -14,6 +14,10 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const HomeView());
+  }
+
   static final _controller = PersistentTabController();
 
   @override

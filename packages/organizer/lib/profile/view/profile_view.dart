@@ -1,4 +1,3 @@
-import 'package:eventy_organizer/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

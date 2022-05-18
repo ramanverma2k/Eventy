@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:database/database.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:local_storage_api/local_storage_api.dart';
 import 'package:meta/meta.dart';
 
@@ -8,7 +10,8 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc({required this.localStorageApi})
+  AuthenticationBloc(
+      {required this.localStorageApi, required this.databaseRepository})
       : super(const AuthenticationState(AuthenticationStatus.unknown)) {
     on<AuthenticationStatusValidate>(_authenticationValidate);
     on<AuthenticationSignIn>(_authenticationSignIn);
@@ -20,9 +23,9 @@ class AuthenticationBloc
     AuthenticationStatusValidate event,
     Emitter<AuthenticationState> emit,
   ) async {
-    // Only for testing purposes
-    const _user = 'null';
-    if (_user == 'null') {
+    final _user = localStorageApi.getString('user');
+
+    if (_user != null) {
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
       emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
@@ -33,7 +36,14 @@ class AuthenticationBloc
     AuthenticationSignIn event,
     Emitter<AuthenticationState> emit,
   ) async {
-    if (event.username.isNotEmpty && event.password.isNotEmpty) {
+    final _result = await databaseRepository.getUser(
+      username: event.username,
+      password: event.password,
+    );
+
+    if (_result!.username == event.username) {
+      await localStorageApi.setString('user', _result.toJson().toString());
+
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
       emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
@@ -43,7 +53,24 @@ class AuthenticationBloc
   Future<void> _authenticationSignUp(
     AuthenticationSignUp event,
     Emitter<AuthenticationState> emit,
-  ) async {}
+  ) async {
+    final _result = await databaseRepository.createAdminAccount(
+      username: event.username,
+      email: event.email,
+      password: event.password,
+      firstName: event.firstName,
+      lastName: event.lastName ?? '',
+      contactNo: event.contactNo,
+      image: event.image ?? '',
+      description: event.description ?? '',
+    );
+
+    if (_result != null) {
+      await localStorageApi.setString('user', _result.toJson().toString());
+
+      emit(const AuthenticationState(AuthenticationStatus.authenticated));
+    }
+  }
 
   Future<void> _onAuthenticationLogoutRequested(
     AuthenticationLogoutRequested event,
@@ -62,4 +89,7 @@ class AuthenticationBloc
 
   /// LocalStorageApi for handling local storage and state persistence.
   final LocalStorageApi localStorageApi;
+
+  /// DatabaseRepository for handling database operations.
+  final DatabaseRepository databaseRepository;
 }

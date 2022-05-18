@@ -44,7 +44,8 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => AuthenticationBloc(
               localStorageApi: context.read<LocalStorageApi>(),
-            ),
+              databaseRepository: context.read<DatabaseRepository>(),
+            )..add(AuthenticationStatusValidate()),
           ),
         ],
         child: const AppView(),
@@ -53,60 +54,74 @@ class App extends StatelessWidget {
   }
 }
 
-class AppView extends StatelessWidget {
+class AppView extends StatefulWidget {
   const AppView({Key? key}) : super(key: key);
+
+  @override
+  State<AppView> createState() => _AppViewState();
+}
+
+class _AppViewState extends State<AppView> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeData>(
       builder: (context, themeData) {
         return MaterialApp(
+          navigatorKey: _navigatorKey,
           theme: themeData,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            builder: (context, state) {
-              switch (state.state) {
-                case AuthenticationStatus.unknown:
-                  context
-                      .read<AuthenticationBloc>()
-                      .add(AuthenticationStatusValidate());
-                  break;
-                case AuthenticationStatus.authenticated:
-                  return const HomeView();
-                case AuthenticationStatus.unauthenticated:
-                  return Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'You are not logged in',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                          ElevatedButton(
-                            child: const Text('Login'),
-                            onPressed: () =>
-                                context.read<AuthenticationBloc>().add(
-                                      const AuthenticationSignIn(
-                                        username: 'admin',
-                                        password: 'admin',
-                                      ),
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-              }
-              return const CircularProgressIndicator();
-            },
-          ),
+          builder: (context, child) {
+            return BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                switch (state.state) {
+                  case AuthenticationStatus.authenticated:
+                    _navigator.pushAndRemoveUntil<void>(
+                      HomeView.route(),
+                      (route) => false,
+                    );
+                    break;
+                  case AuthenticationStatus.unauthenticated:
+                    _navigator.pushAndRemoveUntil<void>(
+                      LoginView.route(),
+                      (route) => false,
+                    );
+                    break;
+                  case AuthenticationStatus.unknown:
+                    context
+                        .read<AuthenticationBloc>()
+                        .add(AuthenticationStatusValidate());
+                    break;
+                }
+              },
+              child: child,
+            );
+          },
+          onGenerateRoute: (_) => SplashPage.route(),
         );
       },
+    );
+  }
+}
+
+class SplashPage extends StatelessWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const SplashPage());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 }
