@@ -7,3 +7,10 @@ targets:
         options:
           clients:
             - graphql
+          scalars:
+            uuid:
+              type: String
+            timestamp:
+              type: DateTime
+            json:
+              type: Map<String, dynamic>

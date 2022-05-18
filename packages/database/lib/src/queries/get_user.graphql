@@ -1,0 +1,20 @@
+query GetUser($username: String!, $password: String!) {
+    users(
+        where: {
+            password: { _eq: $password }
+            _or: [
+                { username: { _eq: $username } }
+                { email: { _eq: $username } }
+            ]
+        }
+    ) {
+        id
+        username
+        email
+        first_name
+        last_name
+        contact_no
+        image
+        description
+    }
+}
