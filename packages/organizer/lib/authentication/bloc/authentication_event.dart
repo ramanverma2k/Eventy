@@ -70,7 +70,7 @@ class AuthenticationSignUp extends AuthenticationEvent {
 
   /// Profile picture of the user.
   /// This is optional.
-  final String? image;
+  final File? image;
 
   /// Profile description of the user.
   /// This is optional.

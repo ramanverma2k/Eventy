@@ -58,8 +58,6 @@ class DatabaseRepository {
       ),
     );
 
-    print(_result);
-
     if (!_result.hasException) {
       return _result.parsedData;
     } else {

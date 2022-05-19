@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:database/database.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:local_storage_api/local_storage_api.dart';
 import 'package:meta/meta.dart';
@@ -54,6 +57,18 @@ class AuthenticationBloc
     AuthenticationSignUp event,
     Emitter<AuthenticationState> emit,
   ) async {
+    String? image;
+
+    if (event.image != null) {
+      final storageRef = FirebaseStorage.instance.ref();
+      final profileImageRef =
+          storageRef.child(event.image!.path.split('/').last);
+
+      await profileImageRef.putFile(event.image!);
+
+      image = await profileImageRef.getDownloadURL().whenComplete(() => null);
+    }
+
     final _result = await databaseRepository.createAdminAccount(
       username: event.username,
       email: event.email,
@@ -61,7 +76,7 @@ class AuthenticationBloc
       firstName: event.firstName,
       lastName: event.lastName ?? '',
       contactNo: event.contactNo,
-      image: event.image ?? '',
+      image: image ?? '',
       description: event.description ?? '',
     );
 
