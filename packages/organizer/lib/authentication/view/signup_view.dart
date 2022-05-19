@@ -199,20 +199,33 @@ class SignupView extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.black),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        context.read<AuthenticationBloc>().add(
-                              AuthenticationSignUp(
-                                username: _usernameController.text.trim(),
-                                password: _passwordController.text.trim(),
-                                firstName: _firstNameController.text.trim(),
-                                lastName: _lastNameController.text.trim(),
-                                email: _emailController.text.trim(),
-                                contactNo: _contactNoController.text.trim(),
-                                description: _descriptionController.text.trim(),
-                                image: '',
-                              ),
-                            );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Setting up an Account...'),
+                            shape: StadiumBorder(),
+                            width: 160,
+                            behavior: SnackBarBehavior.floating,
+                          ),
+                        );
+
+                        await Future.delayed(const Duration(seconds: 4),
+                            () async {
+                          context.read<AuthenticationBloc>().add(
+                                AuthenticationSignUp(
+                                  username: _usernameController.text.trim(),
+                                  password: _passwordController.text.trim(),
+                                  firstName: _firstNameController.text.trim(),
+                                  lastName: _lastNameController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  contactNo: _contactNoController.text.trim(),
+                                  description:
+                                      _descriptionController.text.trim(),
+                                  image: '',
+                                ),
+                              );
+                        });
                       }
                     },
                     child: const Text('Create Account'),

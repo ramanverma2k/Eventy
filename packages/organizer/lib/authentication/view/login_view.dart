@@ -108,14 +108,26 @@ class LoginView extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.black),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      context.read<AuthenticationBloc>().add(
-                            AuthenticationSignIn(
-                              username: _usernameController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            ),
-                          );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Logging you in.'),
+                          shape: StadiumBorder(),
+                          width: 130,
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+
+                      await Future.delayed(const Duration(seconds: 4),
+                          () async {
+                        context.read<AuthenticationBloc>().add(
+                              AuthenticationSignIn(
+                                username: _usernameController.text.trim(),
+                                password: _passwordController.text.trim(),
+                              ),
+                            );
+                      });
                     }
                   },
                   child: const Text('Login'),
