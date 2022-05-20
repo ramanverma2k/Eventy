@@ -1,4 +1,5 @@
 import 'package:database/database.dart';
+import 'package:database/src/mutations/create_event.graphql.dart';
 import 'package:database/src/queries/queries.dart';
 import 'package:uuid/uuid.dart';
 
@@ -54,6 +55,45 @@ class DatabaseRepository {
           contact_no: contactNo,
           image: image,
           description: description,
+        ),
+      ),
+    );
+
+    if (!_result.hasException) {
+      return _result.parsedData;
+    } else {
+      return null;
+    }
+  }
+
+  Future<MutationCreateEvent?> createEvent({
+    required String organizer,
+    required String title,
+    required String description,
+    required int category,
+    required String image,
+    required String bannerImage,
+    required Map<String, dynamic> location,
+    required String startDate,
+    required String endDate,
+    required String createdAt,
+  }) async {
+    final _id = const Uuid().v4();
+
+    final _result = await _client.mutateCreateEvent(
+      OptionsMutationCreateEvent(
+        variables: VariablesMutationCreateEvent(
+          id: _id,
+          organizer: organizer,
+          name: title,
+          description: description,
+          image: image,
+          banner_image: bannerImage,
+          location: location,
+          start_date: DateTime.parse(startDate),
+          end_date: DateTime.parse(endDate),
+          created_at: DateTime.parse(createdAt),
+          type_id: category,
         ),
       ),
     );

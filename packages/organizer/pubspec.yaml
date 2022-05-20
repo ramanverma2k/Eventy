@@ -10,6 +10,7 @@ dependencies:
   bloc: ^8.0.3
   database:
     path: ../database
+  date_time_picker: ^2.1.0
   equatable: ^2.0.3
   firebase_core: ^1.17.0
   firebase_storage: ^10.2.16
@@ -19,6 +20,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   gap: ^2.0.0
+  geocoding: ^2.0.4
+  geolocator: ^8.2.1
   image_picker: ^0.8.5+3
   intl: ^0.17.0
   local_storage_api:

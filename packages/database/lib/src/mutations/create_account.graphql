@@ -23,7 +23,6 @@ mutation CreateAdminAccount(
             is_admin: true
         }
     ) {
-        __typename
         id
         username
         email

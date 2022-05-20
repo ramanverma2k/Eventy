@@ -26,7 +26,7 @@ class AuthenticationBloc
     AuthenticationStatusValidate event,
     Emitter<AuthenticationState> emit,
   ) async {
-    final _user = localStorageApi.getString('user');
+    final _user = localStorageApi.getString('userId');
 
     if (_user != null) {
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
@@ -45,7 +45,7 @@ class AuthenticationBloc
     );
 
     if (_result!.username == event.username) {
-      await localStorageApi.setString('user', _result.toJson().toString());
+      await localStorageApi.setString('userId', _result.id);
 
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
     } else {
@@ -81,7 +81,7 @@ class AuthenticationBloc
     );
 
     if (_result != null) {
-      await localStorageApi.setString('user', _result.toJson().toString());
+      // await localStorageApi.setString('userId', _result.id);
 
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
     }

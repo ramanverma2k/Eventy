@@ -7,6 +7,7 @@
 
 import 'package:database/database.dart';
 import 'package:eventy_organizer/authentication/authentication.dart';
+import 'package:eventy_organizer/create_event/create_event.dart';
 import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/l10n/l10n.dart';
 import 'package:eventy_organizer/theme/theme.dart';
@@ -47,6 +48,12 @@ class App extends StatelessWidget {
               databaseRepository: context.read<DatabaseRepository>(),
             )..add(AuthenticationStatusValidate()),
           ),
+          BlocProvider<CreateEventBloc>(
+            create: (context) => CreateEventBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
+          )
         ],
         child: const AppView(),
       ),

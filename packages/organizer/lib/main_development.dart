@@ -20,7 +20,7 @@ void main() {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final _client = GraphQLClient(
-      link: HttpLink('http://192.168.1.15:8080/v1/graphql'),
+      link: HttpLink('http://192.168.1.8:8080/v1/graphql'),
       cache: GraphQLCache(),
     );
 
