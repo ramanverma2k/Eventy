@@ -2,6 +2,7 @@ import 'package:database/database.dart';
 import 'package:eventy_organizer/events/events.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 
 class VerticalList extends StatelessWidget {
   const VerticalList({Key? key, required this.data}) : super(key: key);
@@ -46,7 +47,8 @@ class VerticalList extends StatelessWidget {
                   ),
                   const Gap(10),
                   Text(
-                    data[index].start_date.toString(),
+                    '${DateFormat('dd MMM, y').format(data[index].start_date)}'
+                    ' ${DateFormat('jm').format(data[index].start_date)}',
                     style: Theme.of(context).textTheme.displaySmall,
                     overflow: TextOverflow.ellipsis,
                   ),
