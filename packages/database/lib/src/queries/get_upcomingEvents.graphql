@@ -1,0 +1,25 @@
+query GetUpcomingEvents($curr_date: timestamp!) {
+    events(where: {start_date: {_gt: $curr_date}}) {
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      start_date
+      user {
+        id
+        first_name
+        last_name
+      }
+      event_type {
+        name
+      }
+      attendings_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+  }

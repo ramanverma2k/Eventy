@@ -96,115 +96,121 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                key: const Key('topbar-row'),
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    key: const Key('topbar-location-row'),
-                    children: [
-                      const Icon(Icons.location_on_rounded),
-                      const Gap(10),
-                      Text(
-                        'San Francisco',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    key: const Key('topbar-other-row'),
-                    children: [
-                      const Icon(Icons.notifications_outlined),
-                      const Gap(10),
-                      GestureDetector(
-                        onTap: () => context
-                            .read<AuthenticationBloc>()
-                            .add(AuthenticationLogoutRequested()),
-                        child: const Icon(Icons.settings),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              const Gap(20),
-              Row(
-                children: [
-                  Flexible(
-                    child: TextFormField(
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        fillColor: Colors.grey,
-                        contentPadding: const EdgeInsets.all(10),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        labelText: 'Search for music, events, or venues',
-                        labelStyle: Theme.of(context).textTheme.bodyText2,
-                        prefixIcon: GestureDetector(
-                          onTap: () {},
-                          child: const Icon(Icons.search),
-                        ),
-                      ),
-                      onFieldSubmitted: (query) {},
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => showMaterialModalBottomSheet<Widget>(
-                      context: context,
-                      builder: (context) => SingleChildScrollView(
-                        controller: ModalScrollController.of(context),
-                        child: const BottomModalSheet(),
-                      ),
-                    ),
-                    icon: const Icon(Icons.sort_outlined),
-                  ),
-                ],
-              ),
-              const Gap(10),
-              Text(
-                'Discover',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          if (state.state == HomeStatus.initial) {
+            context.read<HomeBloc>().add(HomeDataFetched());
+          }
+
+          if (state.state == HomeStatus.loaded) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
                 child: Column(
-                  children: const [
-                    Expanded(
-                      child: DiscoverList(),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      key: const Key('topbar-row'),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Home',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Row(
+                          key: const Key('topbar-other-row'),
+                          children: [
+                            GestureDetector(
+                              onTap: () => context
+                                  .read<AuthenticationBloc>()
+                                  .add(AuthenticationLogoutRequested()),
+                              child: const Icon(Icons.logout),
+                            )
+                          ],
+                        )
+                      ],
                     ),
+                    const Gap(20),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: TextFormField(
+                            controller: _searchController,
+                            decoration: InputDecoration(
+                              fillColor: Colors.grey,
+                              contentPadding: const EdgeInsets.all(10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              labelText: 'Search for music, events, sports',
+                              labelStyle: Theme.of(context).textTheme.bodyText2,
+                              prefixIcon: GestureDetector(
+                                onTap: () {},
+                                child: const Icon(Icons.search),
+                              ),
+                            ),
+                            onFieldSubmitted: (query) {},
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => showMaterialModalBottomSheet<Widget>(
+                            enableDrag: true,
+                            context: context,
+                            builder: (context) => const SingleChildScrollView(
+                              child: BottomModalSheet(),
+                            ),
+                          ),
+                          icon: const Icon(Icons.sort_outlined),
+                        ),
+                      ],
+                    ),
+                    const Gap(10),
+                    Text(
+                      'Discover',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: DiscoverList(data: state.popularEvents!),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      'Categories',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const Gap(5),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      child: Column(
+                        children: const [
+                          Expanded(
+                            child: CategoriesList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Gap(20),
+                    Text(
+                      'Upcoming Events',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const Gap(20),
+                    VerticalList(data: state.upcomingEvents!),
                   ],
                 ),
               ),
-              Text(
-                'Categories',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const Gap(5),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Column(
-                  children: const [
-                    Expanded(
-                      child: HorizontalList(),
-                    ),
-                  ],
-                ),
-              ),
-              Text(
-                'Near You',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const Gap(10),
-              const VerticalList(),
-            ],
-          ),
-        ),
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        },
       ),
     );
   }

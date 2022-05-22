@@ -11,9 +11,10 @@ part 'create_event_event.dart';
 part 'create_event_state.dart';
 
 class CreateEventBloc extends Bloc<CreateEventEvent, CreateEventState> {
-  CreateEventBloc(
-      {required this.databaseRepository, required this.localStorageApi})
-      : super(const CreateEventState(CreateEventStatus.initial)) {
+  CreateEventBloc({
+    required this.databaseRepository,
+    required this.localStorageApi,
+  }) : super(const CreateEventState(CreateEventStatus.initial)) {
     on<CreateEvent>(_createEvent);
   }
 

@@ -1,5 +1,7 @@
 import 'package:database/database.dart';
 import 'package:database/src/mutations/create_event.graphql.dart';
+import 'package:database/src/queries/get_popularEvents.graphql.dart';
+import 'package:database/src/queries/get_upcomingEvents.graphql.dart';
 import 'package:database/src/queries/queries.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,8 +16,10 @@ class DatabaseRepository {
   final GraphQLClient _client;
 
   /// Query for Signing in.
-  Future<QueryGetUser$users?> getUser(
-      {required String username, required String password}) async {
+  Future<QueryGetUser$users?> getUser({
+    required String username,
+    required String password,
+  }) async {
     final _result = await _client.queryGetUser(
       OptionsQueryGetUser(
         variables:
@@ -70,6 +74,7 @@ class DatabaseRepository {
     }
   }
 
+  /// Mutation for creating an event.
   Future<MutationCreateEvent?> createEvent({
     required String organizer,
     required String title,
@@ -104,6 +109,41 @@ class DatabaseRepository {
 
     if (!_result.hasException) {
       return _result.parsedData;
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting Popular Events from the database.
+  Future<List<QueryGetPopularEvents$events>?> getPopularEvents() async {
+    final _result = await _client.queryGetPopularEvents();
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting Upcoming Events from the database.
+  Future<List<QueryGetUpcomingEvents$events>?> getUpcomingEvents() async {
+    final _date = DateTime.now();
+    final _result = await _client.queryGetUpcomingEvents(
+      OptionsQueryGetUpcomingEvents(
+        variables: VariablesQueryGetUpcomingEvents(curr_date: _date),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
     } else {
       return null;
     }

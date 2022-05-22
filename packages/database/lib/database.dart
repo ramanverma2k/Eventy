@@ -6,3 +6,7 @@ export 'package:graphql/src/cache/cache.dart' show GraphQLCache;
 
 export 'src/database.dart';
 export 'src/mutations/mutations.dart';
+export 'src/queries/get_popularEvents.graphql.dart'
+    show QueryGetPopularEvents$events;
+export 'src/queries/get_upcomingEvents.graphql.dart'
+    show QueryGetUpcomingEvents$events;

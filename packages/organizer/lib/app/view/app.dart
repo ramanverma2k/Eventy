@@ -53,6 +53,12 @@ class App extends StatelessWidget {
               localStorageApi: context.read<LocalStorageApi>(),
               databaseRepository: context.read<DatabaseRepository>(),
             ),
+          ),
+          BlocProvider<HomeBloc>(
+            create: (context) => HomeBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
           )
         ],
         child: const AppView(),
@@ -105,6 +111,12 @@ class _AppViewState extends State<AppView> {
                     context
                         .read<AuthenticationBloc>()
                         .add(AuthenticationStatusValidate());
+                    break;
+                  case AuthenticationStatus.loggingIn:
+                    break;
+                  case AuthenticationStatus.signingUp:
+                    break;
+                  case AuthenticationStatus.error:
                     break;
                 }
               },

@@ -55,7 +55,6 @@ MutationCreateAdminAccount$insertUsersOne
     _$MutationCreateAdminAccount$insertUsersOneFromJson(
             Map<String, dynamic> json) =>
         MutationCreateAdminAccount$insertUsersOne(
-          $__typename: json['__typename'] as String,
           id: json['id'] as String,
           username: json['username'] as String,
           email: json['email'] as String,
@@ -64,12 +63,12 @@ MutationCreateAdminAccount$insertUsersOne
           contact_no: json['contact_no'] as String,
           image: json['image'] as String?,
           description: json['description'] as String?,
+          $__typename: json['__typename'] as String,
         );
 
 Map<String, dynamic> _$MutationCreateAdminAccount$insertUsersOneToJson(
         MutationCreateAdminAccount$insertUsersOne instance) =>
     <String, dynamic>{
-      '__typename': instance.$__typename,
       'id': instance.id,
       'username': instance.username,
       'email': instance.email,
@@ -78,4 +77,5 @@ Map<String, dynamic> _$MutationCreateAdminAccount$insertUsersOneToJson(
       'contact_no': instance.contact_no,
       'image': instance.image,
       'description': instance.description,
+      '__typename': instance.$__typename,
     };

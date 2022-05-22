@@ -257,12 +257,6 @@ const MUTATION_CREATE_ADMIN_ACCOUNT = const DocumentNode(definitions: [
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
                   name: NameNode(value: 'id'),
                   alias: null,
                   arguments: [],
@@ -306,6 +300,12 @@ const MUTATION_CREATE_ADMIN_ACCOUNT = const DocumentNode(definitions: [
                   selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'description'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -414,23 +414,20 @@ extension ClientExtensionMutationCreateAdminAccount on graphql.GraphQLClient {
 @JsonSerializable(explicitToJson: true)
 class MutationCreateAdminAccount$insertUsersOne {
   MutationCreateAdminAccount$insertUsersOne(
-      {required this.$__typename,
-      required this.id,
+      {required this.id,
       required this.username,
       required this.email,
       required this.first_name,
       this.last_name,
       required this.contact_no,
       this.image,
-      this.description});
+      this.description,
+      required this.$__typename});
 
   @override
   factory MutationCreateAdminAccount$insertUsersOne.fromJson(
           Map<String, dynamic> json) =>
       _$MutationCreateAdminAccount$insertUsersOneFromJson(json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
 
   final String id;
 
@@ -448,10 +445,12 @@ class MutationCreateAdminAccount$insertUsersOne {
 
   final String? description;
 
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
   Map<String, dynamic> toJson() =>
       _$MutationCreateAdminAccount$insertUsersOneToJson(this);
   int get hashCode {
-    final l$$__typename = $__typename;
     final l$id = id;
     final l$username = username;
     final l$email = email;
@@ -460,8 +459,8 @@ class MutationCreateAdminAccount$insertUsersOne {
     final l$contact_no = contact_no;
     final l$image = image;
     final l$description = description;
+    final l$$__typename = $__typename;
     return Object.hashAll([
-      l$$__typename,
       l$id,
       l$username,
       l$email,
@@ -469,7 +468,8 @@ class MutationCreateAdminAccount$insertUsersOne {
       l$last_name,
       l$contact_no,
       l$image,
-      l$description
+      l$description,
+      l$$__typename
     ]);
   }
 
@@ -478,9 +478,6 @@ class MutationCreateAdminAccount$insertUsersOne {
     if (identical(this, other)) return true;
     if (!(other is MutationCreateAdminAccount$insertUsersOne) ||
         runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
@@ -505,6 +502,9 @@ class MutationCreateAdminAccount$insertUsersOne {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
     return true;
   }
 }
@@ -512,17 +512,16 @@ class MutationCreateAdminAccount$insertUsersOne {
 extension UtilityExtensionMutationCreateAdminAccount$insertUsersOne
     on MutationCreateAdminAccount$insertUsersOne {
   MutationCreateAdminAccount$insertUsersOne copyWith(
-          {String? $__typename,
-          String? id,
+          {String? id,
           String? username,
           String? email,
           String? first_name,
           String? Function()? last_name,
           String? contact_no,
           String? Function()? image,
-          String? Function()? description}) =>
+          String? Function()? description,
+          String? $__typename}) =>
       MutationCreateAdminAccount$insertUsersOne(
-          $__typename: $__typename == null ? this.$__typename : $__typename,
           id: id == null ? this.id : id,
           username: username == null ? this.username : username,
           email: email == null ? this.email : email,
@@ -530,5 +529,6 @@ extension UtilityExtensionMutationCreateAdminAccount$insertUsersOne
           last_name: last_name == null ? this.last_name : last_name(),
           contact_no: contact_no == null ? this.contact_no : contact_no,
           image: image == null ? this.image : image(),
-          description: description == null ? this.description : description());
+          description: description == null ? this.description : description(),
+          $__typename: $__typename == null ? this.$__typename : $__typename);
 }

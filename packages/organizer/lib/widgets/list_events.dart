@@ -51,7 +51,8 @@ class ListEvents extends StatelessWidget {
                   onTap: () => Navigator.push<void>(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const EventsView(),
+                      builder: (context) =>
+                          EventsView(eventData: events[index]),
                     ),
                   ),
                   child: Row(

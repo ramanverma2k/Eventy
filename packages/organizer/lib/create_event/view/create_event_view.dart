@@ -48,6 +48,13 @@ class _CreateEventViewState extends State<CreateEventView> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+
+    _location = <String, dynamic>{};
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

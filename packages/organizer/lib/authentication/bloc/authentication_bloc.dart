@@ -13,9 +13,10 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc(
-      {required this.localStorageApi, required this.databaseRepository})
-      : super(const AuthenticationState(AuthenticationStatus.unknown)) {
+  AuthenticationBloc({
+    required this.localStorageApi,
+    required this.databaseRepository,
+  }) : super(const AuthenticationState(AuthenticationStatus.unknown)) {
     on<AuthenticationStatusValidate>(_authenticationValidate);
     on<AuthenticationSignIn>(_authenticationSignIn);
     on<AuthenticationSignUp>(_authenticationSignUp);
