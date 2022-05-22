@@ -9,7 +9,23 @@ class BottomModalSheet extends StatefulWidget {
 }
 
 class _BottomModalSheetState extends State<BottomModalSheet> {
-  final filterList = ['Food & Drinks', 'Free', 'Music'];
+  final filterList = [
+    'Industrial Engineering',
+    'Automobile - Automotive Industry',
+    'Home & Lifestyle',
+    'Building & Construction',
+    'Science & Tech',
+    'Medical & Pharma',
+    'Food & Drink',
+    'Apparel & Clothing',
+    'Electric & Electronics',
+    'Building & Construction',
+    'Business',
+    'Community',
+    'Power & Energy',
+    'Fashion',
+    'Others',
+  ];
   final _isSelected = <String, bool>{};
 
   @override

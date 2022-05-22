@@ -7,6 +7,12 @@ enum AuthenticationStatus {
   authenticated,
   // User is not authenticated.
   unauthenticated,
+  // User is Logging in.
+  loggingIn,
+  // User is Signing up.
+  signingUp,
+  // User status is error.
+  error,
 }
 
 /// The [AuthenticationState] state class.

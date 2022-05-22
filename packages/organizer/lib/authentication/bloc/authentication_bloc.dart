@@ -39,10 +39,16 @@ class AuthenticationBloc
     AuthenticationSignIn event,
     Emitter<AuthenticationState> emit,
   ) async {
+    emit(const AuthenticationState(AuthenticationStatus.loggingIn));
+
     final _result = await databaseRepository.getUser(
       username: event.username,
       password: event.password,
     );
+
+    if (_result == null) {
+      emit(const AuthenticationState(AuthenticationStatus.error));
+    }
 
     if (_result!.username == event.username) {
       await localStorageApi.setString('userId', _result.id);
@@ -58,6 +64,8 @@ class AuthenticationBloc
     Emitter<AuthenticationState> emit,
   ) async {
     String? image;
+
+    emit(const AuthenticationState(AuthenticationStatus.signingUp));
 
     if (event.image != null) {
       final storageRef = FirebaseStorage.instance.ref();
@@ -80,9 +88,12 @@ class AuthenticationBloc
       description: event.description ?? '',
     );
 
-    if (_result != null) {
-      // await localStorageApi.setString('userId', _result.id);
+    if (_result == null) {
+      emit(const AuthenticationState(AuthenticationStatus.error));
+    }
 
+    if (_result != null) {
+      await localStorageApi.setString('userId', _result.insert_users_one!.id);
       emit(const AuthenticationState(AuthenticationStatus.authenticated));
     }
   }
@@ -91,7 +102,7 @@ class AuthenticationBloc
     AuthenticationLogoutRequested event,
     Emitter<AuthenticationState> emit,
   ) async {
-    await localStorageApi.remove('user');
+    await localStorageApi.remove('userId');
 
     emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
   }

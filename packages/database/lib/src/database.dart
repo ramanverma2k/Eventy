@@ -24,7 +24,11 @@ class DatabaseRepository {
     );
 
     if (!_result.hasException) {
-      return _result.parsedData?.users.first;
+      if (_result.parsedData!.users.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.users.first;
+      }
     } else {
       return null;
     }

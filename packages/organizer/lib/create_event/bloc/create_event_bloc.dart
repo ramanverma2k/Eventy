@@ -25,8 +25,6 @@ class CreateEventBloc extends Bloc<CreateEventEvent, CreateEventState> {
     String? bannerImage;
     final userId = localStorageApi.getString('userId')!;
 
-    print(userId);
-
     if (event.image != null) {
       emit(const CreateEventState(CreateEventStatus.creating));
       final storageRef = FirebaseStorage.instance.ref();
@@ -56,6 +54,8 @@ class CreateEventBloc extends Bloc<CreateEventEvent, CreateEventState> {
 
     if (_result != null) {
       emit(const CreateEventState(CreateEventStatus.created));
+    } else {
+      emit(const CreateEventState(CreateEventStatus.error));
     }
   }
 
