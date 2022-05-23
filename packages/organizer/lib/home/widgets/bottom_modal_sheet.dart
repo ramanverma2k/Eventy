@@ -3,7 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class BottomModalSheet extends StatefulWidget {
-  const BottomModalSheet({Key? key}) : super(key: key);
+  const BottomModalSheet({Key? key, required this.filters}) : super(key: key);
+
+  final List<String> filters;
 
   @override
   State<BottomModalSheet> createState() => _BottomModalSheetState();
@@ -27,7 +29,6 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
     'Fashion',
     'Others',
   ];
-  final _isSelected = <String, bool>{};
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +62,12 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                     filterList[index],
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
-                  value: _isSelected[filterList[index]] ?? false,
+                  value: widget.filters.contains(filterList[index]),
                   onChanged: (bool? newValue) {
                     setState(() {
-                      _isSelected[filterList[index]] = newValue!;
+                      widget.filters.contains(filterList[index])
+                          ? widget.filters.remove(filterList[index])
+                          : widget.filters.add(filterList[index]);
                     });
                   },
                 ),
@@ -74,22 +77,6 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: SizedBox.fromSize(
-              size: const Size.fromHeight(50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text('Apply Filter'),
-              ),
-            ),
-          )
         ],
       ),
     );

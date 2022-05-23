@@ -10,6 +10,7 @@ import 'package:eventy_organizer/authentication/authentication.dart';
 import 'package:eventy_organizer/create_event/create_event.dart';
 import 'package:eventy_organizer/home/home.dart';
 import 'package:eventy_organizer/l10n/l10n.dart';
+import 'package:eventy_organizer/search/search.dart';
 import 'package:eventy_organizer/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +58,11 @@ class App extends StatelessWidget {
           BlocProvider<HomeBloc>(
             create: (context) => HomeBloc(
               localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
+          ),
+          BlocProvider<SearchBloc>(
+            create: (context) => SearchBloc(
               databaseRepository: context.read<DatabaseRepository>(),
             ),
           )

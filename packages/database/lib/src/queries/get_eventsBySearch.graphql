@@ -1,0 +1,20 @@
+query GetEventsBySearch($query: String!) {
+    events(where: {name: {_iregex: $query}}) {
+      banner_image
+      description
+      end_date
+      id
+      image
+      location
+      name
+      start_date
+      event_type {
+        name
+      }
+      attendings_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+  }

@@ -1,6 +1,7 @@
 import 'package:eventy_organizer/authentication/authentication.dart';
 import 'package:eventy_organizer/create_event/create_event.dart';
 import 'package:eventy_organizer/home/home.dart';
+import 'package:eventy_organizer/home/widgets/search_bar.dart';
 import 'package:eventy_organizer/profile/profile.dart';
 import 'package:eventy_organizer/widgets/horizontal_list.dart';
 import 'package:eventy_organizer/widgets/vertical_list.dart';
@@ -8,7 +9,6 @@ import 'package:eventy_organizer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class HomeView extends StatelessWidget {
@@ -91,8 +91,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -131,39 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     const Gap(20),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: TextFormField(
-                            controller: _searchController,
-                            decoration: InputDecoration(
-                              fillColor: Colors.grey,
-                              contentPadding: const EdgeInsets.all(10),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              labelText: 'Search for music, events, sports',
-                              labelStyle: Theme.of(context).textTheme.bodyText2,
-                              prefixIcon: GestureDetector(
-                                onTap: () {},
-                                child: const Icon(Icons.search),
-                              ),
-                            ),
-                            onFieldSubmitted: (query) {},
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => showMaterialModalBottomSheet<Widget>(
-                            enableDrag: true,
-                            context: context,
-                            builder: (context) => const SingleChildScrollView(
-                              child: BottomModalSheet(),
-                            ),
-                          ),
-                          icon: const Icon(Icons.sort_outlined),
-                        ),
-                      ],
-                    ),
+                    const SearchBar(),
                     const Gap(10),
                     Text(
                       'Discover',

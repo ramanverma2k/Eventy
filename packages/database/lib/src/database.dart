@@ -1,5 +1,7 @@
 import 'package:database/database.dart';
 import 'package:database/src/mutations/create_event.graphql.dart';
+import 'package:database/src/queries/get_eventsBySearch.graphql.dart';
+import 'package:database/src/queries/get_eventsBySearchWithFilters.graphql.dart';
 import 'package:database/src/queries/get_popularEvents.graphql.dart';
 import 'package:database/src/queries/get_upcomingEvents.graphql.dart';
 import 'package:database/src/queries/queries.dart';
@@ -135,6 +137,53 @@ class DatabaseRepository {
     final _result = await _client.queryGetUpcomingEvents(
       OptionsQueryGetUpcomingEvents(
         variables: VariablesQueryGetUpcomingEvents(curr_date: _date),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting Events by search from the database.
+  Future<List<QueryGetEventsBySearch$events>?> getEventsBySearch(
+    String query,
+  ) async {
+    final _result = await _client.queryGetEventsBySearch(
+      OptionsQueryGetEventsBySearch(
+        variables: VariablesQueryGetEventsBySearch(query: query),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting Events by search from the database.
+  Future<List<QueryGetEventsBySearchWithFilters$events>?>
+      getEventsBySearchWithFilters(
+    String query,
+    List<String> filter,
+  ) async {
+    final _result = await _client.queryGetEventsBySearchWithFilters(
+      OptionsQueryGetEventsBySearchWithFilters(
+        variables: VariablesQueryGetEventsBySearchWithFilters(
+          query: query,
+          filters: filter,
+        ),
       ),
     );
 
