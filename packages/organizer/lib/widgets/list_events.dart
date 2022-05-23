@@ -1,5 +1,7 @@
 import 'package:eventy_organizer/events/events.dart';
+import 'package:eventy_organizer/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 
@@ -36,7 +38,9 @@ class ListEvents extends StatelessWidget {
                     )
                   ],
                   onSelected: (value) {
-                    if (value == 'clear') {}
+                    if (value == 'clear') {
+                      context.read<HomeBloc>().add(ClearSavedEvents());
+                    }
                   },
                 ),
               ]

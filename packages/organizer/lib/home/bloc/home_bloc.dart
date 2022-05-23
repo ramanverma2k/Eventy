@@ -52,6 +52,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
     });
+
+    on<ClearSavedEvents>((event, emit) async {
+      emit(
+        const HomeState(
+          state: HomeStatus.loading,
+          upcomingEvents: [],
+          popularEvents: [],
+          savedEvents: [],
+          subscribedEvents: [],
+        ),
+      );
+
+      final userId = localStorageApi.getString('userId');
+      await localStorageApi.remove('savedEvents');
+
+      final _popularEvents = await databaseRepository.getPopularEvents();
+      final _upcomingEvents = await databaseRepository.getUpcomingEvents();
+      final _subscribedEvents =
+          await databaseRepository.getSubscribedEvents(userId!);
+
+      emit(
+        HomeState(
+          state: HomeStatus.loaded,
+          popularEvents: _popularEvents,
+          upcomingEvents: _upcomingEvents,
+          savedEvents: const [],
+          subscribedEvents: _subscribedEvents ?? [],
+        ),
+      );
+    });
   }
 
   final DatabaseRepository databaseRepository;

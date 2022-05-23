@@ -9,3 +9,8 @@ class HomeDataFetched extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ClearSavedEvents extends HomeEvent {
+  @override
+  List<Object?> get props => [];
+}
