@@ -1,4 +1,6 @@
+import 'package:eventy_organizer/authentication/authentication.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class ProfileView extends StatelessWidget {
@@ -63,6 +65,11 @@ class ProfileView extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.logout_outlined),
+              onTap: () {
+                context.read<AuthenticationBloc>().add(
+                      AuthenticationLogoutRequested(),
+                    );
+              },
               horizontalTitleGap: 0,
               title: Text(
                 'Log out',
