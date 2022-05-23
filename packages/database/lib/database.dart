@@ -12,5 +12,11 @@ export 'src/queries/get_eventsBySearchWithFilters.graphql.dart'
     show QueryGetEventsBySearchWithFilters$events;
 export 'src/queries/get_popularEvents.graphql.dart'
     show QueryGetPopularEvents$events;
+export 'src/queries/get_savedEvents.graphql.dart'
+    show QueryGetSavedEvents$events;
+export 'src/queries/get_subscribedEvents.graphql.dart'
+    show QueryGetSubscribedEvents$events;
 export 'src/queries/get_upcomingEvents.graphql.dart'
     show QueryGetUpcomingEvents$events;
+export 'src/queries/get_user.graphql.dart' show QueryGetUser$users;
+export 'src/queries/get_userById.graphql.dart' show QueryGetUserById$users;

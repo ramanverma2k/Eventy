@@ -3,7 +3,10 @@ import 'package:database/src/mutations/create_event.graphql.dart';
 import 'package:database/src/queries/get_eventsBySearch.graphql.dart';
 import 'package:database/src/queries/get_eventsBySearchWithFilters.graphql.dart';
 import 'package:database/src/queries/get_popularEvents.graphql.dart';
+import 'package:database/src/queries/get_savedEvents.graphql.dart';
+import 'package:database/src/queries/get_subscribedEvents.graphql.dart';
 import 'package:database/src/queries/get_upcomingEvents.graphql.dart';
+import 'package:database/src/queries/get_userById.graphql.dart';
 import 'package:database/src/queries/queries.dart';
 import 'package:uuid/uuid.dart';
 
@@ -34,6 +37,28 @@ class DatabaseRepository {
         return null;
       } else {
         return _result.parsedData?.users.first;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for Fetching user details.
+  Future<QueryGetUser$users?> getUserById({
+    required String id,
+  }) async {
+    final _result = await _client.queryGetUserById(
+      OptionsQueryGetUserById(
+        variables: VariablesQueryGetUserById(id: id),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.users.isEmpty) {
+        return null;
+      } else {
+        return QueryGetUser$users.fromJson(
+            _result.data!['users'].first as Map<String, dynamic>);
       }
     } else {
       return null;
@@ -184,6 +209,48 @@ class DatabaseRepository {
           query: query,
           filters: filter,
         ),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting saved Events from the localstorage.
+  Future<List<QueryGetSavedEvents$events>?> getSavedEventsById(
+    List<String> id,
+  ) async {
+    final _result = await _client.queryGetSavedEvents(
+      OptionsQueryGetSavedEvents(
+        variables: VariablesQueryGetSavedEvents(events: id),
+      ),
+    );
+
+    if (!_result.hasException) {
+      if (_result.parsedData!.events.isEmpty) {
+        return null;
+      } else {
+        return _result.parsedData?.events;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for getting saved Events from the localstorage.
+  Future<List<QueryGetSubscribedEvents$events>?> getSubscribedEvents(
+    String id,
+  ) async {
+    final _result = await _client.queryGetSubscribedEvents(
+      OptionsQueryGetSubscribedEvents(
+        variables: VariablesQueryGetSubscribedEvents(userId: id),
       ),
     );
 

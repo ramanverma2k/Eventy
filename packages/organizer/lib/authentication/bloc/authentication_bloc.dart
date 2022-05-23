@@ -16,7 +16,7 @@ class AuthenticationBloc
   AuthenticationBloc({
     required this.localStorageApi,
     required this.databaseRepository,
-  }) : super(const AuthenticationState(AuthenticationStatus.unknown)) {
+  }) : super(const AuthenticationState(AuthenticationStatus.unknown, null)) {
     on<AuthenticationStatusValidate>(_authenticationValidate);
     on<AuthenticationSignIn>(_authenticationSignIn);
     on<AuthenticationSignUp>(_authenticationSignUp);
@@ -27,12 +27,21 @@ class AuthenticationBloc
     AuthenticationStatusValidate event,
     Emitter<AuthenticationState> emit,
   ) async {
-    final _user = localStorageApi.getString('userId');
+    final _userId = localStorageApi.getString('userId');
 
-    if (_user != null) {
-      emit(const AuthenticationState(AuthenticationStatus.authenticated));
+    final _user = await databaseRepository.getUserById(id: _userId ?? '');
+
+    if (_user?.id != null) {
+      emit(
+        AuthenticationState(AuthenticationStatus.authenticated, _user),
+      );
     } else {
-      emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
+      emit(
+        const AuthenticationState(
+          AuthenticationStatus.unauthenticated,
+          null,
+        ),
+      );
     }
   }
 
@@ -40,7 +49,7 @@ class AuthenticationBloc
     AuthenticationSignIn event,
     Emitter<AuthenticationState> emit,
   ) async {
-    emit(const AuthenticationState(AuthenticationStatus.loggingIn));
+    emit(const AuthenticationState(AuthenticationStatus.loggingIn, null));
 
     final _result = await databaseRepository.getUser(
       username: event.username,
@@ -48,15 +57,25 @@ class AuthenticationBloc
     );
 
     if (_result == null) {
-      emit(const AuthenticationState(AuthenticationStatus.error));
+      emit(const AuthenticationState(AuthenticationStatus.error, null));
     }
 
     if (_result!.username == event.username) {
       await localStorageApi.setString('userId', _result.id);
 
-      emit(const AuthenticationState(AuthenticationStatus.authenticated));
+      emit(
+        AuthenticationState(
+          AuthenticationStatus.authenticated,
+          _result,
+        ),
+      );
     } else {
-      emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
+      emit(
+        const AuthenticationState(
+          AuthenticationStatus.unauthenticated,
+          null,
+        ),
+      );
     }
   }
 
@@ -66,7 +85,7 @@ class AuthenticationBloc
   ) async {
     String? image;
 
-    emit(const AuthenticationState(AuthenticationStatus.signingUp));
+    emit(const AuthenticationState(AuthenticationStatus.signingUp, null));
 
     if (event.image != null) {
       final storageRef = FirebaseStorage.instance.ref();
@@ -90,12 +109,19 @@ class AuthenticationBloc
     );
 
     if (_result == null) {
-      emit(const AuthenticationState(AuthenticationStatus.error));
+      emit(const AuthenticationState(AuthenticationStatus.error, null));
     }
 
     if (_result != null) {
       await localStorageApi.setString('userId', _result.insert_users_one!.id);
-      emit(const AuthenticationState(AuthenticationStatus.authenticated));
+
+      final _user = await databaseRepository.getUserById(
+        id: _result.insert_users_one!.id,
+      );
+
+      emit(
+        AuthenticationState(AuthenticationStatus.authenticated, _user),
+      );
     }
   }
 
@@ -105,14 +131,8 @@ class AuthenticationBloc
   ) async {
     await localStorageApi.remove('userId');
 
-    emit(const AuthenticationState(AuthenticationStatus.unauthenticated));
+    emit(const AuthenticationState(AuthenticationStatus.unauthenticated, null));
   }
-
-  // Reserved for future use.
-  // Future<void> _authenticationSignUpWithGoogle(
-  //   AuthenticationSignUpWithGoogle event,
-  //   Emitter<AuthenticationState> emit,
-  // ) async {}
 
   /// LocalStorageApi for handling local storage and state persistence.
   final LocalStorageApi localStorageApi;

@@ -1,5 +1,5 @@
-query GetEventsBySearchWithFilters($query: String, $filters: [String!]!) {
-  events(where: {event_type: {name: {_in: $filters}}, _or: {name: {_regex: $query}}}) {
+query GetSavedEvents($events: [uuid!]!) {
+  events(where: {id: { _in: $events}}) {
     banner_image
     description
     end_date

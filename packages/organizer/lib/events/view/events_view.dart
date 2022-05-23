@@ -1,4 +1,6 @@
+import 'package:eventy_organizer/events/events.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 
@@ -18,16 +20,43 @@ class EventsView extends StatelessWidget {
         ),
         leadingWidth: 38,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_outline_outlined),
-            splashRadius: 25,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.share),
-            splashRadius: 25,
-          ),
+          BlocBuilder<EventsBloc, EventsState>(
+            builder: (context, state) {
+              if (state.state == EventStatus.initial) {
+                context
+                    .read<EventsBloc>()
+                    .add(EventCheck(eventData.id.toString()));
+              }
+
+              if (state.state == EventStatus.saved) {
+                return IconButton(
+                  onPressed: () => context
+                      .read<EventsBloc>()
+                      .add(EventSaved(eventData.id.toString())),
+                  icon: const Icon(Icons.favorite_outlined),
+                  splashRadius: 25,
+                );
+              }
+
+              if (state.state == EventStatus.removed) {
+                return IconButton(
+                  onPressed: () => context
+                      .read<EventsBloc>()
+                      .add(EventSaved(eventData.id.toString())),
+                  icon: const Icon(Icons.favorite_outline_outlined),
+                  splashRadius: 25,
+                );
+              }
+
+              return IconButton(
+                onPressed: () => context
+                    .read<EventsBloc>()
+                    .add(EventSaved(eventData.id.toString())),
+                icon: const Icon(Icons.favorite_outline_outlined),
+                splashRadius: 25,
+              );
+            },
+          )
         ],
       ),
       body: SingleChildScrollView(

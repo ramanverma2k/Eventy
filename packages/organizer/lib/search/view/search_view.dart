@@ -13,7 +13,7 @@ class SearchView extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         if (state.state == SearchStatus.completed &&
-            state.searchResult != null) {
+            state.searchResult!.isNotEmpty) {
           return Scaffold(
             appBar: AppBar(
               title: Text(
@@ -121,58 +121,62 @@ class SearchView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.12,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          decoration: BoxDecoration(
-                            color: Colors.greenAccent,
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                state.searchResultsWithFilters![index].image!,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.12,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  state.searchResultsWithFilters![index].image!,
+                                ),
+                                fit: BoxFit.cover,
                               ),
-                              fit: BoxFit.cover,
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                state.searchResultsWithFilters![index].name,
-                                style: Theme.of(context).textTheme.titleSmall,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const Gap(10),
-                              Text(
-                                '${DateFormat('dd MMM, y').format(
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  state.searchResultsWithFilters![index].name,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const Gap(10),
+                                Text(
+                                  '${DateFormat('dd MMM, y').format(
+                                    state.searchResultsWithFilters![index]
+                                        .start_date,
+                                  )}'
+                                  ' ${DateFormat('jm').format(
+                                    state.searchResultsWithFilters![index]
+                                        .start_date,
+                                  )}',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const Gap(10),
+                                Text(
                                   state.searchResultsWithFilters![index]
-                                      .start_date,
-                                )}'
-                                ' ${DateFormat('jm').format(
-                                  state.searchResultsWithFilters![index]
-                                      .start_date,
-                                )}',
-                                style: Theme.of(context).textTheme.displaySmall,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const Gap(10),
-                              Text(
-                                state.searchResultsWithFilters![index]
-                                    .location!['address']
-                                    .toString(),
-                                style: Theme.of(context).textTheme.displaySmall,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                                      .location!['address']
+                                      .toString(),
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   separatorBuilder: (_, index) => const Gap(20),
@@ -180,6 +184,14 @@ class SearchView extends StatelessWidget {
                   shrinkWrap: true,
                 ),
               ),
+            ),
+          );
+        }
+
+        if (state.state == SearchStatus.initiated) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator.adaptive(),
             ),
           );
         }

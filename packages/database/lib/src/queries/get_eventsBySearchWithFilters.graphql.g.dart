@@ -10,7 +10,7 @@ VariablesQueryGetEventsBySearchWithFilters
     _$VariablesQueryGetEventsBySearchWithFiltersFromJson(
             Map<String, dynamic> json) =>
         VariablesQueryGetEventsBySearchWithFilters(
-          query: json['query'] as String,
+          query: json['query'] as String?,
           filters: (json['filters'] as List<dynamic>)
               .map((e) => e as String)
               .toList(),

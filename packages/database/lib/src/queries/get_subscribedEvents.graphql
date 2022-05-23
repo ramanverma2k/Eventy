@@ -1,5 +1,5 @@
-query GetEventsBySearchWithFilters($query: String, $filters: [String!]!) {
-  events(where: {event_type: {name: {_in: $filters}}, _or: {name: {_regex: $query}}}) {
+query GetSubscribedEvents($userId: uuid!) {
+  events(where: {user: {id: {_eq: $userId}}}) {
     banner_image
     description
     end_date
@@ -8,6 +8,9 @@ query GetEventsBySearchWithFilters($query: String, $filters: [String!]!) {
     location
     name
     start_date
+    user {
+      id
+    }
     event_type {
       name
     }

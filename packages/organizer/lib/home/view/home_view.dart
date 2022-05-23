@@ -34,15 +34,9 @@ class HomeView extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
-      const ListEvents(
-        events: <dynamic>[],
-        title: 'Subscribed Events',
-      ),
+      const SubscribedEventsView(),
       const CreateEventView(),
-      const ListEvents(
-        events: <dynamic>[],
-        title: 'Saved Events',
-      ),
+      const SavedEventsView(),
       const ProfileView(),
     ];
   }
@@ -178,6 +172,44 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
+    );
+  }
+}
+
+class SubscribedEventsView extends StatelessWidget {
+  const SubscribedEventsView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state.state == HomeStatus.loaded) {
+          return ListEvents(
+            events: state.subscribedEvents,
+            title: 'Subscribed Events',
+          );
+        }
+        return Container();
+      },
+    );
+  }
+}
+
+class SavedEventsView extends StatelessWidget {
+  const SavedEventsView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state.state == HomeStatus.loaded) {
+          return ListEvents(
+            events: state.savedEvents,
+            title: 'Saved Events',
+          );
+        }
+        return Container();
+      },
     );
   }
 }

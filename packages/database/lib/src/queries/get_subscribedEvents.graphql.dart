@@ -1,68 +1,52 @@
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:json_annotation/json_annotation.dart';
-part 'get_eventsBySearchWithFilters.graphql.g.dart';
+part 'get_subscribedEvents.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class VariablesQueryGetEventsBySearchWithFilters {
-  VariablesQueryGetEventsBySearchWithFilters(
-      {this.query, required this.filters});
+class VariablesQueryGetSubscribedEvents {
+  VariablesQueryGetSubscribedEvents({required this.userId});
 
   @override
-  factory VariablesQueryGetEventsBySearchWithFilters.fromJson(
+  factory VariablesQueryGetSubscribedEvents.fromJson(
           Map<String, dynamic> json) =>
-      _$VariablesQueryGetEventsBySearchWithFiltersFromJson(json);
+      _$VariablesQueryGetSubscribedEventsFromJson(json);
 
-  final String? query;
-
-  final List<String> filters;
+  final String userId;
 
   Map<String, dynamic> toJson() =>
-      _$VariablesQueryGetEventsBySearchWithFiltersToJson(this);
+      _$VariablesQueryGetSubscribedEventsToJson(this);
   int get hashCode {
-    final l$query = query;
-    final l$filters = filters;
-    return Object.hashAll([l$query, Object.hashAll(l$filters.map((v) => v))]);
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is VariablesQueryGetEventsBySearchWithFilters) ||
+    if (!(other is VariablesQueryGetSubscribedEvents) ||
         runtimeType != other.runtimeType) return false;
-    final l$query = query;
-    final lOther$query = other.query;
-    if (l$query != lOther$query) return false;
-    final l$filters = filters;
-    final lOther$filters = other.filters;
-    if (l$filters.length != lOther$filters.length) return false;
-    for (int i = 0; i < l$filters.length; i++) {
-      final l$filters$entry = l$filters[i];
-      final lOther$filters$entry = lOther$filters[i];
-      if (l$filters$entry != lOther$filters$entry) return false;
-    }
-
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) return false;
     return true;
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class QueryGetEventsBySearchWithFilters {
-  QueryGetEventsBySearchWithFilters(
-      {required this.events, required this.$__typename});
+class QueryGetSubscribedEvents {
+  QueryGetSubscribedEvents({required this.events, required this.$__typename});
 
   @override
-  factory QueryGetEventsBySearchWithFilters.fromJson(
-          Map<String, dynamic> json) =>
-      _$QueryGetEventsBySearchWithFiltersFromJson(json);
+  factory QueryGetSubscribedEvents.fromJson(Map<String, dynamic> json) =>
+      _$QueryGetSubscribedEventsFromJson(json);
 
-  final List<QueryGetEventsBySearchWithFilters$events> events;
+  final List<QueryGetSubscribedEvents$events> events;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
-  Map<String, dynamic> toJson() =>
-      _$QueryGetEventsBySearchWithFiltersToJson(this);
+  Map<String, dynamic> toJson() => _$QueryGetSubscribedEventsToJson(this);
   int get hashCode {
     final l$events = events;
     final l$$__typename = $__typename;
@@ -73,7 +57,7 @@ class QueryGetEventsBySearchWithFilters {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is QueryGetEventsBySearchWithFilters) ||
+    if (!(other is QueryGetSubscribedEvents) ||
         runtimeType != other.runtimeType) return false;
     final l$events = events;
     final lOther$events = other.events;
@@ -91,34 +75,23 @@ class QueryGetEventsBySearchWithFilters {
   }
 }
 
-extension UtilityExtensionQueryGetEventsBySearchWithFilters
-    on QueryGetEventsBySearchWithFilters {
-  QueryGetEventsBySearchWithFilters copyWith(
-          {List<QueryGetEventsBySearchWithFilters$events>? events,
+extension UtilityExtensionQueryGetSubscribedEvents on QueryGetSubscribedEvents {
+  QueryGetSubscribedEvents copyWith(
+          {List<QueryGetSubscribedEvents$events>? events,
           String? $__typename}) =>
-      QueryGetEventsBySearchWithFilters(
+      QueryGetSubscribedEvents(
           events: events == null ? this.events : events,
           $__typename: $__typename == null ? this.$__typename : $__typename);
 }
 
-const QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS =
-    const DocumentNode(definitions: [
+const QUERY_GET_SUBSCRIBED_EVENTS = const DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'GetEventsBySearchWithFilters'),
+      name: NameNode(value: 'GetSubscribedEvents'),
       variableDefinitions: [
         VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'query')),
-            type: NamedTypeNode(
-                name: NameNode(value: 'String'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'filters')),
-            type: ListTypeNode(
-                type: NamedTypeNode(
-                    name: NameNode(value: 'String'), isNonNull: true),
-                isNonNull: true),
+            variable: VariableNode(name: NameNode(value: 'userId')),
+            type: NamedTypeNode(name: NameNode(value: 'uuid'), isNonNull: true),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
@@ -132,27 +105,15 @@ const QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS =
                   name: NameNode(value: 'where'),
                   value: ObjectValueNode(fields: [
                     ObjectFieldNode(
-                        name: NameNode(value: 'event_type'),
+                        name: NameNode(value: 'user'),
                         value: ObjectValueNode(fields: [
                           ObjectFieldNode(
-                              name: NameNode(value: 'name'),
+                              name: NameNode(value: 'id'),
                               value: ObjectValueNode(fields: [
                                 ObjectFieldNode(
-                                    name: NameNode(value: '_in'),
+                                    name: NameNode(value: '_eq'),
                                     value: VariableNode(
-                                        name: NameNode(value: 'filters')))
-                              ]))
-                        ])),
-                    ObjectFieldNode(
-                        name: NameNode(value: '_or'),
-                        value: ObjectValueNode(fields: [
-                          ObjectFieldNode(
-                              name: NameNode(value: 'name'),
-                              value: ObjectValueNode(fields: [
-                                ObjectFieldNode(
-                                    name: NameNode(value: '_regex'),
-                                    value: VariableNode(
-                                        name: NameNode(value: 'query')))
+                                        name: NameNode(value: 'userId')))
                               ]))
                         ]))
                   ]))
@@ -207,6 +168,25 @@ const QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS =
                   arguments: [],
                   directives: [],
                   selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'user'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
               FieldNode(
                   name: NameNode(value: 'event_type'),
                   alias: null,
@@ -273,15 +253,15 @@ const QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS =
             selectionSet: null)
       ])),
 ]);
-QueryGetEventsBySearchWithFilters _parserFnQueryGetEventsBySearchWithFilters(
+QueryGetSubscribedEvents _parserFnQueryGetSubscribedEvents(
         Map<String, dynamic> data) =>
-    QueryGetEventsBySearchWithFilters.fromJson(data);
+    QueryGetSubscribedEvents.fromJson(data);
 
-class OptionsQueryGetEventsBySearchWithFilters
-    extends graphql.QueryOptions<QueryGetEventsBySearchWithFilters> {
-  OptionsQueryGetEventsBySearchWithFilters(
+class OptionsQueryGetSubscribedEvents
+    extends graphql.QueryOptions<QueryGetSubscribedEvents> {
+  OptionsQueryGetSubscribedEvents(
       {String? operationName,
-      required VariablesQueryGetEventsBySearchWithFilters variables,
+      required VariablesQueryGetSubscribedEvents variables,
       graphql.FetchPolicy? fetchPolicy,
       graphql.ErrorPolicy? errorPolicy,
       graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -297,15 +277,15 @@ class OptionsQueryGetEventsBySearchWithFilters
             optimisticResult: optimisticResult,
             pollInterval: pollInterval,
             context: context,
-            document: QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS,
-            parserFn: _parserFnQueryGetEventsBySearchWithFilters);
+            document: QUERY_GET_SUBSCRIBED_EVENTS,
+            parserFn: _parserFnQueryGetSubscribedEvents);
 }
 
-class WatchOptionsQueryGetEventsBySearchWithFilters
-    extends graphql.WatchQueryOptions<QueryGetEventsBySearchWithFilters> {
-  WatchOptionsQueryGetEventsBySearchWithFilters(
+class WatchOptionsQueryGetSubscribedEvents
+    extends graphql.WatchQueryOptions<QueryGetSubscribedEvents> {
+  WatchOptionsQueryGetSubscribedEvents(
       {String? operationName,
-      required VariablesQueryGetEventsBySearchWithFilters variables,
+      required VariablesQueryGetSubscribedEvents variables,
       graphql.FetchPolicy? fetchPolicy,
       graphql.ErrorPolicy? errorPolicy,
       graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -323,64 +303,59 @@ class WatchOptionsQueryGetEventsBySearchWithFilters
             cacheRereadPolicy: cacheRereadPolicy,
             optimisticResult: optimisticResult,
             context: context,
-            document: QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS,
+            document: QUERY_GET_SUBSCRIBED_EVENTS,
             pollInterval: pollInterval,
             eagerlyFetchResults: eagerlyFetchResults,
             carryForwardDataOnException: carryForwardDataOnException,
             fetchResults: fetchResults,
-            parserFn: _parserFnQueryGetEventsBySearchWithFilters);
+            parserFn: _parserFnQueryGetSubscribedEvents);
 }
 
-class FetchMoreOptionsQueryGetEventsBySearchWithFilters
+class FetchMoreOptionsQueryGetSubscribedEvents
     extends graphql.FetchMoreOptions {
-  FetchMoreOptionsQueryGetEventsBySearchWithFilters(
+  FetchMoreOptionsQueryGetSubscribedEvents(
       {required graphql.UpdateQuery updateQuery,
-      required VariablesQueryGetEventsBySearchWithFilters variables})
+      required VariablesQueryGetSubscribedEvents variables})
       : super(
             updateQuery: updateQuery,
             variables: variables.toJson(),
-            document: QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS);
+            document: QUERY_GET_SUBSCRIBED_EVENTS);
 }
 
-extension ClientExtensionQueryGetEventsBySearchWithFilters
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<QueryGetEventsBySearchWithFilters>>
-      queryGetEventsBySearchWithFilters(
-              OptionsQueryGetEventsBySearchWithFilters options) async =>
+extension ClientExtensionQueryGetSubscribedEvents on graphql.GraphQLClient {
+  Future<graphql.QueryResult<QueryGetSubscribedEvents>>
+      queryGetSubscribedEvents(OptionsQueryGetSubscribedEvents options) async =>
           await this.query(options);
-  graphql.ObservableQuery<QueryGetEventsBySearchWithFilters>
-      watchQueryGetEventsBySearchWithFilters(
-              WatchOptionsQueryGetEventsBySearchWithFilters options) =>
+  graphql.ObservableQuery<QueryGetSubscribedEvents>
+      watchQueryGetSubscribedEvents(
+              WatchOptionsQueryGetSubscribedEvents options) =>
           this.watchQuery(options);
-  void writeQueryGetEventsBySearchWithFilters(
-          {required QueryGetEventsBySearchWithFilters data,
-          required VariablesQueryGetEventsBySearchWithFilters variables,
+  void writeQueryGetSubscribedEvents(
+          {required QueryGetSubscribedEvents data,
+          required VariablesQueryGetSubscribedEvents variables,
           bool broadcast = true}) =>
       this.writeQuery(
           graphql.Request(
-              operation: graphql.Operation(
-                  document: QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS),
+              operation:
+                  graphql.Operation(document: QUERY_GET_SUBSCRIBED_EVENTS),
               variables: variables.toJson()),
           data: data.toJson(),
           broadcast: broadcast);
-  QueryGetEventsBySearchWithFilters? readQueryGetEventsBySearchWithFilters(
-      {required VariablesQueryGetEventsBySearchWithFilters variables,
+  QueryGetSubscribedEvents? readQueryGetSubscribedEvents(
+      {required VariablesQueryGetSubscribedEvents variables,
       bool optimistic = true}) {
     final result = this.readQuery(
         graphql.Request(
-            operation: graphql.Operation(
-                document: QUERY_GET_EVENTS_BY_SEARCH_WITH_FILTERS),
+            operation: graphql.Operation(document: QUERY_GET_SUBSCRIBED_EVENTS),
             variables: variables.toJson()),
         optimistic: optimistic);
-    return result == null
-        ? null
-        : QueryGetEventsBySearchWithFilters.fromJson(result);
+    return result == null ? null : QueryGetSubscribedEvents.fromJson(result);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class QueryGetEventsBySearchWithFilters$events {
-  QueryGetEventsBySearchWithFilters$events(
+class QueryGetSubscribedEvents$events {
+  QueryGetSubscribedEvents$events(
       {this.banner_image,
       this.description,
       required this.end_date,
@@ -389,14 +364,14 @@ class QueryGetEventsBySearchWithFilters$events {
       this.location,
       required this.name,
       required this.start_date,
+      required this.user,
       required this.event_type,
       required this.attendings_aggregate,
       required this.$__typename});
 
   @override
-  factory QueryGetEventsBySearchWithFilters$events.fromJson(
-          Map<String, dynamic> json) =>
-      _$QueryGetEventsBySearchWithFilters$eventsFromJson(json);
+  factory QueryGetSubscribedEvents$events.fromJson(Map<String, dynamic> json) =>
+      _$QueryGetSubscribedEvents$eventsFromJson(json);
 
   final String? banner_image;
 
@@ -414,16 +389,18 @@ class QueryGetEventsBySearchWithFilters$events {
 
   final DateTime start_date;
 
-  final QueryGetEventsBySearchWithFilters$events$eventType event_type;
+  final QueryGetSubscribedEvents$events$user user;
 
-  final QueryGetEventsBySearchWithFilters$events$attendingsAggregate
+  final QueryGetSubscribedEvents$events$eventType event_type;
+
+  final QueryGetSubscribedEvents$events$attendingsAggregate
       attendings_aggregate;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$QueryGetEventsBySearchWithFilters$eventsToJson(this);
+      _$QueryGetSubscribedEvents$eventsToJson(this);
   int get hashCode {
     final l$banner_image = banner_image;
     final l$description = description;
@@ -433,6 +410,7 @@ class QueryGetEventsBySearchWithFilters$events {
     final l$location = location;
     final l$name = name;
     final l$start_date = start_date;
+    final l$user = user;
     final l$event_type = event_type;
     final l$attendings_aggregate = attendings_aggregate;
     final l$$__typename = $__typename;
@@ -445,6 +423,7 @@ class QueryGetEventsBySearchWithFilters$events {
       l$location,
       l$name,
       l$start_date,
+      l$user,
       l$event_type,
       l$attendings_aggregate,
       l$$__typename
@@ -454,7 +433,7 @@ class QueryGetEventsBySearchWithFilters$events {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is QueryGetEventsBySearchWithFilters$events) ||
+    if (!(other is QueryGetSubscribedEvents$events) ||
         runtimeType != other.runtimeType) return false;
     final l$banner_image = banner_image;
     final lOther$banner_image = other.banner_image;
@@ -480,6 +459,9 @@ class QueryGetEventsBySearchWithFilters$events {
     final l$start_date = start_date;
     final lOther$start_date = other.start_date;
     if (l$start_date != lOther$start_date) return false;
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) return false;
     final l$event_type = event_type;
     final lOther$event_type = other.event_type;
     if (l$event_type != lOther$event_type) return false;
@@ -493,9 +475,9 @@ class QueryGetEventsBySearchWithFilters$events {
   }
 }
 
-extension UtilityExtensionQueryGetEventsBySearchWithFilters$events
-    on QueryGetEventsBySearchWithFilters$events {
-  QueryGetEventsBySearchWithFilters$events copyWith(
+extension UtilityExtensionQueryGetSubscribedEvents$events
+    on QueryGetSubscribedEvents$events {
+  QueryGetSubscribedEvents$events copyWith(
           {String? Function()? banner_image,
           String? Function()? description,
           DateTime? end_date,
@@ -504,11 +486,12 @@ extension UtilityExtensionQueryGetEventsBySearchWithFilters$events
           Map<String, dynamic>? Function()? location,
           String? name,
           DateTime? start_date,
-          QueryGetEventsBySearchWithFilters$events$eventType? event_type,
-          QueryGetEventsBySearchWithFilters$events$attendingsAggregate?
+          QueryGetSubscribedEvents$events$user? user,
+          QueryGetSubscribedEvents$events$eventType? event_type,
+          QueryGetSubscribedEvents$events$attendingsAggregate?
               attendings_aggregate,
           String? $__typename}) =>
-      QueryGetEventsBySearchWithFilters$events(
+      QueryGetSubscribedEvents$events(
           banner_image:
               banner_image == null ? this.banner_image : banner_image(),
           description: description == null ? this.description : description(),
@@ -518,6 +501,7 @@ extension UtilityExtensionQueryGetEventsBySearchWithFilters$events
           location: location == null ? this.location : location(),
           name: name == null ? this.name : name,
           start_date: start_date == null ? this.start_date : start_date,
+          user: user == null ? this.user : user,
           event_type: event_type == null ? this.event_type : event_type,
           attendings_aggregate: attendings_aggregate == null
               ? this.attendings_aggregate
@@ -526,14 +510,61 @@ extension UtilityExtensionQueryGetEventsBySearchWithFilters$events
 }
 
 @JsonSerializable(explicitToJson: true)
-class QueryGetEventsBySearchWithFilters$events$eventType {
-  QueryGetEventsBySearchWithFilters$events$eventType(
+class QueryGetSubscribedEvents$events$user {
+  QueryGetSubscribedEvents$events$user(
+      {required this.id, required this.$__typename});
+
+  @override
+  factory QueryGetSubscribedEvents$events$user.fromJson(
+          Map<String, dynamic> json) =>
+      _$QueryGetSubscribedEvents$events$userFromJson(json);
+
+  final String id;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$QueryGetSubscribedEvents$events$userToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is QueryGetSubscribedEvents$events$user) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtensionQueryGetSubscribedEvents$events$user
+    on QueryGetSubscribedEvents$events$user {
+  QueryGetSubscribedEvents$events$user copyWith(
+          {String? id, String? $__typename}) =>
+      QueryGetSubscribedEvents$events$user(
+          id: id == null ? this.id : id,
+          $__typename: $__typename == null ? this.$__typename : $__typename);
+}
+
+@JsonSerializable(explicitToJson: true)
+class QueryGetSubscribedEvents$events$eventType {
+  QueryGetSubscribedEvents$events$eventType(
       {this.name, required this.$__typename});
 
   @override
-  factory QueryGetEventsBySearchWithFilters$events$eventType.fromJson(
+  factory QueryGetSubscribedEvents$events$eventType.fromJson(
           Map<String, dynamic> json) =>
-      _$QueryGetEventsBySearchWithFilters$events$eventTypeFromJson(json);
+      _$QueryGetSubscribedEvents$events$eventTypeFromJson(json);
 
   final String? name;
 
@@ -541,7 +572,7 @@ class QueryGetEventsBySearchWithFilters$events$eventType {
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$QueryGetEventsBySearchWithFilters$events$eventTypeToJson(this);
+      _$QueryGetSubscribedEvents$events$eventTypeToJson(this);
   int get hashCode {
     final l$name = name;
     final l$$__typename = $__typename;
@@ -551,7 +582,7 @@ class QueryGetEventsBySearchWithFilters$events$eventType {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is QueryGetEventsBySearchWithFilters$events$eventType) ||
+    if (!(other is QueryGetSubscribedEvents$events$eventType) ||
         runtimeType != other.runtimeType) return false;
     final l$name = name;
     final lOther$name = other.name;
@@ -563,35 +594,33 @@ class QueryGetEventsBySearchWithFilters$events$eventType {
   }
 }
 
-extension UtilityExtensionQueryGetEventsBySearchWithFilters$events$eventType
-    on QueryGetEventsBySearchWithFilters$events$eventType {
-  QueryGetEventsBySearchWithFilters$events$eventType copyWith(
+extension UtilityExtensionQueryGetSubscribedEvents$events$eventType
+    on QueryGetSubscribedEvents$events$eventType {
+  QueryGetSubscribedEvents$events$eventType copyWith(
           {String? Function()? name, String? $__typename}) =>
-      QueryGetEventsBySearchWithFilters$events$eventType(
+      QueryGetSubscribedEvents$events$eventType(
           name: name == null ? this.name : name(),
           $__typename: $__typename == null ? this.$__typename : $__typename);
 }
 
 @JsonSerializable(explicitToJson: true)
-class QueryGetEventsBySearchWithFilters$events$attendingsAggregate {
-  QueryGetEventsBySearchWithFilters$events$attendingsAggregate(
+class QueryGetSubscribedEvents$events$attendingsAggregate {
+  QueryGetSubscribedEvents$events$attendingsAggregate(
       {this.aggregate, required this.$__typename});
 
   @override
-  factory QueryGetEventsBySearchWithFilters$events$attendingsAggregate.fromJson(
+  factory QueryGetSubscribedEvents$events$attendingsAggregate.fromJson(
           Map<String, dynamic> json) =>
-      _$QueryGetEventsBySearchWithFilters$events$attendingsAggregateFromJson(
-          json);
+      _$QueryGetSubscribedEvents$events$attendingsAggregateFromJson(json);
 
-  final QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate?
+  final QueryGetSubscribedEvents$events$attendingsAggregate$aggregate?
       aggregate;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$QueryGetEventsBySearchWithFilters$events$attendingsAggregateToJson(
-          this);
+      _$QueryGetSubscribedEvents$events$attendingsAggregateToJson(this);
   int get hashCode {
     final l$aggregate = aggregate;
     final l$$__typename = $__typename;
@@ -601,8 +630,7 @@ class QueryGetEventsBySearchWithFilters$events$attendingsAggregate {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other
-            is QueryGetEventsBySearchWithFilters$events$attendingsAggregate) ||
+    if (!(other is QueryGetSubscribedEvents$events$attendingsAggregate) ||
         runtimeType != other.runtimeType) return false;
     final l$aggregate = aggregate;
     final lOther$aggregate = other.aggregate;
@@ -614,27 +642,27 @@ class QueryGetEventsBySearchWithFilters$events$attendingsAggregate {
   }
 }
 
-extension UtilityExtensionQueryGetEventsBySearchWithFilters$events$attendingsAggregate
-    on QueryGetEventsBySearchWithFilters$events$attendingsAggregate {
-  QueryGetEventsBySearchWithFilters$events$attendingsAggregate copyWith(
-          {QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate?
+extension UtilityExtensionQueryGetSubscribedEvents$events$attendingsAggregate
+    on QueryGetSubscribedEvents$events$attendingsAggregate {
+  QueryGetSubscribedEvents$events$attendingsAggregate copyWith(
+          {QueryGetSubscribedEvents$events$attendingsAggregate$aggregate?
                   Function()?
               aggregate,
           String? $__typename}) =>
-      QueryGetEventsBySearchWithFilters$events$attendingsAggregate(
+      QueryGetSubscribedEvents$events$attendingsAggregate(
           aggregate: aggregate == null ? this.aggregate : aggregate(),
           $__typename: $__typename == null ? this.$__typename : $__typename);
 }
 
 @JsonSerializable(explicitToJson: true)
-class QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate {
-  QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate(
+class QueryGetSubscribedEvents$events$attendingsAggregate$aggregate {
+  QueryGetSubscribedEvents$events$attendingsAggregate$aggregate(
       {required this.count, required this.$__typename});
 
   @override
-  factory QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate.fromJson(
+  factory QueryGetSubscribedEvents$events$attendingsAggregate$aggregate.fromJson(
           Map<String, dynamic> json) =>
-      _$QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregateFromJson(
+      _$QueryGetSubscribedEvents$events$attendingsAggregate$aggregateFromJson(
           json);
 
   final int count;
@@ -643,7 +671,7 @@ class QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate {
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregateToJson(
+      _$QueryGetSubscribedEvents$events$attendingsAggregate$aggregateToJson(
           this);
   int get hashCode {
     final l$count = count;
@@ -655,7 +683,7 @@ class QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-            is QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate) ||
+            is QueryGetSubscribedEvents$events$attendingsAggregate$aggregate) ||
         runtimeType != other.runtimeType) return false;
     final l$count = count;
     final lOther$count = other.count;
@@ -667,12 +695,11 @@ class QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate {
   }
 }
 
-extension UtilityExtensionQueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate
-    on QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate {
-  QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate
-      copyWith({int? count, String? $__typename}) =>
-          QueryGetEventsBySearchWithFilters$events$attendingsAggregate$aggregate(
-              count: count == null ? this.count : count,
-              $__typename:
-                  $__typename == null ? this.$__typename : $__typename);
+extension UtilityExtensionQueryGetSubscribedEvents$events$attendingsAggregate$aggregate
+    on QueryGetSubscribedEvents$events$attendingsAggregate$aggregate {
+  QueryGetSubscribedEvents$events$attendingsAggregate$aggregate copyWith(
+          {int? count, String? $__typename}) =>
+      QueryGetSubscribedEvents$events$attendingsAggregate$aggregate(
+          count: count == null ? this.count : count,
+          $__typename: $__typename == null ? this.$__typename : $__typename);
 }

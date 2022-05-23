@@ -16,7 +16,8 @@ class DiscoverList extends StatelessWidget {
         onTap: () => Navigator.push<void>(
           context,
           MaterialPageRoute(
-            builder: (context) => EventsView(eventData: data[index]),
+            builder: (context) =>
+                EventsView(key: Key(data[index].id), eventData: data[index]),
           ),
         ),
         child: Column(

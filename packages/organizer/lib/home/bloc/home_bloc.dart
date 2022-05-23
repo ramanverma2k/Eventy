@@ -16,25 +16,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             state: HomeStatus.initial,
             popularEvents: [],
             upcomingEvents: [],
+            savedEvents: [],
+            subscribedEvents: [],
           ),
         ) {
     on<HomeDataFetched>((event, emit) async {
+      final savedEventIds = localStorageApi.getStringList('savedEvents');
+      final userId = localStorageApi.getString('userId');
+
       emit(
         const HomeState(
           state: HomeStatus.loading,
           upcomingEvents: [],
           popularEvents: [],
+          savedEvents: [],
+          subscribedEvents: [],
         ),
       );
 
       final _popularEvents = await databaseRepository.getPopularEvents();
       final _upcomingEvents = await databaseRepository.getUpcomingEvents();
+      final _subscribedEvents =
+          await databaseRepository.getSubscribedEvents(userId!);
+
+      final _savedEvents =
+          await databaseRepository.getSavedEventsById(savedEventIds ?? ['']);
 
       emit(
         HomeState(
           state: HomeStatus.loaded,
           popularEvents: _popularEvents,
           upcomingEvents: _upcomingEvents,
+          savedEvents: _savedEvents ?? [],
+          subscribedEvents: _subscribedEvents ?? [],
         ),
       );
     });

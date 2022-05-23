@@ -1,0 +1,16 @@
+query GetUserById($id: uuid!) {
+    users(
+        where: {
+            id: { _eq: $id }
+        }
+    ) {
+        id
+        username
+        email
+        first_name
+        last_name
+        contact_no
+        image
+        description
+    }
+}
