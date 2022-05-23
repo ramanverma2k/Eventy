@@ -6,8 +6,11 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:database/database.dart';
+import 'package:eventy_consumer/authentication/authentication.dart';
+import 'package:eventy_consumer/events/events.dart';
 import 'package:eventy_consumer/home/home.dart';
 import 'package:eventy_consumer/l10n/l10n.dart';
+import 'package:eventy_consumer/search/search.dart';
 import 'package:eventy_consumer/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,31 +38,115 @@ class App extends StatelessWidget {
           create: (context) => DatabaseRepository(client: graphqlClient),
         ),
       ],
-      child: BlocProvider(
-        create: (context) => ThemeBloc(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ThemeBloc(),
+          ),
+          BlocProvider(
+            create: (context) => AuthenticationBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            )..add(AuthenticationStatusValidate()),
+          ),
+          BlocProvider<HomeBloc>(
+            create: (context) => HomeBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
+          ),
+          BlocProvider<SearchBloc>(
+            create: (context) => SearchBloc(
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
+          ),
+          BlocProvider<EventsBloc>(
+            create: (context) => EventsBloc(
+              localStorageApi: context.read<LocalStorageApi>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
+          )
+        ],
         child: const AppView(),
       ),
     );
   }
 }
 
-class AppView extends StatelessWidget {
+class AppView extends StatefulWidget {
   const AppView({Key? key}) : super(key: key);
+
+  @override
+  State<AppView> createState() => _AppViewState();
+}
+
+class _AppViewState extends State<AppView> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get _navigator => _navigatorKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeData>(
       builder: (context, themeData) {
         return MaterialApp(
+          navigatorKey: _navigatorKey,
           theme: themeData,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const HomeView(),
+          builder: (context, child) {
+            return BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                switch (state.state) {
+                  case AuthenticationStatus.authenticated:
+                    _navigator.pushAndRemoveUntil<void>(
+                      HomeView.route(),
+                      (route) => false,
+                    );
+                    break;
+                  case AuthenticationStatus.unauthenticated:
+                    _navigator.pushAndRemoveUntil<void>(
+                      LoginView.route(),
+                      (route) => false,
+                    );
+                    break;
+                  case AuthenticationStatus.unknown:
+                    context
+                        .read<AuthenticationBloc>()
+                        .add(AuthenticationStatusValidate());
+                    break;
+                  case AuthenticationStatus.loggingIn:
+                    break;
+                  case AuthenticationStatus.signingUp:
+                    break;
+                  case AuthenticationStatus.error:
+                    break;
+                }
+              },
+              child: child,
+            );
+          },
+          onGenerateRoute: (_) => SplashPage.route(),
         );
       },
+    );
+  }
+}
+
+class SplashPage extends StatelessWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const SplashPage());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 }

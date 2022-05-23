@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .read<AuthenticationBloc>()
                                   .add(AuthenticationLogoutRequested()),
                               child: const Icon(Icons.logout),
-                            )
+                            ),
                           ],
                         )
                       ],

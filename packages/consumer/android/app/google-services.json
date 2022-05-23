@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "835723434796",
+    "project_id": "eventy-335e6",
+    "storage_bucket": "eventy-335e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835723434796:android:4d59f88552449c25226a89",
+        "android_client_info": {
+          "package_name": "com.cloverspace.eventy.eventy_consumer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835723434796-84q9ptnaoqbrb7o0e2bb592fqnhpk0s1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG4fHImBPEXPSHnLyRsWrRLuPcO-tz8sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835723434796-84q9ptnaoqbrb7o0e2bb592fqnhpk0s1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "835723434796-r930hqb3mp6oa6gdoc8r3avcfpk2ma5r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cloverspace.eventy.org.eventy-organizer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835723434796:android:74e69d30ec81be1e226a89",
+        "android_client_info": {
+          "package_name": "com.cloverspace.eventy.org.eventy_organizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835723434796-84q9ptnaoqbrb7o0e2bb592fqnhpk0s1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG4fHImBPEXPSHnLyRsWrRLuPcO-tz8sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835723434796-84q9ptnaoqbrb7o0e2bb592fqnhpk0s1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "835723434796-r930hqb3mp6oa6gdoc8r3avcfpk2ma5r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cloverspace.eventy.org.eventy-organizer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

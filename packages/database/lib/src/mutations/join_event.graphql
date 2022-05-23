@@ -1,0 +1,7 @@
+mutation JoinEvent($eventId: uuid!, $userId: uuid!) {
+  insert_attending_one(object: {event_id: $eventId, user_id: $userId}) {
+    id
+    user_id
+    event_id
+	}
+}

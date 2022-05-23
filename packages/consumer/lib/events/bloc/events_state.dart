@@ -1,6 +1,21 @@
 part of 'events_bloc.dart';
 
-@immutable
-abstract class EventsState {}
+enum EventStatus {
+  initial,
+  saved,
+  removed,
+}
 
-class EventsInitial extends EventsState {}
+@immutable
+class EventsState extends Equatable {
+  const EventsState(this.state);
+
+  final EventStatus state;
+
+  EventsState copyWith({required EventStatus state}) {
+    return EventsState(state);
+  }
+
+  @override
+  List<Object?> get props => [state];
+}

@@ -12,16 +12,60 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
   }
 
   static final _lightTheme = ThemeData(
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.white,
-    ),
     brightness: Brightness.light,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ThemeData.light().scaffoldBackgroundColor,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.black),
+    ),
+    dividerColor: Colors.grey,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 13,
+        color: Colors.grey,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
   );
 
   static final _darkTheme = ThemeData(
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.black,
-    ),
     brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+      backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.white),
+    ),
+    dividerColor: Colors.blueGrey,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 13,
+        color: Colors.grey,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
   );
 }

@@ -105,16 +105,38 @@ const QUERY_GET_SUBSCRIBED_EVENTS = const DocumentNode(definitions: [
                   name: NameNode(value: 'where'),
                   value: ObjectValueNode(fields: [
                     ObjectFieldNode(
-                        name: NameNode(value: 'user'),
-                        value: ObjectValueNode(fields: [
-                          ObjectFieldNode(
-                              name: NameNode(value: 'id'),
-                              value: ObjectValueNode(fields: [
-                                ObjectFieldNode(
-                                    name: NameNode(value: '_eq'),
-                                    value: VariableNode(
-                                        name: NameNode(value: 'userId')))
-                              ]))
+                        name: NameNode(value: '_or'),
+                        value: ListValueNode(values: [
+                          ObjectValueNode(fields: [
+                            ObjectFieldNode(
+                                name: NameNode(value: 'user'),
+                                value: ObjectValueNode(fields: [
+                                  ObjectFieldNode(
+                                      name: NameNode(value: 'id'),
+                                      value: ObjectValueNode(fields: [
+                                        ObjectFieldNode(
+                                            name: NameNode(value: '_eq'),
+                                            value: VariableNode(
+                                                name:
+                                                    NameNode(value: 'userId')))
+                                      ]))
+                                ]))
+                          ]),
+                          ObjectValueNode(fields: [
+                            ObjectFieldNode(
+                                name: NameNode(value: 'attendings'),
+                                value: ObjectValueNode(fields: [
+                                  ObjectFieldNode(
+                                      name: NameNode(value: 'user_id'),
+                                      value: ObjectValueNode(fields: [
+                                        ObjectFieldNode(
+                                            name: NameNode(value: '_eq'),
+                                            value: VariableNode(
+                                                name:
+                                                    NameNode(value: 'userId')))
+                                      ]))
+                                ]))
+                          ])
                         ]))
                   ]))
             ],

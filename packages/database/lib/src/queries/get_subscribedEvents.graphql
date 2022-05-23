@@ -1,5 +1,5 @@
 query GetSubscribedEvents($userId: uuid!) {
-  events(where: {user: {id: {_eq: $userId}}}) {
+  events(where: {_or: [{user: {id: {_eq: $userId}}}, {attendings: {user_id: {_eq: $userId}}}]}) {
     banner_image
     description
     end_date

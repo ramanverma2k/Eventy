@@ -1,5 +1,7 @@
 import 'package:database/database.dart';
 import 'package:database/src/mutations/create_event.graphql.dart';
+import 'package:database/src/mutations/create_user_account.graphql.dart';
+import 'package:database/src/mutations/join_event.graphql.dart';
 import 'package:database/src/queries/get_eventsBySearch.graphql.dart';
 import 'package:database/src/queries/get_eventsBySearchWithFilters.graphql.dart';
 import 'package:database/src/queries/get_popularEvents.graphql.dart';
@@ -81,6 +83,42 @@ class DatabaseRepository {
     final _result = await _client.mutateCreateAdminAccount(
       OptionsMutationCreateAdminAccount(
         variables: VariablesMutationCreateAdminAccount(
+          id: _id,
+          username: username,
+          password: password,
+          email: email,
+          first_name: firstName,
+          last_name: lastName,
+          contact_no: contactNo,
+          image: image,
+          description: description,
+        ),
+      ),
+    );
+
+    if (!_result.hasException) {
+      return _result.parsedData;
+    } else {
+      return null;
+    }
+  }
+
+  /// Query for creating a user account.
+  Future<MutationCreateAccount?> createAccount({
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String email,
+    required String password,
+    required String contactNo,
+    required String image,
+    required String description,
+  }) async {
+    final _id = const Uuid().v4();
+
+    final _result = await _client.mutateCreateAccount(
+      OptionsMutationCreateAccount(
+        variables: VariablesMutationCreateAccount(
           id: _id,
           username: username,
           password: password,
@@ -262,6 +300,24 @@ class DatabaseRepository {
       }
     } else {
       return null;
+    }
+  }
+
+  /// Mutation for joining event
+  Future<MutationJoinEvent$insertAttendingOne?> joinEvent(
+    String eventId,
+    String userId,
+  ) async {
+    final _result = await _client.mutateJoinEvent(
+      OptionsMutationJoinEvent(
+        variables: VariablesMutationJoinEvent(eventId: eventId, userId: userId),
+      ),
+    );
+
+    if (!_result.hasException) {
+      return null;
+    } else {
+      return _result.parsedData!.insert_attending_one;
     }
   }
 }

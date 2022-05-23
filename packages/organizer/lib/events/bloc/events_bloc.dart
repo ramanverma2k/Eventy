@@ -31,8 +31,6 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
             saved,
           );
 
-          print('removed: $saved');
-
           emit(const EventsState(EventStatus.removed));
         } else {
           saved.add(event.id);
@@ -40,8 +38,6 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
             'savedEvents',
             saved,
           );
-
-          print(saved);
 
           emit(const EventsState(EventStatus.saved));
         }
